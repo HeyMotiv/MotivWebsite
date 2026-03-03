@@ -1369,8 +1369,8 @@ p { max-width: 640px; }
           <p class="frame-label">The simplest way to think about it</p>
           <p>A platform that channels what you've built into something your audience does together—with real stakes and real rewards.</p>
         </div>
-        <form class="email-capture" data-form="waitlist" onsubmit="return handleSubmit(this, event)">
-          <input type="email" placeholder="Email address" required aria-label="Email address">
+        <form class="email-capture" name="waitlist" data-form="waitlist" netlify onsubmit="return handleSubmit(this, event)">
+          <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
           <button type="submit" class="btn-primary">Join waitlist</button>
         </form>
         <div class="form-success" aria-live="polite">
@@ -1571,8 +1571,8 @@ p { max-width: 640px; }
           <h3>Get early access updates</h3>
           <p style="font-size: 0.85rem; color: var(--ink-light); margin-top: 0.3rem;">We're onboarding a small set of founding creators first.</p>
         </div>
-        <form class="email-capture" data-form="waitlist" onsubmit="return handleSubmit(this, event)">
-          <input type="email" placeholder="Email address" required aria-label="Email address">
+        <form class="email-capture" name="waitlist" data-form="waitlist" netlify onsubmit="return handleSubmit(this, event)">
+          <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
           <button type="submit" class="btn-primary">Join waitlist</button>
         </form>
         <div class="form-success" aria-live="polite">
@@ -1640,8 +1640,8 @@ p { max-width: 640px; }
       <p class="label reveal">Founding creators</p>
       <h2 class="reveal">Want to be a founding creator?</h2>
       <p class="reveal">We're building Motiv with a small group first. Founding creators get influence over product design, the ability to talk about Motiv publicly as it evolves, additional financial incentives, and a chance to shape a new way for creators to build experiences around their own brand and values.</p>
-      <form class="email-capture reveal" data-form="waitlist" onsubmit="return handleSubmit(this, event)">
-        <input type="email" placeholder="Email address" required aria-label="Email address">
+      <form class="email-capture reveal" name="waitlist" data-form="waitlist" netlify onsubmit="return handleSubmit(this, event)">
+        <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
         <button type="submit" class="btn-primary">Join the Creator Waitlist</button>
       </form>
       <div class="form-success reveal" aria-live="polite">
@@ -1753,8 +1753,8 @@ p { max-width: 640px; }
       <p class="section-intro reveal">Motiv works best when it fits your brand. We expect creators to host collabs that feel aligned—not opportunistic. Your audience's trust matters more than any single collab.</p>
       <div class="cta-strip reveal" style="margin-top: 2.5rem; background: var(--white);">
         <h3>Join the waitlist for early previews</h3>
-        <form class="email-capture" data-form="waitlist" onsubmit="return handleSubmit(this, event)">
-          <input type="email" placeholder="Email address" required aria-label="Email address">
+        <form class="email-capture" name="waitlist" data-form="waitlist" netlify onsubmit="return handleSubmit(this, event)">
+          <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
           <button type="submit" class="btn-primary">Join waitlist</button>
         </form>
         <div class="form-success" aria-live="polite">
@@ -1826,8 +1826,8 @@ p { max-width: 640px; }
 
       <div class="cta-strip reveal" style="margin-top: 3rem;">
         <h3>Want the full creator guide when it's ready?</h3>
-        <form class="email-capture" data-form="waitlist" onsubmit="return handleSubmit(this, event)">
-          <input type="email" placeholder="Email address" required aria-label="Email address">
+        <form class="email-capture" name="waitlist" data-form="waitlist" netlify onsubmit="return handleSubmit(this, event)">
+          <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
           <button type="submit" class="btn-primary">Send me updates</button>
         </form>
         <div class="form-success" aria-live="polite">
@@ -1916,8 +1916,8 @@ p { max-width: 640px; }
       <p class="section-intro reveal">Motiv avoids black-box payout math. Creators and participants should understand the basics of where money goes and why.</p>
       <div class="cta-strip reveal">
         <h3>Get the earnings model update</h3>
-        <form class="email-capture" data-form="waitlist" onsubmit="return handleSubmit(this, event)">
-          <input type="email" placeholder="Email address" required aria-label="Email address">
+        <form class="email-capture" name="waitlist" data-form="waitlist" netlify onsubmit="return handleSubmit(this, event)">
+          <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
           <button type="submit" class="btn-primary">Join waitlist</button>
         </form>
         <div class="form-success" aria-live="polite">
@@ -2024,8 +2024,8 @@ p { max-width: 640px; }
           <h3>Want updates as we build?</h3>
           <p style="font-size: 0.85rem; color: var(--ink-light); margin-top: 0.3rem;">Join the creator waitlist and we'll share progress, previews, and onboarding timing.</p>
         </div>
-        <form class="email-capture" data-form="waitlist" onsubmit="return handleSubmit(this, event)">
-          <input type="email" placeholder="Email address" required aria-label="Email address">
+        <form class="email-capture" name="waitlist" data-form="waitlist" netlify onsubmit="return handleSubmit(this, event)">
+          <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
           <button type="submit" class="btn-primary">Join waitlist</button>
         </form>
         <div class="form-success" aria-live="polite">
@@ -2048,7 +2048,7 @@ p { max-width: 640px; }
         <h1>Join the Creator Waitlist</h1>
         <p class="hero-sub">We're building Motiv with a small group of authenticity-first creators. Join the list to get updates, early previews, and an invite when onboarding opens.</p>
 
-        <form class="waitlist-form-full" id="waitlistFullForm" onsubmit="return handleFullSubmit(this, event)" style="animation: fadeUp 1s var(--ease-out) 0.3s forwards; opacity: 0;">
+        <form class="waitlist-form-full" id="waitlistFullForm" name="waitlist-full" netlify onsubmit="return handleFullSubmit(this, event)" style="animation: fadeUp 1s var(--ease-out) 0.3s forwards; opacity: 0;">
           <div class="form-group">
             <label for="wl-email">Email <span style="color: var(--boundary);">*</span></label>
             <input type="email" id="wl-email" name="email" placeholder="you@example.com" required>
@@ -2117,8 +2117,8 @@ p { max-width: 640px; }
 
       <div class="cta-strip reveal" style="margin-top: 3rem;">
         <h3>Get trust updates</h3>
-        <form class="email-capture" data-form="waitlist" onsubmit="return handleSubmit(this, event)">
-          <input type="email" placeholder="Email address" required aria-label="Email address">
+        <form class="email-capture" name="waitlist" data-form="waitlist" netlify onsubmit="return handleSubmit(this, event)">
+          <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
           <button type="submit" class="btn-primary">Join waitlist</button>
         </form>
         <div class="form-success" aria-live="polite">
