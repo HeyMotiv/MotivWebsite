@@ -1,0 +1,2265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Motiv — Lead collabs your audience follows through on</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+/* ─── Brand Tokens ─── */
+:root {
+  --ink: #2B2E34;
+  --clay: #C97A6A;
+  --blush: #F3E6E2;
+  --sage: #8FA6A0;
+  --sand: #E7D9C9;
+  --plum: #6B4E71;
+  --boundary: #B8574E;
+  --white: #FEFCFA;
+  --ink-light: #5A5D63;
+  --ink-faint: #9A9CA0;
+  --blush-deep: #EDD5CF;
+  --sage-light: #C6D5D1;
+  --sand-light: #F2ECE3;
+  --font-display: 'Source Serif 4', Georgia, serif;
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ─── Reset & Base ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  scroll-padding-top: 80px;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--white);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; }
+input { font-family: inherit; }
+
+/* ─── Typography ─── */
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
+h3 { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 500; }
+
+p { max-width: 640px; }
+
+.label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+
+/* ─── Layout ─── */
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+}
+
+.section {
+  padding: clamp(4rem, 10vw, 8rem) 0;
+}
+
+/* ─── Animations ─── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes gentlePulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── Navigation ─── */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(254, 252, 250, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(43, 46, 52, 0.06);
+  transition: box-shadow 0.3s ease;
+}
+
+.nav.scrolled {
+  box-shadow: 0 1px 20px rgba(43, 46, 52, 0.06);
+}
+
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+}
+
+.nav-logo svg {
+  height: 28px;
+  width: auto;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+}
+
+.footer-logo svg {
+  height: 24px;
+  width: auto;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink-light);
+  transition: color 0.25s ease;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: var(--clay);
+  transition: width 0.3s var(--ease-out);
+}
+
+.nav-links a:hover { color: var(--ink); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  background: var(--ink);
+  color: var(--white) !important;
+  padding: 0.55rem 1.3rem;
+  border-radius: 100px;
+  font-size: 0.85rem !important;
+  font-weight: 500;
+  transition: background 0.25s ease, transform 0.2s ease !important;
+}
+
+.nav-cta::after { display: none !important; }
+.nav-cta:hover { background: var(--plum) !important; transform: scale(1.03); }
+
+.nav-mobile-toggle {
+  display: none;
+  background: none;
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+
+.nav-mobile-toggle span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--ink);
+  position: absolute;
+  left: 5px;
+  transition: all 0.3s ease;
+}
+
+.nav-mobile-toggle span:nth-child(1) { top: 10px; }
+.nav-mobile-toggle span:nth-child(2) { top: 16px; }
+.nav-mobile-toggle span:nth-child(3) { top: 22px; }
+
+.nav-mobile-toggle.active span:nth-child(1) { top: 16px; transform: rotate(45deg); }
+.nav-mobile-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-mobile-toggle.active span:nth-child(3) { top: 16px; transform: rotate(-45deg); }
+
+/* ─── Hero ─── */
+.hero {
+  padding-top: calc(72px + clamp(4rem, 10vw, 7rem));
+  padding-bottom: clamp(4rem, 10vw, 7rem);
+  position: relative;
+  overflow: hidden;
+}
+
+#page-product .hero,
+#page-how-it-works .hero,
+#page-earnings .hero,
+#page-faq .hero {
+  padding-top: calc(72px + clamp(2rem, 5vw, 3.5rem));
+  padding-bottom: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+#page-product .hero .hero-sub,
+#page-how-it-works .hero .hero-sub,
+#page-earnings .hero .hero-sub,
+#page-faq .hero .hero-sub {
+  margin-bottom: 0;
+}
+
+#page-how-it-works .hero + .section,
+#page-earnings .hero + .section,
+#page-faq .hero + .section {
+  padding-top: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+#page-product .hero + .section {
+  padding-top: clamp(4rem, 8vw, 6rem);
+}
+
+#page-faq .hero + .section .faq-list {
+  margin-top: 1rem;
+}
+
+#page-how-it-works .hero + .section .how-steps {
+  margin-top: 1rem;
+}
+
+#positioning {
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+#what-you-host {
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: -10%;
+  width: 60%;
+  height: 120%;
+  background: radial-gradient(ellipse at center, var(--blush) 0%, transparent 70%);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: -20%;
+  left: -5%;
+  width: 40%;
+  height: 80%;
+  background: radial-gradient(ellipse at center, var(--sand-light) 0%, transparent 70%);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+}
+
+.hero h1 {
+  animation: fadeUp 1s var(--ease-out) forwards;
+  margin-bottom: 1.5rem;
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  color: var(--ink-light);
+  line-height: 1.75;
+  animation: fadeUp 1s var(--ease-out) 0.15s forwards;
+  opacity: 0;
+  margin-bottom: 2.5rem;
+}
+
+.hero-trust {
+  font-size: 0.8rem;
+  color: var(--ink-faint);
+  margin-top: 1rem;
+  animation: fadeIn 1s ease 0.6s forwards;
+  opacity: 0;
+}
+
+.hero-trust::before {
+  display: none;
+}
+
+/* ─── Email Capture Form ─── */
+.email-capture {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 480px;
+  animation: fadeUp 1s var(--ease-out) 0.3s forwards;
+  opacity: 0;
+}
+
+.email-capture input[type="email"] {
+  flex: 1;
+  padding: 0.85rem 1.2rem;
+  border: 1.5px solid rgba(43, 46, 52, 0.12);
+  border-radius: 100px;
+  font-size: 0.95rem;
+  background: var(--white);
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.email-capture input[type="email"]::placeholder {
+  color: var(--ink-faint);
+}
+
+.email-capture input[type="email"]:focus {
+  border-color: var(--clay);
+  box-shadow: 0 0 0 3px rgba(201, 122, 106, 0.12);
+}
+
+.email-capture .btn-primary {
+  white-space: nowrap;
+}
+
+.email-consent {
+  font-size: 0.76rem;
+  color: var(--ink-faint);
+  margin-top: 0.65rem;
+  padding-left: 0.2rem;
+}
+
+.btn-primary {
+  background: var(--clay);
+  color: var(--white);
+  padding: 0.85rem 1.8rem;
+  border-radius: 100px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  border: none;
+  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: #b86c5d;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(201, 122, 106, 0.3);
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--clay);
+  margin-top: 1rem;
+  animation: fadeIn 1s ease 0.5s forwards;
+  opacity: 0;
+  transition: gap 0.25s ease;
+}
+
+.btn-secondary:hover { gap: 0.7rem; }
+.btn-secondary svg { width: 16px; height: 16px; }
+
+/* ─── Success State ─── */
+.form-success {
+  display: none;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 1.5rem;
+  background: rgba(143, 166, 160, 0.12);
+  border-radius: 100px;
+  font-size: 0.92rem;
+  color: var(--ink);
+  animation: fadeUp 0.5s var(--ease-out) forwards;
+}
+
+.form-success .check {
+  width: 22px;
+  height: 22px;
+  background: var(--sage);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.form-success .check svg {
+  width: 12px;
+  height: 12px;
+  stroke: white;
+  stroke-width: 3;
+  fill: none;
+}
+
+/* ─── Cards ─── */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.card {
+  background: var(--white);
+  border: 1px solid rgba(43, 46, 52, 0.06);
+  border-radius: 16px;
+  padding: 2.2rem 2rem;
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(43, 46, 52, 0.06);
+}
+
+.card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+
+.card-icon.blush { background: var(--blush); }
+.card-icon.sand { background: var(--sand-light); }
+.card-icon.sage-bg { background: rgba(143, 166, 160, 0.15); }
+
+.card-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--ink);
+  stroke-width: 1.8;
+  fill: none;
+}
+
+.card h3 { margin-bottom: 0.75rem; }
+
+.card p {
+  font-size: 0.92rem;
+  color: var(--ink-light);
+  line-height: 1.7;
+}
+
+/* ─── Sections ─── */
+.section-header {
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  margin-top: 0.5rem;
+}
+
+.section-intro {
+  font-size: clamp(0.95rem, 1.5vw, 1.08rem);
+  color: var(--ink-light);
+  line-height: 1.75;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* Alternating backgrounds */
+.bg-blush { background: var(--blush); }
+.bg-sand { background: var(--sand-light); }
+.bg-white { background: var(--white); }
+.bg-ink { background: var(--ink); color: var(--white); }
+.bg-ink .label { color: var(--sand); }
+.bg-ink p { color: rgba(255,255,255,0.72); }
+
+/* ─── Steps ─── */
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+  counter-reset: step;
+}
+
+.step {
+  position: relative;
+  padding-left: 0;
+}
+
+.step-number {
+  font-family: var(--font-display);
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--blush-deep);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+}
+
+.step h3 { margin-bottom: 0.5rem; }
+
+.step p {
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  line-height: 1.7;
+}
+
+/* ─── Inline CTA Strip ─── */
+.cta-strip {
+  background: var(--blush);
+  border-radius: 20px;
+  padding: 2.5rem clamp(1.5rem, 4vw, 3rem);
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.cta-strip h3 {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+}
+
+.cta-strip .email-capture {
+  animation: none;
+  opacity: 1;
+}
+
+.cta-strip .email-consent {
+  width: 100%;
+}
+
+/* ─── Earnings Pillars ─── */
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.pillar {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2.2rem 2rem;
+  border-left: 3px solid var(--clay);
+}
+
+.pillar h3 { margin-bottom: 0.6rem; }
+.pillar p { font-size: 0.92rem; color: var(--ink-light); line-height: 1.7; }
+
+/* ─── Example Box ─── */
+.example-box {
+  background: rgba(107, 78, 113, 0.04);
+  border: 1px solid rgba(107, 78, 113, 0.1);
+  border-radius: 16px;
+  padding: 2rem 2.2rem;
+  margin-top: 2.5rem;
+  max-width: 560px;
+}
+
+.example-box h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--plum);
+  margin-bottom: 1rem;
+}
+
+.example-box .detail {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(43, 46, 52, 0.06);
+  font-size: 0.92rem;
+}
+
+.example-box .detail:last-of-type { border-bottom: none; }
+.example-box .detail span:first-child { color: var(--ink-light); }
+.example-box .detail span:last-child { font-weight: 500; }
+
+.example-box .disclaimer {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  margin-top: 1rem;
+  font-style: italic;
+}
+
+/* ─── FAQ ─── */
+.faq-list {
+  max-width: 720px;
+  margin-top: 2.5rem;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(43, 46, 52, 0.08);
+}
+
+.faq-question {
+  width: 100%;
+  background: none;
+  text-align: left;
+  padding: 1.4rem 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  transition: color 0.2s ease;
+}
+
+.faq-question:hover { color: var(--clay); }
+
+.faq-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--blush);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.35s var(--ease-out), background 0.25s ease;
+}
+
+.faq-item.open .faq-icon {
+  transform: rotate(45deg);
+  background: var(--clay);
+}
+
+.faq-item.open .faq-icon svg { stroke: white; }
+
+.faq-icon svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--ink);
+  stroke-width: 2;
+  fill: none;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s var(--ease-out), padding 0.3s ease;
+}
+
+.faq-answer-inner {
+  padding-bottom: 1.4rem;
+  font-size: 0.94rem;
+  color: var(--ink-light);
+  line-height: 1.75;
+}
+
+.faq-item.open .faq-answer {
+  max-height: 300px;
+}
+
+/* ─── Quote Section ─── */
+.quotes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.quote-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2.5rem 2.2rem;
+  position: relative;
+  border: 1px solid rgba(43, 46, 52, 0.06);
+}
+
+.quote-card::before {
+  content: '"';
+  font-family: var(--font-display);
+  font-size: 5rem;
+  color: var(--blush-deep);
+  position: absolute;
+  top: 0.5rem;
+  left: 1.5rem;
+  line-height: 1;
+}
+
+.quote-card p {
+  font-size: 1.05rem;
+  font-style: italic;
+  line-height: 1.7;
+  position: relative;
+  z-index: 1;
+}
+
+.quote-attr {
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+  margin-top: 1.2rem;
+  font-style: normal !important;
+}
+
+/* ─── Final CTA Section ─── */
+.final-cta {
+  text-align: center;
+  position: relative;
+}
+
+.final-cta::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+  background: radial-gradient(ellipse at center, var(--blush) 0%, transparent 70%);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.final-cta .container {
+  position: relative;
+  z-index: 1;
+}
+
+.final-cta h2 { margin-bottom: 1rem; }
+
+.final-cta p {
+  margin: 0 auto 2rem;
+  color: var(--ink-light);
+  text-align: center;
+}
+
+.final-cta .email-capture {
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.final-cta .email-consent {
+  text-align: center;
+}
+
+/* ─── Waitlist Page Section ─── */
+.waitlist-form-full {
+  max-width: 480px;
+  margin-top: 2.5rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  color: var(--ink);
+}
+
+.form-group label .optional {
+  font-weight: 400;
+  color: var(--ink-faint);
+  font-size: 0.8rem;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1.5px solid rgba(43, 46, 52, 0.12);
+  border-radius: 12px;
+  font-size: 0.95rem;
+  background: var(--white);
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-group select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%235A5D63' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--clay);
+  box-shadow: 0 0 0 3px rgba(201, 122, 106, 0.12);
+}
+
+.form-group input::placeholder { color: var(--ink-faint); }
+
+/* ─── Trust Section ─── */
+.trust-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.trust-item {
+  padding: 2rem;
+  border-radius: 16px;
+  background: rgba(143, 166, 160, 0.06);
+  border: 1px solid rgba(143, 166, 160, 0.12);
+}
+
+.trust-item h3 { margin-bottom: 0.6rem; }
+.trust-item p { font-size: 0.92rem; color: var(--ink-light); line-height: 1.7; }
+
+/* ─── Collab Spec ─── */
+.collab-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.collab-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.92rem;
+  color: var(--ink-light);
+  line-height: 1.6;
+}
+
+.collab-detail-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--blush);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.collab-detail-icon svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--clay);
+  stroke-width: 2;
+  fill: none;
+}
+
+/* ─── Page Sections (for single-page nav) ─── */
+.page-section {
+  display: none;
+}
+
+.page-section.active {
+  display: block;
+}
+
+/* ─── Divider ─── */
+.section-divider {
+  width: 48px;
+  height: 2px;
+  background: var(--clay);
+  opacity: 0.3;
+  margin: 0 auto;
+}
+
+/* ─── Creator Message Box ─── */
+.message-box {
+  background: var(--sand-light);
+  border-radius: 16px;
+  padding: 1.8rem 2rem;
+  margin: 2rem 0;
+  position: relative;
+  max-width: 560px;
+}
+
+.message-box::before {
+  content: 'Suggested message';
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--ink-faint);
+  position: absolute;
+  top: -1.5rem;
+  left: 0;
+}
+
+.message-box p {
+  font-size: 0.95rem;
+  font-style: italic;
+  color: var(--ink-light);
+  line-height: 1.7;
+}
+
+/* ─── How It Works Steps (detailed) ─── */
+.how-steps {
+  margin-top: 3rem;
+}
+
+.how-step {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.how-step::after {
+  content: '';
+  position: absolute;
+  left: 29px;
+  top: 60px;
+  bottom: -1.5rem;
+  width: 2px;
+  background: var(--blush-deep);
+}
+
+.how-step:last-child::after { display: none; }
+
+.how-step-num {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--blush);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--clay);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.how-step-content h3 {
+  margin-bottom: 0.6rem;
+  padding-top: 0.85rem;
+}
+
+.how-step-content p {
+  font-size: 0.92rem;
+  color: var(--ink-light);
+  line-height: 1.7;
+}
+
+/* ─── Footer ─── */
+.footer {
+  background: var(--ink);
+  color: rgba(255, 255, 255, 0.6);
+  padding: 3.5rem 0 2.5rem;
+}
+
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1.8rem;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.footer-links a {
+  font-size: 0.85rem;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover { color: white; }
+
+.footer-bottom {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-size: 0.8rem;
+}
+
+.footer-legal {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.footer-legal a { transition: color 0.2s ease; }
+.footer-legal a:hover { color: white; }
+
+/* ─── Patreon Frame Callout ─── */
+.patreon-frame {
+  background: linear-gradient(135deg, rgba(107, 78, 113, 0.06) 0%, rgba(201, 122, 106, 0.06) 100%);
+  border: 1px solid rgba(107, 78, 113, 0.1);
+  border-radius: 16px;
+  padding: 1.8rem 2.2rem;
+  margin-bottom: 2rem;
+  max-width: 640px;
+}
+
+.patreon-frame p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.patreon-frame .frame-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--plum);
+  margin-bottom: 0.6rem;
+}
+
+/* ─── Comparison Grid ─── */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+.comparison-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2rem 1.6rem;
+  border: 1px solid rgba(43, 46, 52, 0.06);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease;
+}
+
+.comparison-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(43, 46, 52, 0.06);
+}
+
+.comparison-card.highlighted {
+  border: 2px solid var(--clay);
+  background: linear-gradient(180deg, rgba(201, 122, 106, 0.04) 0%, var(--white) 100%);
+}
+
+.comparison-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid var(--blush-deep);
+}
+
+.comparison-card.highlighted h3 {
+  border-bottom-color: var(--clay);
+}
+
+.comparison-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(43, 46, 52, 0.05);
+}
+
+.comparison-row:last-child {
+  border-bottom: none;
+}
+
+.comparison-row .row-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+}
+
+.comparison-row .row-value {
+  font-size: 0.92rem;
+  color: var(--ink-light);
+  font-weight: 500;
+}
+
+.comparison-card.highlighted .row-value {
+  color: var(--ink);
+}
+
+/* ─── Earnings Scenario ─── */
+.earnings-scenario {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin-top: 3rem;
+  border: 1px solid rgba(43, 46, 52, 0.08);
+  max-width: 680px;
+}
+
+.earnings-scenario h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--plum);
+  margin-bottom: 0.6rem;
+}
+
+.earnings-scenario .scenario-desc {
+  font-size: 0.95rem;
+  color: var(--ink-light);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(43, 46, 52, 0.08);
+}
+
+.earnings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  font-size: 0.92rem;
+}
+
+.earnings-row span:first-child {
+  color: var(--ink-light);
+}
+
+.earnings-row span:last-child {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.earnings-row.total {
+  border-top: 2px solid var(--clay);
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+}
+
+.earnings-row.total span:last-child {
+  font-size: 1.1rem;
+  color: var(--clay);
+}
+
+.earnings-scenario .disclaimer {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  margin-top: 1.2rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* ─── Experience Walkthrough ─── */
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.experience-column h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--plum);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid var(--blush-deep);
+}
+
+.experience-item {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+  align-items: start;
+}
+
+.experience-week {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--clay);
+  background: var(--blush);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  text-align: center;
+  margin-top: 1px;
+}
+
+.experience-item p {
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  line-height: 1.6;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .nav-mobile-toggle { display: block; }
+  .comparison-grid { grid-template-columns: 1fr 1fr; }
+  .experience-grid { grid-template-columns: 1fr; }
+
+  .nav-links.mobile-open {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: var(--white);
+    padding: 1.5rem clamp(1.25rem, 4vw, 3rem);
+    gap: 1.2rem;
+    border-bottom: 1px solid rgba(43, 46, 52, 0.08);
+    animation: fadeIn 0.3s ease forwards;
+  }
+
+  .nav-links.mobile-open .nav-cta {
+    text-align: center;
+    display: block;
+    width: fit-content;
+  }
+
+  .email-capture {
+    flex-direction: column;
+  }
+
+  .email-capture input[type="email"] {
+    width: 100%;
+  }
+
+  .cta-strip {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .cta-strip .email-capture {
+    width: 100%;
+  }
+
+  .how-step {
+    grid-template-columns: 48px 1fr;
+    gap: 1rem;
+  }
+
+  .how-step-num {
+    width: 48px;
+    height: 48px;
+    font-size: 1.1rem;
+  }
+
+  .how-step::after { left: 23px; top: 48px; }
+
+  .hero-content { max-width: 100%; }
+
+  .final-cta .email-capture {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-grid { grid-template-columns: 1fr; }
+
+  .steps { grid-template-columns: 1fr 1fr; }
+
+  .footer-inner { flex-direction: column; }
+}
+
+@media (max-width: 480px) {
+  .steps { grid-template-columns: 1fr; }
+  .quotes { grid-template-columns: 1fr; }
+  .pillars { grid-template-columns: 1fr; }
+  .trust-grid { grid-template-columns: 1fr; }
+  .comparison-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ Navigation ═══════ -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo" data-page="home">
+      <svg viewBox="0 0 200 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="44" font-family="'Source Serif 4', Georgia, serif" font-size="48" font-weight="600" letter-spacing="-1" fill="#2B2E34">Motiv</text>
+      </svg>
+    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#" data-page="product">Product</a></li>
+      <li><a href="#" data-page="how-it-works">How it Works</a></li>
+      <li><a href="#" data-page="earnings">Earnings</a></li>
+      <li><a href="#" data-page="faq">FAQ</a></li>
+      <li><a href="#" data-page="waitlist" class="nav-cta">Join the Creator Waitlist</a></li>
+    </ul>
+    <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PAGE: HOME                             -->
+<!-- ═══════════════════════════════════════ -->
+<div class="page-section active" id="page-home">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <p class="label">For creators</p>
+        <h1>The creator platform built for turning inspiration into action.</h1>
+        <p class="hero-sub">Your audience already wants to act on what you share. Motiv gives them a way to commit—with real stakes, real structure, and real rewards for following through. You bring your voice. We handle the rest.</p>
+        <div class="patreon-frame" style="animation: fadeUp 1s var(--ease-out) 0.2s forwards; opacity: 0;">
+          <p class="frame-label">The simplest way to think about it</p>
+          <p>A platform that channels what you've built into something your audience does together—with real stakes and real rewards.</p>
+        </div>
+        <form class="email-capture" name="waitlist" data-form="waitlist" netlify onsubmit="return handleSubmit(this, event)">
+          <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
+          <button type="submit" class="btn-primary">Join waitlist</button>
+        </form>
+        <div class="form-success" aria-live="polite">
+          <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+          You're on the list. We'll send occasional updates as Motiv progresses.
+        </div>
+        <p class="email-consent">Occasional updates. No spam. Unsubscribe anytime.</p>
+        <a href="#" class="btn-secondary" data-page="how-it-works">See How It Works <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Creators Use Motiv -->
+  <section class="section bg-blush" id="why-creators">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">Why Motiv</p>
+        <h2>A better way to turn inspiration into action</h2>
+      </div>
+      <div class="card-grid">
+        <div class="card reveal reveal-delay-1">
+          <div class="card-icon blush">
+            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Turn inspiration into participation</h3>
+          <p>Your followers already look to you for motivation. Motiv gives them a reason to act—to start, stick with it, and do the work alongside you.</p>
+        </div>
+        <div class="card reveal reveal-delay-2">
+          <div class="card-icon sand">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Lead a shared journey</h3>
+          <p>A collab creates a moment where your audience isn't just watching—you're moving through something together, with momentum, structure, and purpose.</p>
+        </div>
+        <div class="card reveal reveal-delay-3">
+          <div class="card-icon sage-bg">
+            <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          </div>
+          <h3>Built for follow-through</h3>
+          <p>Motiv adds just enough structure to help people show up consistently, without turning the experience into a program, grind, or coaching funnel.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What Makes Motiv Different -->
+  <section class="section" id="positioning">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">How Motiv compares</p>
+        <h2>What makes Motiv different</h2>
+      </div>
+      <p class="section-intro reveal">Creators already have options for monetization. Here's how Motiv fits alongside what you know—and where it goes further.</p>
+      <div class="comparison-grid">
+        <div class="comparison-card reveal reveal-delay-1">
+          <h3>Brand Deal</h3>
+          <div class="comparison-row">
+            <span class="row-label">Who pays</span>
+            <span class="row-value">Sponsor</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">What they pay for</span>
+            <span class="row-value">Exposure</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">Creator's role</span>
+            <span class="row-value">Promoter</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">Earnings tied to</span>
+            <span class="row-value">Impressions</span>
+          </div>
+        </div>
+        <div class="comparison-card reveal reveal-delay-2">
+          <h3>Patreon</h3>
+          <div class="comparison-row">
+            <span class="row-label">Who pays</span>
+            <span class="row-value">Fan</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">What they pay for</span>
+            <span class="row-value">Content</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">Creator's role</span>
+            <span class="row-value">Producer</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">Earnings tied to</span>
+            <span class="row-value">Subscriber count</span>
+          </div>
+        </div>
+        <div class="comparison-card reveal reveal-delay-3">
+          <h3>Coaching</h3>
+          <div class="comparison-row">
+            <span class="row-label">Who pays</span>
+            <span class="row-value">Coachee</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">What they pay for</span>
+            <span class="row-value">Instruction</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">Creator's role</span>
+            <span class="row-value">Teacher</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">Earnings tied to</span>
+            <span class="row-value">Enrollment</span>
+          </div>
+        </div>
+        <div class="comparison-card highlighted reveal reveal-delay-4">
+          <h3>Motiv</h3>
+          <div class="comparison-row">
+            <span class="row-label">Who pays</span>
+            <span class="row-value">Participant</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">What they pay for</span>
+            <span class="row-value">Experience</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">Creator's role</span>
+            <span class="row-value">Leader</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">Earnings tied to</span>
+            <span class="row-value">Participation & follow-through</span>
+          </div>
+        </div>
+      </div>
+      <p class="section-intro reveal" style="margin-top: 2.5rem;">Patreon monetizes the creator's output. Motiv monetizes the creator's influence on behavior. That's a meaningfully different—and more aligned—way to earn.</p>
+    </div>
+  </section>
+
+  <!-- What You Host -->
+  <section class="section" id="what-you-host">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">Your collab</p>
+        <h2>Collabs are short, structured, and easy to run</h2>
+      </div>
+      <p class="section-intro reveal">A Motiv collab is a 4–8 week activation where you're the inspirer-in-chief. Your followers join a shared journey with you—centered on habits, consistency, and the products you genuinely stand for. You bring your voice (as you do on social), but in a dedicated collaborative space designed for action.</p>
+      <div class="collab-details">
+        <div class="collab-detail reveal reveal-delay-1">
+          <span class="collab-detail-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>
+          Choose a goal type (steps, workouts, cycling output, etc.)
+        </div>
+        <div class="collab-detail reveal reveal-delay-2">
+          <span class="collab-detail-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+          Choose a duration (4–8 weeks)
+        </div>
+        <div class="collab-detail reveal reveal-delay-3">
+          <span class="collab-detail-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+          Set the participant hold amount (refundable on completion)
+        </div>
+        <div class="collab-detail reveal reveal-delay-4">
+          <span class="collab-detail-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+          Add your guidance: expectations, tips, and weekly prompts
+        </div>
+      </div>
+      <p class="section-intro reveal" style="margin-top: 2rem;">Unlike a traditional brand partnership, a Motiv collab is built around you. There's no external sponsor or forced message—just your voice, the habits you stand for, and the products that supported your journey.</p>
+    </div>
+  </section>
+
+  <!-- How It Works Preview -->
+  <section class="section bg-sand" id="how-preview">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">How it works</p>
+        <h2>How Motiv works for creators</h2>
+      </div>
+      <div class="steps">
+        <div class="step reveal reveal-delay-1">
+          <div class="step-number">01</div>
+          <h3>Approve your collab</h3>
+          <p>AI drafts your collab from your public content. You just review and launch.</p>
+        </div>
+        <div class="step reveal reveal-delay-2">
+          <div class="step-number">02</div>
+          <h3>Rally your audience</h3>
+          <p>Share it with your audience and let the excitement build. As people join, you'll see the collab come to life before it even starts.</p>
+        </div>
+        <div class="step reveal reveal-delay-3">
+          <div class="step-number">03</div>
+          <h3>Lead the experience</h3>
+          <p>Post, encourage, share your own progress. Your style, your voice.</p>
+        </div>
+        <div class="step reveal reveal-delay-4">
+          <div class="step-number">04</div>
+          <h3>Motiv handles outcomes</h3>
+          <p>Participant money flows, refunds, and creator payouts—all handled.</p>
+        </div>
+      </div>
+
+      <div class="cta-strip reveal">
+        <div>
+          <h3>Get early access updates</h3>
+          <p style="font-size: 0.85rem; color: var(--ink-light); margin-top: 0.3rem;">We're onboarding a small set of founding creators first.</p>
+        </div>
+        <form class="email-capture" name="waitlist" data-form="waitlist" netlify onsubmit="return handleSubmit(this, event)">
+          <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
+          <button type="submit" class="btn-primary">Join waitlist</button>
+        </form>
+        <div class="form-success" aria-live="polite">
+          <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+          You're on the list!
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Earnings Teaser -->
+  <section class="section" id="earnings-teaser">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">Earnings</p>
+        <h2>Built to match how creators already earn</h2>
+      </div>
+      <p class="section-intro reveal">Motiv is designed around what you already do—show up, share what works, and inspire action. The difference is that now, when your audience acts on it, you get paid.</p>
+      <div class="collab-details">
+        <div class="collab-detail reveal reveal-delay-1">
+          <span class="collab-detail-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          When a small portion of your followers joins, you get paid
+        </div>
+        <div class="collab-detail reveal reveal-delay-2">
+          <span class="collab-detail-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></span>
+          When you produce weekly content you can reuse on social, you get paid
+        </div>
+        <div class="collab-detail reveal reveal-delay-3">
+          <span class="collab-detail-icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
+          When the collab performs well financially, you share in the upside
+        </div>
+      </div>
+      <p class="section-intro reveal" style="margin-top: 2rem;">For many creators, this becomes a more natural expression of their brand than an external partnership—because it's rooted in their own experience.</p>
+    </div>
+  </section>
+
+  <!-- Trust & Clarity -->
+  <section class="section bg-blush" id="trust-home">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">Trust</p>
+        <h2>Designed around trust—the foundation of your relationship</h2>
+      </div>
+      <p class="section-intro reveal">Your audience trusts you. Motiv is built to honor that. Participants always know what they're committing to, and the experience is designed so that following through feels clear, fair, and rewarding.</p>
+      <div class="trust-grid">
+        <div class="trust-item reveal reveal-delay-1">
+          <h3>Follow through, get refunded</h3>
+          <p>Participants who complete the collab get their money back. It's that simple—show up, do the work, and your commitment is returned to you.</p>
+        </div>
+        <div class="trust-item reveal reveal-delay-2">
+          <h3>Rewards that make it worth it</h3>
+          <p>Beyond getting refunded, participants can qualify for rewards and bonuses—making the experience feel free, or even rewarding, for those who follow through.</p>
+        </div>
+        <div class="trust-item reveal reveal-delay-3">
+          <h3>Clarity, fairness, and respect</h3>
+          <p>Every collab spells out what it takes to qualify. No fine print, no surprises. If someone falls short, they're treated with dignity—not judgment.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="section final-cta">
+    <div class="container">
+      <p class="label reveal">Founding creators</p>
+      <h2 class="reveal">Want to be a founding creator?</h2>
+      <p class="reveal">We're building Motiv with a small group first. Founding creators get influence over product design, the ability to talk about Motiv publicly as it evolves, additional financial incentives, and a chance to shape a new way for creators to build experiences around their own brand and values.</p>
+      <form class="email-capture reveal" name="waitlist" data-form="waitlist" netlify onsubmit="return handleSubmit(this, event)">
+        <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
+        <button type="submit" class="btn-primary">Join the Creator Waitlist</button>
+      </form>
+      <div class="form-success reveal" aria-live="polite">
+        <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+        You're on the list. We'll send updates, early previews, and an invite when we open onboarding.
+      </div>
+      <p class="email-consent reveal" style="text-align:center;">You'll get updates, early previews, and an invite when we open onboarding.</p>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PAGE: PRODUCT                          -->
+<!-- ═══════════════════════════════════════ -->
+<div class="page-section" id="page-product">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <p class="label">Product</p>
+        <h1>Motiv is your collab engine.</h1>
+        <p class="hero-sub">Motiv helps you run short, movement-based collabs that transform passive followers into active participants—without turning you into a coach, and without adding operational overhead.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">What we handle</p>
+        <h2>What Motiv takes off your plate</h2>
+      </div>
+      <div class="collab-details" style="margin-top: 2rem;">
+        <div class="collab-detail reveal"><span class="collab-detail-icon"><svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></span>Participant checkout and hold capture</div>
+        <div class="collab-detail reveal"><span class="collab-detail-icon"><svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg></span>Hold refunds for participants who complete</div>
+        <div class="collab-detail reveal"><span class="collab-detail-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>Disqualification handling for participants who don't qualify</div>
+        <div class="collab-detail reveal"><span class="collab-detail-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>Tracking and verification (via supported integrations)</div>
+        <div class="collab-detail reveal"><span class="collab-detail-icon"><svg viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>Clear participant-facing progress and self-accounting</div>
+        <div class="collab-detail reveal"><span class="collab-detail-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>Creator payouts and payout reporting</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-blush">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">Why it works</p>
+        <h2>Why your audience actually follows through</h2>
+      </div>
+      <p class="section-intro reveal">Participants join because the collab feels safe, clear, and doable. The hold creates a reason to show up. The group creates momentum. Your voice creates meaning.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">The experience</p>
+        <h2>What a live collab looks like</h2>
+      </div>
+      <p class="section-intro reveal">A typical 6-week walking collab, from both sides.</p>
+      <div class="experience-grid">
+        <div class="experience-column reveal">
+          <h3>What the creator does</h3>
+          <div class="experience-item">
+            <span class="experience-week">Pre-launch</span>
+            <p>Review your AI-drafted collab. Tweak the voice and goals. Share with your audience.</p>
+          </div>
+          <div class="experience-item">
+            <span class="experience-week">Week 1</span>
+            <p>Post a kickoff message. Share your starting point. Set the tone.</p>
+          </div>
+          <div class="experience-item">
+            <span class="experience-week">Week 2–5</span>
+            <p>Weekly check-ins — your progress, tips, or struggles. Reuse on social.</p>
+          </div>
+          <div class="experience-item">
+            <span class="experience-week">Week 6</span>
+            <p>Celebrate completions. Motiv handles refunds and your payout.</p>
+          </div>
+        </div>
+        <div class="experience-column reveal reveal-delay-2">
+          <h3>What the participant sees</h3>
+          <div class="experience-item">
+            <span class="experience-week">Join</span>
+            <p>Clear signup with the commitment, hold amount, and rules. Place a refundable hold.</p>
+          </div>
+          <div class="experience-item">
+            <span class="experience-week">Week 1</span>
+            <p>Welcome from the creator. Progress dashboard goes live.</p>
+          </div>
+          <div class="experience-item">
+            <span class="experience-week">Week 2–5</span>
+            <p>Weekly creator content. Progress updates. Group momentum.</p>
+          </div>
+          <div class="experience-item">
+            <span class="experience-week">Week 6</span>
+            <p>Final check-in. Completers get their hold back. Clear outcome either way.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-sand">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">Authenticity</p>
+        <h2>Built for creators who protect trust</h2>
+      </div>
+      <p class="section-intro reveal">Motiv works best when it fits your brand. We expect creators to host collabs that feel aligned—not opportunistic. Your audience's trust matters more than any single collab.</p>
+      <div class="cta-strip reveal" style="margin-top: 2.5rem; background: var(--white);">
+        <h3>Join the waitlist for early previews</h3>
+        <form class="email-capture" name="waitlist" data-form="waitlist" netlify onsubmit="return handleSubmit(this, event)">
+          <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
+          <button type="submit" class="btn-primary">Join waitlist</button>
+        </form>
+        <div class="form-success" aria-live="polite">
+          <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+          You're on the list!
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PAGE: HOW IT WORKS                     -->
+<!-- ═══════════════════════════════════════ -->
+<div class="page-section" id="page-how-it-works">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <p class="label">How it works</p>
+        <h1>How Motiv works</h1>
+        <p class="hero-sub">Motiv's AI does the heavy lifting—generating a collab draft aligned with your brand, voice, and audience. You refine and approve it, rather than starting from scratch. Creating a collab should feel easy, not like a chore.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: clamp(1.5rem, 4vw, 3rem);">
+    <div class="container">
+      <div class="how-steps">
+        <div class="how-step reveal">
+          <div class="how-step-num">1</div>
+          <div class="how-step-content">
+            <h3>Create your collab</h3>
+            <p>Motiv's AI generates a collab draft based on your brand, audience, and style. Your role is refinement—not manual setup. You control the voice, the intent, the habits you want to spotlight, and the products you stand for.</p>
+          </div>
+        </div>
+
+        <div class="how-step reveal">
+          <div class="how-step-num">2</div>
+          <div class="how-step-content">
+            <h3>Rally your audience</h3>
+            <p>Share it with your audience and let the excitement build. As people join, you'll see the collab come to life before it even starts.</p>
+          </div>
+        </div>
+
+        <div class="how-step reveal">
+          <div class="how-step-num">3</div>
+          <div class="how-step-content">
+            <h3>Lead the experience</h3>
+            <p>Post normally. Encourage momentum. Share your own progress. Motiv supports participants with structure and visibility so they don't need to DM you for clarity.</p>
+          </div>
+        </div>
+
+        <div class="how-step reveal">
+          <div class="how-step-num">4</div>
+          <div class="how-step-content">
+            <h3>Wrap-up and outcomes</h3>
+            <p>At the end, participants see a self-accounting of their progress. Those who qualify receive their refund (and any applicable rewards). Those who don't qualify can still finish—but their hold is disqualified under the rules.</p>
+          </div>
+        </div>
+
+        <div class="how-step reveal">
+          <div class="how-step-num">5</div>
+          <div class="how-step-content">
+            <h3>Creator payout</h3>
+            <p>Motiv pays creators based on the collab structure—combining guaranteed components (when applicable) plus performance-based upside.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="cta-strip reveal" style="margin-top: 3rem;">
+        <h3>Want the full creator guide when it's ready?</h3>
+        <form class="email-capture" name="waitlist" data-form="waitlist" netlify onsubmit="return handleSubmit(this, event)">
+          <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
+          <button type="submit" class="btn-primary">Send me updates</button>
+        </form>
+        <div class="form-success" aria-live="polite">
+          <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+          You're on the list!
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PAGE: EARNINGS                         -->
+<!-- ═══════════════════════════════════════ -->
+<div class="page-section" id="page-earnings">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <p class="label">Earnings</p>
+        <h1>How creators earn on Motiv</h1>
+        <p class="hero-sub">Motiv is designed around what you already do—show up, lead, and inspire action. The difference is that your earnings are tied to real participation and leadership, not hype or impressions.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">Earnings pillars</p>
+        <h2>Three ways you earn</h2>
+      </div>
+      <div class="pillars">
+        <div class="pillar reveal reveal-delay-1">
+          <h3>Paid as people join</h3>
+          <p>As sign-ups hit participation benchmarks, you earn. The more people who join, the more you make—rewarding creators who can inspire action.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-2">
+          <h3>Paid for showing up and leading</h3>
+          <p>Post one video a week in your own voice — share what's on your mind, keep your people inspired. That's it.</p>
+        </div>
+        <div class="pillar reveal reveal-delay-3">
+          <h3>Upside when collabs perform well</h3>
+          <p>Beyond your base earnings, you participate in the collab's financial upside. Better performance means a bigger payout.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-blush">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">Illustrative example</p>
+        <h2>What this could look like</h2>
+      </div>
+      <p class="section-intro reveal">Exact earnings depend on your audience, collab structure, and participation rates. But here's a realistic scenario to give you a sense of scale.</p>
+      <div class="earnings-scenario reveal">
+        <h3>Example: 6-week cycling challenge</h3>
+        <p class="scenario-desc">A creator with 200k followers runs a 6-week cycling challenge. 1% of followers join (2,000 participants) at a $40 hold per person.</p>
+        <div class="earnings-row">
+          <span>Join bonus (paid at participation benchmarks)</span>
+          <span>$800</span>
+        </div>
+        <div class="earnings-row">
+          <span>Content (one video per week, 6 weeks)</span>
+          <span>$500</span>
+        </div>
+        <div class="earnings-row">
+          <span>Performance upside (if 85% of participants complete)</span>
+          <span>$1,035</span>
+        </div>
+        <div class="earnings-row total">
+          <span>Estimated creator earnings</span>
+          <span>$2,335</span>
+        </div>
+        <p class="disclaimer">These are illustrative estimates, not guarantees. Actual earnings vary based on collab terms, participation, and completion rates. Motiv is still in development and final economics may differ.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">Transparency</p>
+        <h2>Why we keep this transparent</h2>
+      </div>
+      <p class="section-intro reveal">Motiv avoids black-box payout math. Creators and participants should understand the basics of where money goes and why.</p>
+      <div class="cta-strip reveal">
+        <h3>Get the earnings model update</h3>
+        <form class="email-capture" name="waitlist" data-form="waitlist" netlify onsubmit="return handleSubmit(this, event)">
+          <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
+          <button type="submit" class="btn-primary">Join waitlist</button>
+        </form>
+        <div class="form-success" aria-live="polite">
+          <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+          You're on the list!
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PAGE: FAQ                              -->
+<!-- ═══════════════════════════════════════ -->
+<div class="page-section" id="page-faq">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <p class="label">FAQ</p>
+        <h1>FAQ for creators</h1>
+        <p class="hero-sub">The most common questions creators ask—answered plainly.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Is this like Patreon?
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">It's the closest analogy, with one key difference: on Patreon, fans pay to support you. On Motiv, your audience pays in to a shared experience—and they earn that money back by following through. You're not collecting subscriptions; you're leading a commitment they made to themselves.</div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What is a "hold"?
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">A hold is a refundable amount participants place when they join a collab. If they complete the collab under the rules, they get it back.</div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            When are participants charged?
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Participants enter payment details at checkout and their hold is captured based on the collab rules and timing shown during checkout.</div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What happens if someone doesn't complete?
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">They can still participate through the end of the collab, but their hold becomes disqualified under the rules.</div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Is this gambling or betting?
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">No. Participants are not wagering on chance. They are making a refundable commitment tied to clear, pre-defined completion rules.</div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Do I have to coach people?
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">No. You lead in your style—through posts, prompts, and presence. Motiv provides structure and visibility so participants can self-manage.</div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            How do I get paid?
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Creators are paid based on the collab structure—typically combining guaranteed components (when applicable), content-based earnings, and performance upside.</div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What kinds of collabs work best?
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Collabs that match your voice and audience, feel achievable, and emphasize consistency over intensity.</div></div>
+        </div>
+
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            What platforms and tracking are supported?
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Motiv supports verification through supported integrations. Details on specific integrations will be shared as the platform develops.</div></div>
+        </div>
+      </div>
+
+      <div class="cta-strip reveal" style="margin-top: 3rem;">
+        <div>
+          <h3>Want updates as we build?</h3>
+          <p style="font-size: 0.85rem; color: var(--ink-light); margin-top: 0.3rem;">Join the creator waitlist and we'll share progress, previews, and onboarding timing.</p>
+        </div>
+        <form class="email-capture" name="waitlist" data-form="waitlist" netlify onsubmit="return handleSubmit(this, event)">
+          <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
+          <button type="submit" class="btn-primary">Join waitlist</button>
+        </form>
+        <div class="form-success" aria-live="polite">
+          <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+          You're on the list!
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PAGE: WAITLIST                          -->
+<!-- ═══════════════════════════════════════ -->
+<div class="page-section" id="page-waitlist">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <p class="label">Early access</p>
+        <h1>Join the Creator Waitlist</h1>
+        <p class="hero-sub">We're building Motiv with a small group of authenticity-first creators. Join the list to get updates, early previews, and an invite when onboarding opens.</p>
+
+        <form class="waitlist-form-full" id="waitlistFullForm" name="waitlist-full" netlify onsubmit="return handleFullSubmit(this, event)" style="animation: fadeUp 1s var(--ease-out) 0.3s forwards; opacity: 0;">
+          <div class="form-group">
+            <label for="wl-email">Email <span style="color: var(--boundary);">*</span></label>
+            <input type="email" id="wl-email" name="email" placeholder="you@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="wl-name">Name <span class="optional">(optional)</span></label>
+            <input type="text" id="wl-name" name="name" placeholder="First name">
+          </div>
+          <div class="form-group">
+            <label for="wl-platform">Primary platform <span class="optional">(optional)</span></label>
+            <select id="wl-platform" name="platform">
+              <option value="" disabled selected>Select your platform</option>
+              <option value="instagram">Instagram</option>
+              <option value="tiktok">TikTok</option>
+              <option value="youtube">YouTube</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="wl-handle">Handle / URL <span class="optional">(optional)</span></label>
+            <input type="text" id="wl-handle" name="handle" placeholder="@yourhandle or profile URL">
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; margin-top: 0.5rem;">Join waitlist</button>
+          <p class="email-consent" style="margin-top: 0.75rem;">Occasional updates. No spam. Unsubscribe anytime.</p>
+        </form>
+
+        <div class="form-success" id="waitlistFullSuccess" aria-live="polite" style="margin-top: 1.5rem;">
+          <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+          You're in. We'll email you as soon as we have something worth sharing.
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PAGE: TRUST                            -->
+<!-- ═══════════════════════════════════════ -->
+<div class="page-section" id="page-trust">
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <p class="label">Trust</p>
+        <h1>Trust and transparency</h1>
+        <p class="hero-sub">Motiv is built around clarity—because money and motivation only work when people trust the rules.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item reveal">
+          <h3>Clear rules</h3>
+          <p>Participants can see exactly what qualifies, what doesn't, and how outcomes are determined.</p>
+        </div>
+        <div class="trust-item reveal">
+          <h3>Separate concepts</h3>
+          <p>Motiv separates refunds, rewards, and bonuses so nothing feels blended or misleading.</p>
+        </div>
+        <div class="trust-item reveal">
+          <h3>Dignity-first outcomes</h3>
+          <p>If someone doesn't qualify, they can still finish the collab. Disqualification is a rule outcome—not a moral failure.</p>
+        </div>
+      </div>
+
+      <div class="cta-strip reveal" style="margin-top: 3rem;">
+        <h3>Get trust updates</h3>
+        <form class="email-capture" name="waitlist" data-form="waitlist" netlify onsubmit="return handleSubmit(this, event)">
+          <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
+          <button type="submit" class="btn-primary">Join waitlist</button>
+        </form>
+        <div class="form-success" aria-live="polite">
+          <span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg></span>
+          You're on the list!
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════ Footer ═══════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <svg viewBox="0 0 200 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="44" font-family="'Source Serif 4', Georgia, serif" font-size="48" font-weight="600" letter-spacing="-1" fill="white">Motiv</text>
+        </svg>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#" data-page="product">Product</a></li>
+        <li><a href="#" data-page="how-it-works">How it Works</a></li>
+        <li><a href="#" data-page="earnings">Earnings</a></li>
+        <li><a href="#" data-page="faq">FAQ</a></li>
+        <li><a href="#" data-page="trust">Trust</a></li>
+        <li><a href="#" data-page="waitlist">Waitlist</a></li>
+      </ul>
+    </div>
+    <div class="footer-bottom">
+      <span>© Motiv</span>
+      <div class="footer-legal">
+        <a href="#">Terms</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── Page Navigation ───
+function navigateTo(page) {
+  document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+  const target = document.getElementById('page-' + page);
+  if (target) {
+    target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Re-trigger reveal animations
+    setTimeout(() => {
+      target.querySelectorAll('.reveal').forEach(el => {
+        el.classList.remove('visible');
+        void el.offsetWidth;
+        observeElement(el);
+      });
+    }, 100);
+  }
+  // Close mobile nav
+  document.getElementById('navLinks').classList.remove('mobile-open');
+  document.getElementById('mobileToggle').classList.remove('active');
+}
+
+document.querySelectorAll('[data-page]').forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    navigateTo(link.dataset.page);
+  });
+});
+
+// ─── Mobile Nav ───
+document.getElementById('mobileToggle').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('mobile-open');
+  document.getElementById('mobileToggle').classList.toggle('active');
+});
+
+// ─── Nav Scroll ───
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// ─── Scroll Reveal ───
+const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -40px 0px' };
+
+function observeElement(el) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+  observer.observe(el);
+}
+
+document.querySelectorAll('.reveal').forEach(observeElement);
+
+// ─── FAQ Toggle ───
+function toggleFaq(btn) {
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  // Toggle current
+  if (!wasOpen) item.classList.add('open');
+}
+
+// ─── Email Form Submit (inline captures) ───
+function handleSubmit(form, e) {
+  e.preventDefault();
+  const email = form.querySelector('input[type="email"]').value;
+  if (!email) return false;
+
+  // Simulate POST to /waitlist
+  console.log('Waitlist signup:', email);
+
+  // Show success
+  form.style.display = 'none';
+  const success = form.nextElementSibling;
+  if (success && success.classList.contains('form-success')) {
+    success.style.display = 'flex';
+  }
+  return false;
+}
+
+// ─── Full Waitlist Form Submit ───
+function handleFullSubmit(form, e) {
+  e.preventDefault();
+  const data = {
+    email: form.querySelector('#wl-email').value,
+    name: form.querySelector('#wl-name').value,
+    platform: form.querySelector('#wl-platform').value,
+    handle: form.querySelector('#wl-handle').value,
+  };
+
+  console.log('Full waitlist signup:', data);
+
+  form.style.display = 'none';
+  document.getElementById('waitlistFullSuccess').style.display = 'flex';
+  return false;
+}
+</script>
+</body>
+</html>
