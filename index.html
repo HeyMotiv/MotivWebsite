@@ -243,6 +243,47 @@ p { max-width: 640px; }
   overflow: hidden;
 }
 
+#page-product .hero,
+#page-how-it-works .hero,
+#page-earnings .hero,
+#page-faq .hero {
+  padding-top: calc(72px + clamp(2rem, 5vw, 3.5rem));
+  padding-bottom: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+#page-product .hero .hero-sub,
+#page-how-it-works .hero .hero-sub,
+#page-earnings .hero .hero-sub,
+#page-faq .hero .hero-sub {
+  margin-bottom: 0;
+}
+
+#page-how-it-works .hero + .section,
+#page-earnings .hero + .section,
+#page-faq .hero + .section {
+  padding-top: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+#page-product .hero + .section {
+  padding-top: clamp(4rem, 8vw, 6rem);
+}
+
+#page-faq .hero + .section .faq-list {
+  margin-top: 1rem;
+}
+
+#page-how-it-works .hero + .section .how-steps {
+  margin-top: 1rem;
+}
+
+#positioning {
+  padding-bottom: clamp(2rem, 4vw, 3rem);
+}
+
+#what-you-host {
+  padding-top: clamp(2rem, 4vw, 3rem);
+}
+
 .hero::before {
   content: '';
   position: absolute;
@@ -296,11 +337,7 @@ p { max-width: 640px; }
 }
 
 .hero-trust::before {
-  content: '◆';
-  font-size: 0.45rem;
-  vertical-align: middle;
-  margin-right: 0.5rem;
-  color: var(--sage);
+  display: none;
 }
 
 /* ─── Email Capture Form ─── */
@@ -1011,10 +1048,214 @@ p { max-width: 640px; }
 .footer-legal a { transition: color 0.2s ease; }
 .footer-legal a:hover { color: white; }
 
+/* ─── Patreon Frame Callout ─── */
+.patreon-frame {
+  background: linear-gradient(135deg, rgba(107, 78, 113, 0.06) 0%, rgba(201, 122, 106, 0.06) 100%);
+  border: 1px solid rgba(107, 78, 113, 0.1);
+  border-radius: 16px;
+  padding: 1.8rem 2.2rem;
+  margin-bottom: 2rem;
+  max-width: 640px;
+}
+
+.patreon-frame p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.patreon-frame .frame-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--plum);
+  margin-bottom: 0.6rem;
+}
+
+/* ─── Comparison Grid ─── */
+.comparison-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+.comparison-card {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2rem 1.6rem;
+  border: 1px solid rgba(43, 46, 52, 0.06);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease;
+}
+
+.comparison-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(43, 46, 52, 0.06);
+}
+
+.comparison-card.highlighted {
+  border: 2px solid var(--clay);
+  background: linear-gradient(180deg, rgba(201, 122, 106, 0.04) 0%, var(--white) 100%);
+}
+
+.comparison-card h3 {
+  font-size: 1.15rem;
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid var(--blush-deep);
+}
+
+.comparison-card.highlighted h3 {
+  border-bottom-color: var(--clay);
+}
+
+.comparison-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid rgba(43, 46, 52, 0.05);
+}
+
+.comparison-row:last-child {
+  border-bottom: none;
+}
+
+.comparison-row .row-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+}
+
+.comparison-row .row-value {
+  font-size: 0.92rem;
+  color: var(--ink-light);
+  font-weight: 500;
+}
+
+.comparison-card.highlighted .row-value {
+  color: var(--ink);
+}
+
+/* ─── Earnings Scenario ─── */
+.earnings-scenario {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2.5rem;
+  margin-top: 3rem;
+  border: 1px solid rgba(43, 46, 52, 0.08);
+  max-width: 680px;
+}
+
+.earnings-scenario h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--plum);
+  margin-bottom: 0.6rem;
+}
+
+.earnings-scenario .scenario-desc {
+  font-size: 0.95rem;
+  color: var(--ink-light);
+  line-height: 1.7;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid rgba(43, 46, 52, 0.08);
+}
+
+.earnings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  font-size: 0.92rem;
+}
+
+.earnings-row span:first-child {
+  color: var(--ink-light);
+}
+
+.earnings-row span:last-child {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.earnings-row.total {
+  border-top: 2px solid var(--clay);
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+}
+
+.earnings-row.total span:last-child {
+  font-size: 1.1rem;
+  color: var(--clay);
+}
+
+.earnings-scenario .disclaimer {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  margin-top: 1.2rem;
+  font-style: italic;
+  line-height: 1.6;
+}
+
+/* ─── Experience Walkthrough ─── */
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.experience-column h3 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--plum);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid var(--blush-deep);
+}
+
+.experience-item {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr;
+  gap: 0.8rem;
+  margin-bottom: 1.2rem;
+  align-items: start;
+}
+
+.experience-week {
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--clay);
+  background: var(--blush);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  text-align: center;
+  margin-top: 1px;
+}
+
+.experience-item p {
+  font-size: 0.9rem;
+  color: var(--ink-light);
+  line-height: 1.6;
+}
+
 /* ─── Responsive ─── */
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .nav-mobile-toggle { display: block; }
+  .comparison-grid { grid-template-columns: 1fr 1fr; }
+  .experience-grid { grid-template-columns: 1fr; }
 
   .nav-links.mobile-open {
     display: flex;
@@ -1085,6 +1326,7 @@ p { max-width: 640px; }
   .quotes { grid-template-columns: 1fr; }
   .pillars { grid-template-columns: 1fr; }
   .trust-grid { grid-template-columns: 1fr; }
+  .comparison-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -1094,10 +1336,8 @@ p { max-width: 640px; }
 <nav class="nav" id="nav">
   <div class="container nav-inner">
     <a href="#" class="nav-logo" data-page="home">
-      <svg viewBox="-10 0 270 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M -2 19 C 0 18, 3.5 18.5, 8 22.5 L 8 54 M 8 30 C 8 22, 16 18, 22 18 C 28 18, 33 22, 33 28 L 33 54 M 33 30 C 33 22, 41 18, 47 18 C 53 18, 58 22, 58 28 L 58 54 C 58 57, 59 60, 61 62 C 63 64, 66 65, 69 65" stroke="#2B2E34" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        <g transform="translate(73.5,64.5) scale(0.5) rotate(20)"><path d="M 0 -15 C -1 -5, -3 -3, -7 -4 C -3 -1.5, -5 0.5, -9 3 C -3 2, -1 5, 0 11 C 1 5, 3 2, 7 4 C 3 1.5, 5 -0.5, 12 0 C 5 -1, 3 -3, 7 -5 C 3 -3, 1 -5, 0 -15 Z" fill="#C97A6A"/></g>
-        <text x="62.4" y="54" font-family="'DM Sans', system-ui, sans-serif" font-size="38" font-weight="400" letter-spacing="-0.5" fill="#2B2E34">otiv</text>
+      <svg viewBox="0 0 200 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <text x="0" y="44" font-family="'Source Serif 4', Georgia, serif" font-size="48" font-weight="600" letter-spacing="-1" fill="#2B2E34">Motiv</text>
       </svg>
     </a>
     <ul class="nav-links" id="navLinks">
@@ -1123,8 +1363,12 @@ p { max-width: 640px; }
     <div class="container">
       <div class="hero-content">
         <p class="label">For creators</p>
-        <h1>Lead a collab your audience actually follows through on.</h1>
-        <p class="hero-sub">Motiv lets you host short, movement-based collabs where participants place a refundable hold to stay accountable. You lead the experience. Motiv handles tracking, logistics, and payments—so it's simple and fair for everyone.</p>
+        <h1>The creator platform built for turning inspiration into action.</h1>
+        <p class="hero-sub">Your audience already wants to act on what you share. Motiv gives them a way to commit—with real stakes, real structure, and real rewards for following through. You bring your voice. We handle the rest.</p>
+        <div class="patreon-frame" style="animation: fadeUp 1s var(--ease-out) 0.2s forwards; opacity: 0;">
+          <p class="frame-label">The simplest way to think about it</p>
+          <p>A platform that channels what you've built into something your audience does together—with real stakes and real rewards.</p>
+        </div>
         <form class="email-capture" data-form="waitlist" onsubmit="return handleSubmit(this, event)">
           <input type="email" placeholder="Email address" required aria-label="Email address">
           <button type="submit" class="btn-primary">Join waitlist</button>
@@ -1135,7 +1379,6 @@ p { max-width: 640px; }
         </div>
         <p class="email-consent">Occasional updates. No spam. Unsubscribe anytime.</p>
         <a href="#" class="btn-secondary" data-page="how-it-works">See How It Works <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
-        <p class="hero-trust">Built for authenticity-first creators. Clear mechanics. No hype.</p>
       </div>
     </div>
   </section>
@@ -1170,6 +1413,96 @@ p { max-width: 640px; }
           <p>Motiv adds just enough structure to help people show up consistently, without turning the experience into a program, grind, or coaching funnel.</p>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- What Makes Motiv Different -->
+  <section class="section" id="positioning">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">How Motiv compares</p>
+        <h2>What makes Motiv different</h2>
+      </div>
+      <p class="section-intro reveal">Creators already have options for monetization. Here's how Motiv fits alongside what you know—and where it goes further.</p>
+      <div class="comparison-grid">
+        <div class="comparison-card reveal reveal-delay-1">
+          <h3>Brand Deal</h3>
+          <div class="comparison-row">
+            <span class="row-label">Who pays</span>
+            <span class="row-value">Sponsor</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">What they pay for</span>
+            <span class="row-value">Exposure</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">Creator's role</span>
+            <span class="row-value">Promoter</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">Earnings tied to</span>
+            <span class="row-value">Impressions</span>
+          </div>
+        </div>
+        <div class="comparison-card reveal reveal-delay-2">
+          <h3>Patreon</h3>
+          <div class="comparison-row">
+            <span class="row-label">Who pays</span>
+            <span class="row-value">Fan</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">What they pay for</span>
+            <span class="row-value">Content</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">Creator's role</span>
+            <span class="row-value">Producer</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">Earnings tied to</span>
+            <span class="row-value">Subscriber count</span>
+          </div>
+        </div>
+        <div class="comparison-card reveal reveal-delay-3">
+          <h3>Coaching</h3>
+          <div class="comparison-row">
+            <span class="row-label">Who pays</span>
+            <span class="row-value">Coachee</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">What they pay for</span>
+            <span class="row-value">Instruction</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">Creator's role</span>
+            <span class="row-value">Teacher</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">Earnings tied to</span>
+            <span class="row-value">Enrollment</span>
+          </div>
+        </div>
+        <div class="comparison-card highlighted reveal reveal-delay-4">
+          <h3>Motiv</h3>
+          <div class="comparison-row">
+            <span class="row-label">Who pays</span>
+            <span class="row-value">Participant</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">What they pay for</span>
+            <span class="row-value">Experience</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">Creator's role</span>
+            <span class="row-value">Leader</span>
+          </div>
+          <div class="comparison-row">
+            <span class="row-label">Earnings tied to</span>
+            <span class="row-value">Participation & follow-through</span>
+          </div>
+        </div>
+      </div>
+      <p class="section-intro reveal" style="margin-top: 2.5rem;">Patreon monetizes the creator's output. Motiv monetizes the creator's influence on behavior. That's a meaningfully different—and more aligned—way to earn.</p>
     </div>
   </section>
 
@@ -1213,13 +1546,13 @@ p { max-width: 640px; }
       <div class="steps">
         <div class="step reveal reveal-delay-1">
           <div class="step-number">01</div>
-          <h3>Create the collab</h3>
-          <p>Set your goal, duration, hold amount, and expectations.</p>
+          <h3>Approve your collab</h3>
+          <p>AI drafts your collab from your public content. You just review and launch.</p>
         </div>
         <div class="step reveal reveal-delay-2">
           <div class="step-number">02</div>
-          <h3>Invite your audience</h3>
-          <p>Share it like anything you believe in—Motiv gives you a clear explainer.</p>
+          <h3>Rally your audience</h3>
+          <p>Share it with your audience and let the excitement build. As people join, you'll see the collab come to life before it even starts.</p>
         </div>
         <div class="step reveal reveal-delay-3">
           <div class="step-number">03</div>
@@ -1301,26 +1634,6 @@ p { max-width: 640px; }
     </div>
   </section>
 
-  <!-- Social Proof -->
-  <section class="section">
-    <div class="container">
-      <div class="section-header reveal">
-        <p class="label">Community</p>
-        <h2>What creators say</h2>
-      </div>
-      <div class="quotes">
-        <div class="quote-card reveal reveal-delay-1">
-          <p>"This was the first time my audience actually did the work with me. It felt like we were in it together."</p>
-          <p class="quote-attr">— Allie M., Instagram</p>
-        </div>
-        <div class="quote-card reveal reveal-delay-2">
-          <p>"I loved being able to talk about the habits and products that actually worked for me—and seeing people apply them."</p>
-          <p class="quote-attr">— Jenna R., Instagram</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- Final CTA -->
   <section class="section final-cta">
     <div class="container">
@@ -1384,11 +1697,61 @@ p { max-width: 640px; }
   <section class="section">
     <div class="container">
       <div class="section-header reveal">
+        <p class="label">The experience</p>
+        <h2>What a live collab looks like</h2>
+      </div>
+      <p class="section-intro reveal">A typical 6-week walking collab, from both sides.</p>
+      <div class="experience-grid">
+        <div class="experience-column reveal">
+          <h3>What the creator does</h3>
+          <div class="experience-item">
+            <span class="experience-week">Pre-launch</span>
+            <p>Review your AI-drafted collab. Tweak the voice and goals. Share with your audience.</p>
+          </div>
+          <div class="experience-item">
+            <span class="experience-week">Week 1</span>
+            <p>Post a kickoff message. Share your starting point. Set the tone.</p>
+          </div>
+          <div class="experience-item">
+            <span class="experience-week">Week 2–5</span>
+            <p>Weekly check-ins — your progress, tips, or struggles. Reuse on social.</p>
+          </div>
+          <div class="experience-item">
+            <span class="experience-week">Week 6</span>
+            <p>Celebrate completions. Motiv handles refunds and your payout.</p>
+          </div>
+        </div>
+        <div class="experience-column reveal reveal-delay-2">
+          <h3>What the participant sees</h3>
+          <div class="experience-item">
+            <span class="experience-week">Join</span>
+            <p>Clear signup with the commitment, hold amount, and rules. Place a refundable hold.</p>
+          </div>
+          <div class="experience-item">
+            <span class="experience-week">Week 1</span>
+            <p>Welcome from the creator. Progress dashboard goes live.</p>
+          </div>
+          <div class="experience-item">
+            <span class="experience-week">Week 2–5</span>
+            <p>Weekly creator content. Progress updates. Group momentum.</p>
+          </div>
+          <div class="experience-item">
+            <span class="experience-week">Week 6</span>
+            <p>Final check-in. Completers get their hold back. Clear outcome either way.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section bg-sand">
+    <div class="container">
+      <div class="section-header reveal">
         <p class="label">Authenticity</p>
         <h2>Built for creators who protect trust</h2>
       </div>
       <p class="section-intro reveal">Motiv works best when it fits your brand. We expect creators to host collabs that feel aligned—not opportunistic. Your audience's trust matters more than any single collab.</p>
-      <div class="cta-strip reveal" style="margin-top: 2.5rem;">
+      <div class="cta-strip reveal" style="margin-top: 2.5rem; background: var(--white);">
         <h3>Join the waitlist for early previews</h3>
         <form class="email-capture" data-form="waitlist" onsubmit="return handleSubmit(this, event)">
           <input type="email" placeholder="Email address" required aria-label="Email address">
@@ -1417,7 +1780,7 @@ p { max-width: 640px; }
     </div>
   </section>
 
-  <section class="section">
+  <section class="section" style="padding-top: clamp(1.5rem, 4vw, 3rem);">
     <div class="container">
       <div class="how-steps">
         <div class="how-step reveal">
@@ -1425,25 +1788,14 @@ p { max-width: 640px; }
           <div class="how-step-content">
             <h3>Create your collab</h3>
             <p>Motiv's AI generates a collab draft based on your brand, audience, and style. Your role is refinement—not manual setup. You control the voice, the intent, the habits you want to spotlight, and the products you stand for.</p>
-            <div class="collab-details" style="margin-top: 1.5rem;">
-              <div class="collab-detail"><span class="collab-detail-icon"><svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg></span>Collab title</div>
-              <div class="collab-detail"><span class="collab-detail-icon"><svg viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></span>Goal type</div>
-              <div class="collab-detail"><span class="collab-detail-icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/></svg></span>Duration & start date</div>
-              <div class="collab-detail"><span class="collab-detail-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>Hold amount</div>
-              <div class="collab-detail"><span class="collab-detail-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></span>Success criteria</div>
-              <div class="collab-detail"><span class="collab-detail-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>Your guidance</div>
-            </div>
           </div>
         </div>
 
         <div class="how-step reveal">
           <div class="how-step-num">2</div>
           <div class="how-step-content">
-            <h3>Invite your audience</h3>
-            <p>Share your collab like you'd share anything you believe in. Motiv gives you a clear explainer so it doesn't feel like a complicated financial pitch.</p>
-            <div class="message-box">
-              <p>"I'm hosting a short collab to help us stay consistent for the next few weeks. You can join by placing a refundable hold—if you complete it, you get it back. It's a simple way to follow through together."</p>
-            </div>
+            <h3>Rally your audience</h3>
+            <p>Share it with your audience and let the excitement build. As people join, you'll see the collab come to life before it even starts.</p>
           </div>
         </div>
 
@@ -1509,29 +1861,60 @@ p { max-width: 640px; }
       </div>
       <div class="pillars">
         <div class="pillar reveal reveal-delay-1">
-          <h3>Paid when your audience joins</h3>
-          <p>When a portion of your followers signs up for the collab, you earn. This rewards creators who can reliably inspire their community to take action.</p>
+          <h3>Paid as people join</h3>
+          <p>As sign-ups hit participation benchmarks, you earn. The more people who join, the more you make—rewarding creators who can inspire action.</p>
         </div>
         <div class="pillar reveal reveal-delay-2">
           <h3>Paid for showing up and leading</h3>
-          <p>Produce weekly content that guides participants through the collab—content you can reuse on your own social channels. Your effort and presence matter.</p>
+          <p>Post one video a week in your own voice — share what's on your mind, keep your people inspired. That's it.</p>
         </div>
         <div class="pillar reveal reveal-delay-3">
           <h3>Upside when collabs perform well</h3>
-          <p>When a collab drives strong participation and real outcomes, you share in the financial upside. Earnings tied to real impact—not vanity metrics.</p>
+          <p>Beyond your base earnings, you participate in the collab's financial upside. Better performance means a bigger payout.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section bg-sand">
+  <section class="section bg-blush">
+    <div class="container">
+      <div class="section-header reveal">
+        <p class="label">Illustrative example</p>
+        <h2>What this could look like</h2>
+      </div>
+      <p class="section-intro reveal">Exact earnings depend on your audience, collab structure, and participation rates. But here's a realistic scenario to give you a sense of scale.</p>
+      <div class="earnings-scenario reveal">
+        <h3>Example: 6-week cycling challenge</h3>
+        <p class="scenario-desc">A creator with 200k followers runs a 6-week cycling challenge. 1% of followers join (2,000 participants) at a $40 hold per person.</p>
+        <div class="earnings-row">
+          <span>Join bonus (paid at participation benchmarks)</span>
+          <span>$800</span>
+        </div>
+        <div class="earnings-row">
+          <span>Content (one video per week, 6 weeks)</span>
+          <span>$500</span>
+        </div>
+        <div class="earnings-row">
+          <span>Performance upside (if 85% of participants complete)</span>
+          <span>$1,035</span>
+        </div>
+        <div class="earnings-row total">
+          <span>Estimated creator earnings</span>
+          <span>$2,335</span>
+        </div>
+        <p class="disclaimer">These are illustrative estimates, not guarantees. Actual earnings vary based on collab terms, participation, and completion rates. Motiv is still in development and final economics may differ.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">
       <div class="section-header reveal">
         <p class="label">Transparency</p>
         <h2>Why we keep this transparent</h2>
       </div>
       <p class="section-intro reveal">Motiv avoids black-box payout math. Creators and participants should understand the basics of where money goes and why.</p>
-      <div class="cta-strip reveal" style="background: var(--white);">
+      <div class="cta-strip reveal">
         <h3>Get the earnings model update</h3>
         <form class="email-capture" data-form="waitlist" onsubmit="return handleSubmit(this, event)">
           <input type="email" placeholder="Email address" required aria-label="Email address">
@@ -1563,6 +1946,14 @@ p { max-width: 640px; }
   <section class="section">
     <div class="container">
       <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Is this like Patreon?
+            <span class="faq-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">It's the closest analogy, with one key difference: on Patreon, fans pay to support you. On Motiv, your audience pays in to a shared experience—and they earn that money back by following through. You're not collecting subscriptions; you're leading a commitment they made to themselves.</div></div>
+        </div>
+
         <div class="faq-item reveal">
           <button class="faq-question" onclick="toggleFaq(this)">
             What is a "hold"?
@@ -1744,10 +2135,8 @@ p { max-width: 640px; }
   <div class="container">
     <div class="footer-inner">
       <div class="footer-logo">
-        <svg viewBox="-10 0 270 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M -2 19 C 0 18, 3.5 18.5, 8 22.5 L 8 54 M 8 30 C 8 22, 16 18, 22 18 C 28 18, 33 22, 33 28 L 33 54 M 33 30 C 33 22, 41 18, 47 18 C 53 18, 58 22, 58 28 L 58 54 C 58 57, 59 60, 61 62 C 63 64, 66 65, 69 65" stroke="white" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          <g transform="translate(73.5,64.5) scale(0.5) rotate(20)"><path d="M 0 -15 C -1 -5, -3 -3, -7 -4 C -3 -1.5, -5 0.5, -9 3 C -3 2, -1 5, 0 11 C 1 5, 3 2, 7 4 C 3 1.5, 5 -0.5, 12 0 C 5 -1, 3 -3, 7 -5 C 3 -3, 1 -5, 0 -15 Z" fill="#C97A6A"/></g>
-          <text x="62.4" y="54" font-family="'DM Sans', system-ui, sans-serif" font-size="38" font-weight="400" letter-spacing="-0.5" fill="white">otiv</text>
+        <svg viewBox="0 0 200 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <text x="0" y="44" font-family="'Source Serif 4', Georgia, serif" font-size="48" font-weight="600" letter-spacing="-1" fill="white">Motiv</text>
         </svg>
       </div>
       <ul class="footer-links">
