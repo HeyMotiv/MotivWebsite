@@ -2232,32 +2232,44 @@ function handleSubmit(form, e) {
   const email = form.querySelector('input[type="email"]').value;
   if (!email) return false;
 
-  // Simulate POST to /waitlist
-  console.log('Waitlist signup:', email);
+  const formData = new FormData(form);
+  formData.append('form-name', 'waitlist');
 
-  // Show success
-  form.style.display = 'none';
-  const success = form.nextElementSibling;
-  if (success && success.classList.contains('form-success')) {
-    success.style.display = 'flex';
-  }
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(formData).toString()
+  })
+  .then(() => {
+    form.style.display = 'none';
+    const success = form.nextElementSibling;
+    if (success && success.classList.contains('form-success')) {
+      success.style.display = 'flex';
+    }
+  })
+  .catch(() => alert('Something went wrong. Please try again.'));
+
   return false;
 }
 
 // ─── Full Waitlist Form Submit ───
 function handleFullSubmit(form, e) {
   e.preventDefault();
-  const data = {
-    email: form.querySelector('#wl-email').value,
-    name: form.querySelector('#wl-name').value,
-    platform: form.querySelector('#wl-platform').value,
-    handle: form.querySelector('#wl-handle').value,
-  };
 
-  console.log('Full waitlist signup:', data);
+  const formData = new FormData(form);
+  formData.append('form-name', 'waitlist-full');
 
-  form.style.display = 'none';
-  document.getElementById('waitlistFullSuccess').style.display = 'flex';
+  fetch('/', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams(formData).toString()
+  })
+  .then(() => {
+    form.style.display = 'none';
+    document.getElementById('waitlistFullSuccess').style.display = 'flex';
+  })
+  .catch(() => alert('Something went wrong. Please try again.'));
+
   return false;
 }
 </script>
