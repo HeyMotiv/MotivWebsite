@@ -714,13 +714,37 @@ h2 .underline-accent::after, h3 .underline-accent::after {
   .feature-row.flip .feature-visual { order: 2; }
   .step-list { grid-template-columns: 1fr; }
   .founders-grid { grid-template-columns: 1fr 1fr; gap: 0.9rem; }
-  .phone-duo { flex-direction: column; }
+  .phone-duo { flex-direction: row; gap: 0.85rem; align-items: flex-start; }
   .phone-duo .duo-item:nth-child(2) { margin-top: 0; }
+  .phone-duo .phone { width: 142px; border-radius: 26px; padding: 5px; }
+  .phone-duo .phone-screen { border-radius: 22px; }
+  .phone-duo .phone-notch { width: 48px; height: 13px; top: 8px; }
+  .duo-item { gap: 0.7rem; }
+  .duo-cap { font-size: 0.62rem; letter-spacing: 0.1em; }
   .phone.tilt-l, .phone.tilt-r { transform: none; }
   .duo-item.tilt-l, .duo-item.tilt-r { transform: none; }
   .email-capture { flex-direction: column; }
   .email-capture .btn-primary { justify-content: center; }
   .float-chip { display: none; }
+  .phone { width: 200px; border-radius: 32px; padding: 7px; }
+  .phone-screen { border-radius: 26px; }
+  .phone-notch { width: 64px; height: 18px; top: 11px; }
+  .phone.sm { width: 184px; }
+  .hero-grid { gap: 1.5rem; }
+  .hero { padding-top: clamp(6rem, 16vw, 9rem); padding-bottom: 0; }
+  /* Hero phone peeks up from the bottom edge on mobile */
+  .hero-grid .phone-wrap { height: 300px; overflow: hidden; align-items: flex-start; }
+  .hero-grid .phone { width: 256px; border-radius: 40px; padding: 8px; }
+  .hero-grid .phone-screen { border-radius: 33px; }
+  .hero-grid .phone-notch { width: 82px; height: 23px; top: 13px; }
+}
+
+/* ─── Responsive copy: lighten text on mobile ─── */
+.mobile-only { display: none; }
+@media (max-width: 720px) {
+  .hide-mobile { display: none !important; }
+  .mobile-only { display: block; }
+  .mobile-only.inline { display: inline; }
 }
 
 /* ─── Our Story page ─── */
@@ -821,7 +845,8 @@ h2 .underline-accent::after, h3 .underline-accent::after {
             <span class="hero-lead">Your audience trusts you.</span>
             <span class="hero-statement">Turn that into <em class="accent">movement — and <span class="underline-accent">income</span></em>.</span>
           </h1>
-          <p class="hero-sub">You run a short challenge, your followers move toward personal goals, and everyone follows through together. No ads, no sponsors, nothing to sell — you just get paid for the work you already do.</p>
+          <p class="hero-sub hide-mobile">You run a short challenge, your followers move toward personal goals, and everyone follows through together. No ads, no sponsors, nothing to sell — you just get paid for the work you already do.</p>
+          <p class="hero-sub mobile-only">Run a short challenge, your followers move toward personal goals, and get paid for the work you already do.</p>
           <form class="email-capture" data-form="waitlist" onsubmit="return handleSubmit(this, event)">
             <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
             <button type="submit" class="btn-primary">Join creator waitlist</button>
@@ -860,7 +885,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
       <div class="statement reveal">
         <p class="label on-dark center" style="justify-content:center;">The missing piece</p>
         <h2>Your audience follows you because they want to move more. <span class="dim">But watching isn't moving.</span></h2>
-        <p class="statement-footnote">Inspiration gets people to the starting line. It rarely gets them to week three. Motiv gives the people who already look to you a way to act on it — with you.</p>
+        <p class="statement-footnote hide-mobile">Inspiration gets people to the starting line. It rarely gets them to week three. Motiv gives the people who already look to you a way to act on it — with you.</p>
       </div>
     </div>
   </section>
@@ -872,12 +897,12 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="feature-copy reveal">
           <p class="label">The collab</p>
           <h2>A short challenge you lead and your followers love.</h2>
-          <p>A 4–6 week challenge built around how you already move — running, riding, walking. Followers join, and everyone follows through together.</p>
+          <p>A 4–6 week challenge built around how you already move — running, riding, walking.<span class="hide-mobile"> Followers join, and everyone follows through together.</span></p>
           <ul>
-            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Personal goals.</strong> Each person's target comes from their own recent activity — fair for everyone.</span></li>
-            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Move your way.</strong> Goals track steps, active minutes, or active calorie burn — with more metrics on the way — so any kind of movement counts.</span></li>
-            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Tracked passively.</strong> Syncs from Apple Watch, Fitbit, Garmin, WHOOP, Oura and more — no logging, no honor system.</span></li>
-            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>A shared finish line.</strong> One feed, one timeline — your videos carrying everyone through.</span></li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Personal goals.</strong> Each person's target comes from their own recent activity<span class="mobile-only inline">.</span><span class="hide-mobile"> — fair for everyone.</span></span></li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Move your way.</strong> Goals track steps, active minutes, or active calorie burn<span class="mobile-only inline">.</span><span class="hide-mobile"> — with more metrics on the way — so any kind of movement counts.</span></span></li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Tracked passively.</strong> Syncs from Apple Watch, Fitbit, Garmin<span class="hide-mobile">, WHOOP, Oura</span> and more<span class="mobile-only inline">.</span><span class="hide-mobile"> — no logging, no honor system.</span></span></li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>A shared finish line.</strong> One feed, one timeline<span class="mobile-only inline">.</span><span class="hide-mobile"> — your videos carrying everyone through.</span></span></li>
           </ul>
         </div>
         <div class="feature-visual phone-wrap reveal reveal-delay-1">
@@ -899,7 +924,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="section-header why-aside reveal">
           <p class="label">Why it works</p>
           <h2>Three things, working together</h2>
-          <p class="sub">Information alone doesn't change behavior. Neither does motivation. What works is structure that makes showing up the obvious choice — week after week.</p>
+          <p class="sub hide-mobile">Information alone doesn't change behavior. Neither does motivation. What works is structure that makes showing up the obvious choice — week after week.</p>
         </div>
         <div class="why-points">
           <div class="why-point reveal reveal-delay-1">
@@ -908,7 +933,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
             </div>
             <div>
               <h3>A goal that's truly theirs</h3>
-              <p>A weekly target built from each person's own recent activity — a real stretch for a beginner and a marathoner alike. Nobody's set up to fail; nobody can coast.</p>
+              <p>A weekly target built from each person's own recent activity<span class="mobile-only inline">.</span><span class="hide-mobile"> — a real stretch for a beginner and a marathoner alike. Nobody's set up to fail; nobody can coast.</span></p>
             </div>
           </div>
           <div class="why-point reveal reveal-delay-2">
@@ -917,7 +942,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
             </div>
             <div>
               <h3>A reason to follow through</h3>
-              <p>Joining includes a small refundable deposit — we call it a hold. Meet your weekly goal and it comes back in full, plus rewards. Not a fee, not a bet — a commitment to yourself, made real.</p>
+              <p>Joining includes a small refundable deposit — we call it a hold. Meet your weekly goal and it comes back in full<span class="mobile-only inline">.</span><span class="hide-mobile">, plus rewards. Not a fee, not a bet — a commitment to yourself, made real.</span></p>
             </div>
           </div>
           <div class="why-point reveal reveal-delay-3">
@@ -926,7 +951,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
             </div>
             <div>
               <h3>A group moving with you</h3>
-              <p>Hundreds of people on one timeline, watching your videos, cheering each other on. Quitting alone is easy. Quitting on the group — and on you — isn't.</p>
+              <p>Hundreds of people on one timeline<span class="mobile-only inline">.</span><span class="hide-mobile">, watching your videos, cheering each other on. Quitting alone is easy.</span> Quitting on the group — and on you — isn't.</p>
             </div>
           </div>
         </div>
@@ -940,23 +965,23 @@ h2 .underline-accent::after, h3 .underline-accent::after {
       <div class="section-header reveal">
         <p class="label">How you earn</p>
         <h2>You already do the work. Motiv <span class="underline-accent">pays</span> you for it.</h2>
-        <p class="sub">No products to push, no course to script, no brand to answer to — just the showing up you already do, turned into real revenue. Three ways a collab pays you:</p>
+        <p class="sub hide-mobile">No products to push, no course to script, no brand to answer to — just the showing up you already do, turned into real revenue. Three ways a collab pays you:</p>
       </div>
       <div class="streams reveal">
         <div class="stream">
           <span class="stream-num">01</span>
           <div><h3>When people join</h3><span class="stream-tag">Recruitment pay</span></div>
-          <p>You earn as your collab clears participant milestones. Your announcement post is the launch; your audience is the distribution.</p>
+          <p>You earn as your collab clears participant milestones.<span class="hide-mobile"> Your announcement post is the launch; your audience is the distribution.</span></p>
         </div>
         <div class="stream">
           <span class="stream-num">02</span>
           <div><h3>When you show up weekly</h3><span class="stream-tag">Content pay</span></div>
-          <p>Post a short, motivating video each week — the kind you already make. Every one earns a set amount, scaled to your collab's size.</p>
+          <p>Post a short, motivating video each week — the kind you already make.<span class="hide-mobile"> Every one earns a set amount, scaled to your collab's size.</span></p>
         </div>
         <div class="stream">
           <span class="stream-num">03</span>
           <div><h3>When the collab succeeds</h3><span class="stream-tag">Performance bonus</span></div>
-          <p>When a collab does well financially, you share in the upside. Close with a wrap-up, crown your MVPs, and the best ones bring the community back.</p>
+          <p>When a collab does well financially, you share in the upside.<span class="hide-mobile"> Close with a wrap-up, crown your MVPs, and the best ones bring the community back.</span></p>
         </div>
       </div>
       <div style="margin-top: 2.75rem;" class="reveal">
@@ -976,17 +1001,17 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="compare-card reveal reveal-delay-1">
           <p class="compare-kicker">Patreon &amp; Substack</p>
           <h3>You paywall more content</h3>
-          <p>It means making more content every month — and asking your followers to pay for what they used to get free.</p>
+          <p class="hide-mobile">It means making more content every month — and asking your followers to pay for what they used to get free.</p>
         </div>
         <div class="compare-card reveal reveal-delay-2">
           <p class="compare-kicker">Brand deals</p>
           <h3>You promote someone else's product</h3>
-          <p>Earnings depend on a sponsor's budget and approval. A Motiv collab is the brand deal you run for yourself.</p>
+          <p class="hide-mobile">Earnings depend on a sponsor's budget and approval. A Motiv collab is the brand deal you run for yourself.</p>
         </div>
         <div class="compare-card reveal reveal-delay-3">
           <p class="compare-kicker">Coaching &amp; courses</p>
           <h3>You build and run a program</h3>
-          <p>High effort, high churn. You become a service business — and most followers never convert.</p>
+          <p class="hide-mobile">High effort, high churn. You become a service business — and most followers never convert.</p>
         </div>
         <div class="compare-card highlight reveal reveal-delay-4">
           <p class="compare-kicker">Motiv collabs</p>
@@ -1008,7 +1033,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="trust-col reveal reveal-delay-1">
           <span class="trust-num">No. 1</span>
           <h3>Follow through, get refunded</h3>
-          <p>Participants who meet their weekly goals get their hold back in full. Always. The mechanics are spelled out before anyone pays a cent.</p>
+          <p>Participants who meet their weekly goals get their hold back in full. Always.<span class="hide-mobile"> The mechanics are spelled out before anyone pays a cent.</span></p>
         </div>
         <div class="trust-col reveal reveal-delay-2">
           <span class="trust-num">No. 2</span>
@@ -1033,7 +1058,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
       <div class="section-header center reveal">
         <p class="label center">Founding creators</p>
         <h2>The first collabs are taking shape</h2>
-        <p class="sub">We're partnering with a small group of founding creators across running, cycling, strength, and everyday movement. Announcements coming soon.</p>
+        <p class="sub">We're partnering with a small group of founding creators across running, cycling, strength, and everyday movement.<span class="hide-mobile"> Announcements coming soon.</span></p>
       </div>
       <div class="founders-grid reveal reveal-delay-1">
         <div class="founder-card"><span class="founder-sil"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4.2"/><path d="M4.5 21c0-4.2 3.3-7 7.5-7s7.5 2.8 7.5 7"/></svg></span><span class="founder-tag">Announcing soon</span></div>
@@ -1052,7 +1077,8 @@ h2 .underline-accent::after, h3 .underline-accent::after {
     <div class="container-narrow" style="text-align:center;">
       <p class="label center">Why we built Motiv</p>
       <h2>Two decades in health tech. One problem we couldn't crack.</h2>
-      <p style="max-width: 600px; margin: 1.25rem auto 0; color: var(--ink-light); font-size: 1.08rem; line-height: 1.7;">We've built products designed to help people get healthier — at Fitbit, United Healthcare, Google Care Studio and beyond, used by hundreds of millions. We learned what moves people. We also learned the one thing we could never build ourselves: the spark that gets someone to start. That's the piece creators bring.</p>
+      <p class="hide-mobile" style="max-width: 600px; margin: 1.25rem auto 0; color: var(--ink-light); font-size: 1.08rem; line-height: 1.7;">We've built products designed to help people get healthier — at Fitbit, United Healthcare, Google Care Studio and beyond, used by hundreds of millions. We learned what moves people. We also learned the one thing we could never build ourselves: the spark that gets someone to start. That's the piece creators bring.</p>
+      <p class="mobile-only" style="max-width: 600px; margin: 1.25rem auto 0; color: var(--ink-light); font-size: 1.05rem; line-height: 1.7;">Two decades building health products used by hundreds of millions — at Fitbit, UnitedHealthcare, and Google. The one thing we could never build: the spark that gets someone to start. That's what creators bring.</p>
       <div style="margin-top: 2rem;">
         <a href="#" class="btn-secondary" data-page="story">Read the whole story <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
       </div>
@@ -1065,7 +1091,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
       <div class="cta-panel reveal">
         <p class="label on-dark center" style="justify-content:center;">Early access</p>
         <h2>Be one of the creators who defines this</h2>
-        <p>Founding creators get hands-on support, first access, and a real say in how Motiv evolves. If your audience follows you to move, we'd love to talk.</p>
+        <p>Founding creators get hands-on support, first access, and a real say in how Motiv evolves.<span class="hide-mobile"> If your audience follows you to move, we'd love to talk.</span></p>
         <form class="email-capture on-dark center" data-form="waitlist" onsubmit="return handleSubmit(this, event)" style="justify-content:center;">
           <input type="email" name="email" placeholder="Email address" required aria-label="Email address">
           <button type="submit" class="btn-primary on-dark">Join creator waitlist</button>
@@ -1091,7 +1117,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
     <div class="container-narrow" style="text-align:center;">
       <p class="label center">The experience</p>
       <h1>What your audience gets</h1>
-      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 620px;">A collab isn't content to consume. It's 4 to 6 weeks of structure, momentum, and shared effort — wrapped around your voice. Here's what it looks like inside the app.</p>
+      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 620px;">A collab isn't content to consume. It's 4 to 6 weeks of structure, momentum, and shared effort — wrapped around your voice.<span class="hide-mobile"> Here's what it looks like inside the app.</span></p>
     </div>
   </section>
 
@@ -1129,7 +1155,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="feature-copy reveal">
           <p class="label">Joining</p>
           <h2>A goal made for them, before they put down their hold</h2>
-          <p>They see everything up front: the pool, the rules, the dates — and a personal weekly goal built from their own wearable history. No generic targets, no surprises — and the hold comes back in full when they follow through.</p>
+          <p>They see everything up front: the pool, the rules, the dates — and a personal weekly goal built from their own wearable history.<span class="hide-mobile"> No generic targets, no surprises — and the hold comes back in full when they follow through.</span></p>
           <ul>
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Connect a wearable</strong> — Apple Watch, Fitbit, Garmin, WHOOP, Oura and more. Tracking is fully passive.</span></li>
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>See the exact goal</strong> built from their recent activity, at the difficulty you set.</span></li>
@@ -1150,7 +1176,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="feature-copy reveal">
           <p class="label">During</p>
           <h2>Progress they can feel, every single day</h2>
-          <p>Each week has a goal, and every bit of movement counts toward it. Activity syncs from their wearable on its own — so participants just move and watch their progress climb.</p>
+          <p>Each week has a goal, and every bit of movement counts toward it.<span class="hide-mobile"> Activity syncs from their wearable on its own — so participants just move and watch their progress climb.</span></p>
           <ul>
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Live weekly progress</strong> — this week's total, the days they've moved, and how close they are to hitting goal.</span></li>
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Nothing hidden</strong> — every synced day is visible, week by week, so their progress is always theirs to check.</span></li>
@@ -1171,7 +1197,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="feature-copy reveal">
           <p class="label">Your presence</p>
           <h2>Your voice carries the collab</h2>
-          <p>Each week you post a short video — a check-in, a nudge, a story from your training. It's the content you already make, for an audience that's doing it with you.</p>
+          <p>Each week you post a short video — a check-in, a nudge, a story from your training.<span class="hide-mobile"> It's the content you already make, for an audience that's doing it with you.</span></p>
           <ul>
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Built in your voice</strong> — Motiv's AI designs a starting point that already looks and feels like your brand, so you skip the hours of setup. You tweak it until it's yours.</span></li>
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Weekly videos</strong> surface front-and-center for every participant.</span></li>
@@ -1216,7 +1242,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
     <div class="container-narrow" style="text-align:center;">
       <p class="label center">How it works</p>
       <h1>From idea to finish line</h1>
-      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 600px;">You bring the voice and the audience. Motiv handles goals, tracking, payments, and logistics. Here's the whole arc.</p>
+      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 600px;">You bring the voice and the audience. Motiv handles goals, tracking, payments, and logistics.<span class="hide-mobile"> Here's the whole arc.</span></p>
     </div>
   </section>
 
@@ -1253,7 +1279,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="feature-copy reveal">
           <p class="label">For participants</p>
           <h2>Simple on purpose</h2>
-          <p>The participant experience is deliberately light: join once, then just move. No manual logging, no daily check-in chores, no app babysitting.</p>
+          <p>The participant experience is deliberately light: join once, then just move.<span class="hide-mobile"> No manual logging, no daily check-in chores, no app babysitting.</span></p>
           <ul>
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Join</strong> — connect a wearable, see a personal goal, place a refundable hold.</span></li>
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Move</strong> — hit the weekly goal; activity syncs on its own.</span></li>
@@ -1307,7 +1333,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="stream">
           <span class="stream-num">01</span>
           <div><h3>Recruitment pay</h3><span class="stream-tag">Guaranteed</span></div>
-          <p>Guaranteed once your collab reaches 200 participants, then it grows as you clear higher milestones. Your launch post does the work your audience already expects from you.</p>
+          <p>Guaranteed once your collab reaches 200 participants, then it grows as you clear higher milestones.<span class="hide-mobile"> Your launch post does the work your audience already expects from you.</span></p>
         </div>
         <div class="stream">
           <span class="stream-num">02</span>
@@ -1317,7 +1343,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="stream">
           <span class="stream-num">03</span>
           <div><h3>Performance bonus</h3><span class="stream-tag">Upside</span></div>
-          <p>Finish strong — post your wrap-up and crown your MVPs — and you share in the collab's upside. The exact figure depends on how the collab plays out, and we show you the math.</p>
+          <p>Finish strong — post your wrap-up and crown your MVPs — and you share in the collab's upside.<span class="hide-mobile"> The exact figure depends on how the collab plays out, and we show you the math.</span></p>
         </div>
       </div>
     </div>
@@ -1328,7 +1354,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
       <div class="section-header reveal">
         <p class="label">A worked example</p>
         <h2>What a first collab could look like</h2>
-        <p class="sub">Illustrative only — real numbers depend on your audience, your collab design, and participation. We'll model yours with you before you launch.</p>
+        <p class="sub">Illustrative only — real numbers depend on your audience, your collab design, and participation.<span class="hide-mobile"> We'll model yours with you before you launch.</span></p>
       </div>
       <div class="card reveal" style="padding: 2.5rem;">
         <div class="stats-band" style="text-align:left; gap: 1.5rem;">
@@ -1345,7 +1371,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
             <div class="stat-label">videos from you: a kickoff, four weekly check-ins, a wrap</div>
           </div>
         </div>
-        <p style="margin-top: 2rem; font-size: 0.95rem; border-top: 1px solid var(--line); padding-top: 1.5rem;">Recruitment pay as your collab fills to 1,200, content pay on all six videos, a performance bonus at wrap. Same audience, same content you posted last week — now with a direct line to revenue.</p>
+        <p style="margin-top: 2rem; font-size: 0.95rem; border-top: 1px solid var(--line); padding-top: 1.5rem;">Recruitment pay as your collab fills to 1,200, content pay on all six videos, a performance bonus at wrap.<span class="hide-mobile"> Same audience, same content you posted last week — now with a direct line to revenue.</span></p>
       </div>
       <p class="reveal" style="font-size: 0.8rem; color: var(--ink-faint); margin-top: 1.25rem;">Example for illustration only. Not a guarantee of earnings.</p>
     </div>
@@ -1357,12 +1383,12 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="feature-copy reveal">
           <p class="label">No black boxes</p>
           <h2>You'll always see the math</h2>
-          <p>Before you launch, you'll see exactly how every stream is calculated — recruitment milestones, content pay, and the performance bonus. The amounts depend on how many people join and how the collab performs financially, so as those numbers come in, your dashboard shows your earnings accruing in real time. No hidden formulas, no end-of-quarter surprises.</p>
+          <p>Before you launch, you'll see exactly how every stream is calculated — recruitment milestones, content pay, and the performance bonus.<span class="hide-mobile"> The amounts depend on how many people join and how the collab performs financially, so as those numbers come in, your dashboard shows your earnings accruing in real time. No hidden formulas, no end-of-quarter surprises.</span></p>
         </div>
         <div class="feature-copy reveal reveal-delay-1">
           <p class="label">Worth knowing</p>
           <h2>Built for the long game</h2>
-          <p>The biggest earnings driver isn't one collab — it's the second one. Communities that finish together come back, bring friends, and trust you more. Motiv is designed so the best way to earn more is to run collabs people love.</p>
+          <p>The biggest earnings driver isn't one collab — it's the second one. Communities that finish together come back, bring friends, and trust you more.<span class="hide-mobile"> Motiv is designed so the best way to earn more is to run collabs people love.</span></p>
         </div>
       </div>
       <div class="reveal" style="text-align: center; margin-top: clamp(2.75rem, 5vw, 3.75rem);">
@@ -1383,7 +1409,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
     <div class="container-narrow" style="text-align:center;">
       <p class="label center">Founding creators</p>
       <h1>Built <em class="accent">with</em> creators, not just for them</h1>
-      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 640px;">Our founding cohort doesn't just run the first collabs — they bring the expertise that shapes the product. We're hand-picking a small group across running, cycling, strength, and everyday movement to build Motiv alongside us. Names land here soon.</p>
+      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 640px;">Our founding cohort doesn't just run the first collabs — they bring the expertise that shapes the product.<span class="hide-mobile"> We're hand-picking a small group across running, cycling, strength, and everyday movement to build Motiv alongside us.</span> Names land here soon.</p>
     </div>
   </section>
 
@@ -1403,18 +1429,18 @@ h2 .underline-accent::after, h3 .underline-accent::after {
       <div class="section-header reveal">
         <p class="label">What founding creators get</p>
         <h2>A seat at the table — and a stake in the upside</h2>
-        <p class="sub">Founding creators are co-builders, not early adopters. You shape what we make, launch ahead of everyone, and earn on the best terms Motiv will ever offer.</p>
+        <p class="sub">Founding creators are co-builders, not early adopters.<span class="hide-mobile"> You shape what we make, launch ahead of everyone, and earn on the best terms Motiv will ever offer.</span></p>
       </div>
       <div class="card-grid">
         <div class="card reveal reveal-delay-1">
           <div class="card-icon sage-bg"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <h3>A seat at the table</h3>
-          <p>Your perspective and expertise go straight into the build — features, mechanics, goal types, what we make next. Founding creators shape what Motiv becomes.</p>
+          <p>Your perspective and expertise go straight into the build — features, mechanics, goal types, what we make next.<span class="hide-mobile"> Founding creators shape what Motiv becomes.</span></p>
         </div>
         <div class="card reveal reveal-delay-2">
           <div class="card-icon sand"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg></div>
           <h3>First to launch</h3>
-          <p>Run the very first collabs with us in your corner. We design, model, and launch your first one with you — goal type, difficulty, hold amount, announcement plan, all of it.</p>
+          <p>Run the very first collabs with us in your corner.<span class="hide-mobile"> We design, model, and launch your first one with you — goal type, difficulty, hold amount, announcement plan, all of it.</span></p>
         </div>
         <div class="card reveal reveal-delay-3">
           <div class="card-icon plum-bg"><svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="16 7 21 7 21 12"/></svg></div>
@@ -1517,7 +1543,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
     <div class="container-narrow" style="text-align:center;">
       <p class="label center">Trust</p>
       <h1>Our commitments</h1>
-      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 600px;">Motiv only works if participants trust the mechanics and creators trust the platform. These aren't marketing lines — they're how the product is built.</p>
+      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 600px;">Motiv only works if participants trust the mechanics and creators trust the platform.<span class="hide-mobile"> These aren't marketing lines — they're how the product is built.</span></p>
     </div>
   </section>
 
@@ -1527,17 +1553,17 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="pillar" style="background: var(--white);">
           <span class="pillar-num">No. 1</span>
           <h3>Follow through, get refunded</h3>
-          <p>The hold is returned in full to everyone who meets their goals — automatically, on schedule, every time. The rules are stated plainly before anyone pays, and they don't change mid-collab.</p>
+          <p>The hold is returned in full to everyone who meets their goals — automatically, on schedule, every time.<span class="hide-mobile"> The rules are stated plainly before anyone pays, and they don't change mid-collab.</span></p>
         </div>
         <div class="pillar" style="background: var(--white);">
           <span class="pillar-num">No. 2</span>
           <h3>Rewards make it worth it</h3>
-          <p>Participation should feel like it pays. Finishers earn rewards on top of their refund, and MVPs earn more — so the experience ends better than it started.</p>
+          <p>Participation should feel like it pays. Finishers earn rewards on top of their refund, and MVPs earn more<span class="hide-mobile"> — so the experience ends better than it started.</span></p>
         </div>
         <div class="pillar" style="background: var(--white);">
           <span class="pillar-num">No. 3</span>
           <h3>Clarity, fairness, respect</h3>
-          <p>Verified wearable data so nobody can cheat the group. Personal goals so nobody is set up to fail. Human support when life happens. No dark patterns, no fine-print gotchas, no hype.</p>
+          <p>Verified wearable data so nobody can cheat the group. Personal goals so nobody is set up to fail. Human support when life happens.<span class="hide-mobile"> No dark patterns, no fine-print gotchas, no hype.</span></p>
         </div>
       </div>
       <div class="container-narrow" style="margin-top: 3.5rem; text-align: center;" >
@@ -1568,7 +1594,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
       <div class="statement reveal">
         <p class="label on-dark center" style="justify-content:center;">What we learned</p>
         <h2>Every approach taught us something. <span class="dim">None of them worked alone.</span></h2>
-        <p class="statement-footnote">Data, personalization, habit design, gamification, coaching, the latest research — across products used by hundreds of millions. Each one mattered. The most reliable lever we ever found was a financial incentive tied to verified behavior — and even that couldn't carry the rest on its own.</p>
+        <p class="statement-footnote">Data, personalization, habit design, gamification, coaching, the latest research — across products used by hundreds of millions.<span class="hide-mobile"> Each one mattered.</span> The most reliable lever we ever found was a financial incentive tied to verified behavior — and even that couldn't carry the rest on its own.</p>
       </div>
     </div>
   </section>
@@ -1582,8 +1608,8 @@ h2 .underline-accent::after, h3 .underline-accent::after {
           <h2>An incentive gets you moving — it can't make the change yours</h2>
         </div>
         <div>
-          <p>Two things hold an incentive back on its own. They're expensive and hard to source at scale — someone has to fund them. And they only reach so deep: people learn to game the system, hitting the number without changing the habit underneath. Gaming the goal is the opposite of the point.</p>
-          <p>What lasts is something money can't buy — the feeling. The excitement of a good week, the hope that this time is different, the quiet happiness of proving it to yourself. That's what gets internalized. For years, the piece we couldn't build was the spark.</p>
+          <p>Two things hold an incentive back on its own. They're expensive and hard to source at scale — someone has to fund them. And they only reach so deep: people learn to game the system, hitting the number without changing the habit underneath.<span class="hide-mobile"> Gaming the goal is the opposite of the point.</span></p>
+          <p>What lasts is something money can't buy — the feeling. The excitement of a good week, the hope that this time is different, the quiet happiness of proving it to yourself.<span class="hide-mobile"> That's what gets internalized.</span> For years, the piece we couldn't build was the spark.</p>
         </div>
       </div>
     </div>
@@ -1610,7 +1636,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
       <div class="reveal" style="text-align:center; max-width: 620px; margin: 0 auto;">
         <p class="label center">Who's building Motiv</p>
         <h2>Decades of health tech, on one team</h2>
-        <p style="color: var(--ink-light); font-size: 1.05rem; line-height: 1.7; margin-top: 1rem;">Between us, we've done the design, engineering, and product behind health tools used by hundreds of millions — at the companies below.</p>
+        <p style="color: var(--ink-light); font-size: 1.05rem; line-height: 1.7; margin-top: 1rem;">Between us, we've built health tools used by hundreds of millions — at the companies below.</p>
       </div>
       <div class="logo-wall reveal">
         <div class="logo-cell"><img src="data:image/png;base64,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" alt="Fitbit"></div>
