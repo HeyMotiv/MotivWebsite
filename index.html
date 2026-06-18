@@ -674,6 +674,15 @@ h2 .underline-accent::after, h3 .underline-accent::after {
 .footer-legal { display: flex; gap: 1.4rem; }
 .footer-legal a { color: rgba(254,252,250,0.4); transition: color 0.2s; }
 .footer-legal a:hover { color: var(--white); }
+.footer-social { display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 1rem; font-size: 0.88rem; color: rgba(254,252,250,0.65); transition: color 0.2s; }
+.footer-social svg { width: 18px; height: 18px; }
+.footer-social:hover { color: var(--white); }
+.legal-body { max-width: 760px; margin: 0 auto; }
+.legal-body .legal-updated { font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 0.5rem; }
+.legal-body .legal-note { font-size: 0.85rem; color: var(--ink-faint); font-style: italic; padding: 0.9rem 1.1rem; border: 1px solid var(--line); border-radius: 10px; margin-bottom: 2.5rem; }
+.legal-body h3 { font-family: var(--font-display); font-size: 1.3rem; margin: 2.25rem 0 0.6rem; }
+.legal-body p { color: var(--ink-light); font-size: 1rem; line-height: 1.75; margin-bottom: 0.9rem; }
+.legal-body a { color: var(--sage); text-decoration: underline; text-underline-offset: 2px; }
 
 /* ─── Responsive ─── */
 @media (max-width: 980px) {
@@ -789,7 +798,6 @@ h2 .underline-accent::after, h3 .underline-accent::after {
       <li><a href="#" data-page="earnings">Earnings</a></li>
       <li><a href="#" data-page="creators">Founding Creators</a></li>
       <li><a href="#" data-page="story">Our Story</a></li>
-      <li><a href="#" data-page="faq">FAQ</a></li>
       <li><a href="#" data-page="waitlist" class="nav-cta">Join creator waitlist</a></li>
     </ul>
     <button class="nav-mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
@@ -1621,6 +1629,112 @@ h2 .underline-accent::after, h3 .underline-accent::after {
 </div>
 
 <!-- ═══════════════════════════════════════ -->
+<!-- PAGE: TERMS                             -->
+<!-- ═══════════════════════════════════════ -->
+<div class="page-section" id="page-terms">
+
+  <section class="hero" style="padding-bottom: clamp(2rem, 4vw, 3rem);">
+    <div class="hero-backdrop"></div>
+    <div class="container-narrow" style="text-align:center;">
+      <p class="label center">Legal</p>
+      <h1>Terms of Service</h1>
+    </div>
+  </section>
+
+  <section class="section-tight" style="padding-bottom: clamp(4.5rem, 9vw, 7.5rem);">
+    <div class="container">
+      <div class="legal-body reveal">
+        <p class="legal-updated">Last updated: January 2026</p>
+        <p class="legal-note">This is placeholder text provided while we finalize Motiv's terms. It is not the final agreement and does not yet create binding obligations. Final terms will be posted here before the platform launches.</p>
+
+        <h3>1. Acceptance of terms</h3>
+        <p>By accessing or using Motiv (the "Service"), you agree to be bound by these Terms of Service. If you do not agree to these terms, do not use the Service. These terms apply to everyone who uses Motiv, including creators who host collabs and participants who join them.</p>
+
+        <h3>2. Eligibility and accounts</h3>
+        <p>You must be at least 18 years old to use the Service. When you create an account, you agree to provide accurate information and to keep it up to date. You are responsible for activity that happens under your account and for keeping your login credentials secure.</p>
+
+        <h3>3. Use of the Service</h3>
+        <p>You agree to use Motiv only for lawful purposes and in accordance with these terms. You will not misuse the Service, attempt to interfere with its normal operation, or use it to harm, harass, or mislead others. We may suspend or terminate access for conduct that violates these terms.</p>
+
+        <h3>4. Creators and participants</h3>
+        <p>Creators are responsible for the collabs they host and the content they post. Participants are responsible for connecting their own devices and meeting their personalized goals. Motiv provides the platform, goal calculation, tracking, payments, and support, but does not guarantee any particular health, fitness, or financial outcome.</p>
+
+        <h3>5. Deposits, rewards, and payments</h3>
+        <p>Participation may involve a refundable deposit that is returned when goals are met, subject to the rules described at the time of joining. Creator earnings, participant refunds, and any rewards are processed through our third-party payment provider. By using these features you also agree to that provider's terms.</p>
+
+        <h3>6. Intellectual property</h3>
+        <p>The Service, including its design, software, and branding, is owned by Motiv and protected by applicable laws. You retain ownership of content you create, and you grant Motiv a limited license to host and display that content as needed to operate the Service.</p>
+
+        <h3>7. Disclaimers</h3>
+        <p>The Service is provided "as is" without warranties of any kind. Motiv is not a medical provider, and nothing in the Service is medical advice. Consult a qualified professional before beginning any new activity program.</p>
+
+        <h3>8. Limitation of liability</h3>
+        <p>To the fullest extent permitted by law, Motiv will not be liable for any indirect, incidental, or consequential damages arising from your use of the Service. Our total liability for any claim is limited to the amount you paid us, if any, in the twelve months before the claim.</p>
+
+        <h3>9. Changes to these terms</h3>
+        <p>We may update these terms from time to time. When we do, we will revise the date above and, where appropriate, notify you. Continued use of the Service after changes take effect means you accept the updated terms.</p>
+
+        <h3>10. Contact</h3>
+        <p>Questions about these terms can be sent to <a href="mailto:hello@heymotiv.com">hello@heymotiv.com</a>.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
+<!-- PAGE: PRIVACY                           -->
+<!-- ═══════════════════════════════════════ -->
+<div class="page-section" id="page-privacy">
+
+  <section class="hero" style="padding-bottom: clamp(2rem, 4vw, 3rem);">
+    <div class="hero-backdrop"></div>
+    <div class="container-narrow" style="text-align:center;">
+      <p class="label center">Legal</p>
+      <h1>Privacy Policy</h1>
+    </div>
+  </section>
+
+  <section class="section-tight" style="padding-bottom: clamp(4.5rem, 9vw, 7.5rem);">
+    <div class="container">
+      <div class="legal-body reveal">
+        <p class="legal-updated">Last updated: January 2026</p>
+        <p class="legal-note">This is placeholder text provided while we finalize Motiv's privacy policy. It is not the final policy. A complete policy describing exactly how we handle your data will be posted here before the platform launches.</p>
+
+        <h3>1. Information we collect</h3>
+        <p>We collect information you provide directly, such as your name, email address, and the social handle you share when joining the waitlist or creating an account. We also collect basic technical information, like device and usage data, to keep the Service running.</p>
+
+        <h3>2. Wearable and activity data</h3>
+        <p>If you connect a wearable or health app, we receive the activity data needed to calculate and track your goals — for example, steps, active minutes, or energy. We use this data to operate the Service and do not sell it.</p>
+
+        <h3>3. How we use information</h3>
+        <p>We use the information we collect to provide and improve the Service, calculate personalized goals, process payments and refunds, communicate with you, and keep the platform safe. We do not use your data to make decisions that have legal effects on you without appropriate safeguards.</p>
+
+        <h3>4. How we share information</h3>
+        <p>We share information with service providers who help us run Motiv — such as our payment processor, hosting provider, and wearable data partners — only as needed to deliver the Service. We may also share information when required by law. We do not sell your personal information.</p>
+
+        <h3>5. Data retention</h3>
+        <p>We keep your information for as long as your account is active or as needed to provide the Service, comply with legal obligations, resolve disputes, and enforce our agreements. You can ask us to delete your account and associated data.</p>
+
+        <h3>6. Your choices and rights</h3>
+        <p>Depending on where you live, you may have rights to access, correct, export, or delete your personal information, and to disconnect any linked wearable at any time. To exercise these rights, contact us using the details below.</p>
+
+        <h3>7. Security</h3>
+        <p>We use reasonable technical and organizational measures to protect your information. No system is perfectly secure, but we work to safeguard your data and to limit access to it.</p>
+
+        <h3>8. Children's privacy</h3>
+        <p>Motiv is not directed to children under 18, and we do not knowingly collect information from them. If you believe a minor has provided us information, please contact us so we can remove it.</p>
+
+        <h3>9. Changes to this policy</h3>
+        <p>We may update this policy from time to time. When we do, we will revise the date above and, where appropriate, notify you of material changes.</p>
+
+        <h3>10. Contact</h3>
+        <p>Questions about privacy can be sent to <a href="mailto:hello@heymotiv.com">hello@heymotiv.com</a>.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══════════════════════════════════════ -->
 <!-- PAGE: WAITLIST                          -->
 <!-- ═══════════════════════════════════════ -->
 <div class="page-section" id="page-waitlist">
@@ -1703,6 +1817,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
             </svg>
         </div>
         <p class="footer-tagline">Move together with the audience that follows you.</p>
+        <a class="footer-social" href="https://www.instagram.com/hey_motiv/" target="_blank" rel="noopener" aria-label="Motiv on Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>@hey_motiv</span></a>
       </div>
       <ul class="footer-links">
         <li><a href="#" data-page="product">The Experience</a></li>
@@ -1718,8 +1833,8 @@ h2 .underline-accent::after, h3 .underline-accent::after {
     <div class="footer-bottom">
       <span>© Motiv</span>
       <div class="footer-legal">
-        <a href="#">Terms</a>
-        <a href="#">Privacy</a>
+        <a href="#" data-page="terms">Terms</a>
+        <a href="#" data-page="privacy">Privacy</a>
       </div>
     </div>
   </div>
