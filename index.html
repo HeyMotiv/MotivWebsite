@@ -709,6 +709,11 @@ h2 .underline-accent::after, h3 .underline-accent::after {
   .nav-links.mobile-open { transform: translateX(0); }
   .nav-links a { font-size: 1.1rem; }
   .nav-mobile-toggle { display: flex; position: relative; z-index: 110; }
+  .nav:has(.nav-links.mobile-open) {
+    background: var(--white);
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
   .card-grid, .pillars, .quote-grid, .feature-row, .compare-grid, .stats-band { grid-template-columns: 1fr; }
   .feature-row.flip .feature-copy { order: 1; }
   .feature-row.flip .feature-visual { order: 2; }
