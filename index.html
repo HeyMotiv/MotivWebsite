@@ -268,7 +268,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
 }
 
 /* ─── Marquee strip ─── */
-.marquee-band { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1.1rem 0; overflow: hidden; background: var(--white); }
+.marquee-band { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1.1rem 0; overflow: hidden; background: #F8EEEA; }
 .marquee-track { display: flex; gap: 3rem; width: max-content; animation: marquee 36s linear infinite; }
 .marquee-track span {
   font-family: var(--font-display); font-style: italic; font-size: 1.05rem;
@@ -484,6 +484,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
 .cta-panel > * { position: relative; z-index: 1; }
 .cta-panel h2 { color: var(--white); max-width: 620px; margin: 0 auto 1rem; }
 .cta-panel p { color: rgba(254,252,250,0.68); max-width: 520px; margin: 0 auto; }
+.cta-panel p + p { margin-top: 1.1rem; }
 
 /* ════════════════════════════════════════════
    PHONE MOCKUPS (app screens)
@@ -741,12 +742,25 @@ h2 .underline-accent::after, h3 .underline-accent::after {
   .phone-notch { width: 64px; height: 18px; top: 11px; }
   .phone.sm { width: 184px; }
   .hero-grid { gap: 1.5rem; }
-  .hero { padding-top: clamp(6rem, 16vw, 9rem); padding-bottom: 0; }
-  /* Hero phone peeks up from the bottom edge on mobile */
-  .hero-grid .phone-wrap { height: 300px; overflow: hidden; align-items: flex-start; }
-  .hero-grid .phone { width: 256px; border-radius: 40px; padding: 8px; }
-  .hero-grid .phone-screen { border-radius: 33px; }
-  .hero-grid .phone-notch { width: 82px; height: 23px; top: 13px; }
+  .hero { padding-top: clamp(6rem, 16vw, 9rem); padding-bottom: clamp(2.5rem, 7vw, 3.5rem); }
+  /* Hero phone shows in full at the compact size on mobile */
+  .hero-grid .phone-wrap { align-items: center; position: relative; }
+  .hero-grid .phone { width: 200px; border-radius: 32px; padding: 7px; position: relative; z-index: 1; }
+  .hero-grid .phone-screen { border-radius: 26px; }
+  .hero-grid .phone-notch { width: 64px; height: 18px; top: 11px; }
+  /* Two-tone glow behind the hero phone — echoes the logo's clay + sage */
+  .hero-grid .phone-wrap::before {
+    content: ''; position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -52%);
+    width: min(130vw, 490px); height: 84%; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 52% 46% at 38% 48%, rgba(201,122,106,0.28), rgba(201,122,106,0) 68%),
+      radial-gradient(ellipse 50% 44% at 66% 56%, rgba(143,166,160,0.26), rgba(143,166,160,0) 68%);
+  }
+}
+/* Hide the hero phone backdrop on the narrowest screens */
+@media (max-width: 360px) {
+  .hero-grid .phone-wrap::before { display: none; }
 }
 
 /* ─── Responsive copy: lighten text on mobile ─── */
@@ -975,23 +989,23 @@ h2 .underline-accent::after, h3 .underline-accent::after {
       <div class="section-header reveal">
         <p class="label">How you earn</p>
         <h2>You already do the work. Motiv <span class="underline-accent">pays</span> you for it.</h2>
-        <p class="sub hide-mobile">No products to push, no course to script, no brand to answer to — just the showing up you already do, turned into real revenue. Three ways a collab pays you:</p>
+        <p class="sub hide-mobile">No products to push, no course to script, no brand to answer to — just the showing up you already do, turned into real income. Three ways a collab pays you:</p>
       </div>
       <div class="streams reveal">
         <div class="stream">
           <span class="stream-num">01</span>
           <div><h3>When people join</h3><span class="stream-tag">Recruitment pay</span></div>
-          <p>You earn as your collab clears participant milestones.<span class="hide-mobile"> Your announcement post is the launch; your audience is the distribution.</span></p>
+          <p>You earn as more people join your collab.<span class="hide-mobile"> That window runs from launch through the first week — while people can still join.</span></p>
         </div>
         <div class="stream">
           <span class="stream-num">02</span>
           <div><h3>When you show up weekly</h3><span class="stream-tag">Content pay</span></div>
-          <p>Post a short, motivating video each week — the kind you already make.<span class="hide-mobile"> Every one earns a set amount, scaled to your collab's size.</span></p>
+          <p>Post a short, motivating video each week — the kind you already make.<span class="hide-mobile"> Each one earns a set amount, based on how big your collab is.</span></p>
         </div>
         <div class="stream">
           <span class="stream-num">03</span>
           <div><h3>When the collab succeeds</h3><span class="stream-tag">Performance bonus</span></div>
-          <p>When a collab does well financially, you share in the upside.<span class="hide-mobile"> Close with a wrap-up, crown your MVPs, and the best ones bring the community back.</span></p>
+          <p>When your collab does well financially, you earn a bonus — potentially thousands of dollars per collab.</p>
         </div>
       </div>
       <div style="margin-top: 2.75rem;" class="reveal">
@@ -1021,12 +1035,12 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="compare-card reveal reveal-delay-3">
           <p class="compare-kicker">Coaching &amp; courses</p>
           <h3>You build and run a program</h3>
-          <p class="hide-mobile">High effort, high churn. You become a service business — and most followers never convert.</p>
+          <p class="hide-mobile">Lots of work, and people drop off. You end up running a business — and most followers never sign up.</p>
         </div>
         <div class="compare-card highlight reveal reveal-delay-4">
           <p class="compare-kicker">Motiv collabs</p>
           <h3>You lead, your audience participates</h3>
-          <p>A few hours a week, and a natural extension of your brand. You earn for showing up; everyone's incentives point the same way.</p>
+          <p>A few hours a week, and it fits what you already do. You earn for showing up and inspiring, like always — now inside a challenge, so your followers can act on it.</p>
         </div>
       </div>
     </div>
@@ -1043,7 +1057,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="trust-col reveal reveal-delay-1">
           <span class="trust-num">No. 1</span>
           <h3>Follow through, get refunded</h3>
-          <p>Participants who meet their weekly goals get their hold back in full. Always.<span class="hide-mobile"> The mechanics are spelled out before anyone pays a cent.</span></p>
+          <p>Participants who meet their weekly goals get their hold back in full. Always.<span class="hide-mobile"> And the rules are clear before you join.</span></p>
         </div>
         <div class="trust-col reveal reveal-delay-2">
           <span class="trust-num">No. 2</span>
@@ -1053,7 +1067,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="trust-col reveal reveal-delay-3">
           <span class="trust-num">No. 3</span>
           <h3>Clarity, fairness, respect</h3>
-          <p>Verified data, transparent rules, no dark patterns. People are the point.</p>
+          <p>Honest data, clear rules, no tricks. Your movement comes from your own device, so the numbers are real — and you always know exactly how everything works.</p>
         </div>
       </div>
       <div style="margin-top: 2.5rem;" class="reveal">
@@ -1127,7 +1141,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
     <div class="container-narrow" style="text-align:center;">
       <p class="label center">The experience</p>
       <h1>What your audience gets</h1>
-      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 620px;">A collab isn't content to consume. It's 4 to 6 weeks of structure, momentum, and shared effort — wrapped around your voice.<span class="hide-mobile"> Here's what it looks like inside the app.</span></p>
+      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 620px;">A collab isn't something to watch. It's 4 to 6 weeks of real movement, done together — built around your voice.<span class="hide-mobile"> Here's what it looks like inside the app.</span></p>
     </div>
   </section>
 
@@ -1190,7 +1204,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
           <ul>
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Live weekly progress</strong> — this week's total, the days they've moved, and how close they are to hitting goal.</span></li>
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Nothing hidden</strong> — every synced day is visible, week by week, so their progress is always theirs to check.</span></li>
-            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>The pool, live</strong> — everyone's commitment and momentum, in one shared view.</span></li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>The pool, live</strong> — see how everyone's doing, in one shared view.</span></li>
           </ul>
         </div>
         <div class="feature-visual phone-wrap reveal reveal-delay-1">
@@ -1210,7 +1224,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
           <p>Each week you post a short video — a check-in, a nudge, a story from your training.<span class="hide-mobile"> It's the content you already make, for an audience that's doing it with you.</span></p>
           <ul>
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Built in your voice</strong> — Motiv's AI designs a starting point that already looks and feels like your brand, so you skip the hours of setup. You tweak it until it's yours.</span></li>
-            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Weekly videos</strong> surface front-and-center for every participant.</span></li>
+            <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span>Every participant sees your <strong>weekly videos</strong>, front and center.</span></li>
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>One shared feed</strong> where the group posts, replies, and trades high-fives.</span></li>
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>MVPs at the finish</strong> — you crown Most Improved and Most Supportive when it wraps.</span></li>
           </ul>
@@ -1232,7 +1246,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
   <section class="section bg-ink">
     <div class="container">
       <div class="statement reveal">
-        <h2>Your audience stops only reading your content <span class="dim">and starts living it.</span></h2>
+        <h2>Your audience stops just watching your content <span class="dim">— and starts living it.</span></h2>
         <div style="margin-top: 2.25rem;">
           <a href="#" class="btn-primary on-dark" data-page="waitlist">Join creator waitlist</a>
         </div>
@@ -1252,7 +1266,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
     <div class="container-narrow" style="text-align:center;">
       <p class="label center">How it works</p>
       <h1>From idea to finish line</h1>
-      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 600px;">You bring the voice and the audience. Motiv handles goals, tracking, payments, and logistics.<span class="hide-mobile"> Here's the whole arc.</span></p>
+      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 600px;">You bring the voice and the audience. Motiv handles goals, tracking, payments, and the rest.<span class="hide-mobile"> Here's how it works, start to finish.</span></p>
     </div>
   </section>
 
@@ -1289,7 +1303,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="feature-copy reveal">
           <p class="label">For participants</p>
           <h2>Simple on purpose</h2>
-          <p>The participant experience is deliberately light: join once, then just move.<span class="hide-mobile"> No manual logging, no daily check-in chores, no app babysitting.</span></p>
+          <p>For participants, it's simple on purpose: join once, then just move.<span class="hide-mobile"> No logging, no daily check-ins, nothing to babysit.</span></p>
           <ul>
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Join</strong> — connect a wearable, see a personal goal, place a refundable hold.</span></li>
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Move</strong> — hit the weekly goal; activity syncs on its own.</span></li>
@@ -1298,7 +1312,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         </div>
         <div class="feature-copy reveal reveal-delay-1">
           <p class="label">The fine print, up front</p>
-          <h2>Honest mechanics</h2>
+          <h2>Honest by design</h2>
           <ul style="margin-top: 0.5rem;">
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>The hold is refundable</strong> — meet your weekly goals and it comes back in full, plus rewards.</span></li>
             <li><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Goals are personal</strong> — built from each person's own history, so the bar is fair for everyone.</span></li>
@@ -1333,7 +1347,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
     <div class="container-narrow" style="text-align:center;">
       <p class="label center">Earnings</p>
       <h1>Paid for what you already do best</h1>
-      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 620px;">Three streams, no black boxes. Two are guaranteed when you do the work; the third rewards a collab done well.</p>
+      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 620px;">Three ways to get paid, nothing hidden. Two are guaranteed when you do the work; the third rewards a collab done well.</p>
     </div>
   </section>
 
@@ -1343,17 +1357,17 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="stream">
           <span class="stream-num">01</span>
           <div><h3>Recruitment pay</h3><span class="stream-tag">Guaranteed</span></div>
-          <p>Guaranteed once your collab reaches 200 participants, then it grows as you clear higher milestones.<span class="hide-mobile"> Your launch post does the work your audience already expects from you.</span></p>
+          <p>Guaranteed once your collab reaches 200 participants, and it grows as more people join.</p>
         </div>
         <div class="stream">
           <span class="stream-num">02</span>
           <div><h3>Content pay</h3><span class="stream-tag">Guaranteed</span></div>
-          <p>A set amount for each weekly video — the short, motivating kind you already make — scaled to participant count. Show up weekly, get paid weekly.</p>
+          <p>A set amount for each weekly video — the short, motivating kind you already make — based on how many people joined. Show up weekly, get paid weekly.</p>
         </div>
         <div class="stream">
           <span class="stream-num">03</span>
           <div><h3>Performance bonus</h3><span class="stream-tag">Upside</span></div>
-          <p>Finish strong — post your wrap-up and crown your MVPs — and you share in the collab's upside.<span class="hide-mobile"> The exact figure depends on how the collab plays out, and we show you the math.</span></p>
+          <p>When your collab does well financially, you earn a bonus.<span class="hide-mobile"> The exact amount depends on how the collab does, and we show you the math.</span></p>
         </div>
       </div>
     </div>
@@ -1364,7 +1378,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
       <div class="section-header reveal">
         <p class="label">A worked example</p>
         <h2>What a first collab could look like</h2>
-        <p class="sub">Illustrative only — real numbers depend on your audience, your collab design, and participation.<span class="hide-mobile"> We'll model yours with you before you launch.</span></p>
+        <p class="sub">Just an example — real numbers depend on your audience, your collab, and how many take part.<span class="hide-mobile"> We'll work out yours with you before you launch.</span></p>
       </div>
       <div class="card reveal" style="padding: 2.5rem;">
         <div class="stats-band" style="text-align:left; gap: 1.5rem;">
@@ -1381,7 +1395,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
             <div class="stat-label">videos from you: a kickoff, four weekly check-ins, a wrap</div>
           </div>
         </div>
-        <p style="margin-top: 2rem; font-size: 0.95rem; border-top: 1px solid var(--line); padding-top: 1.5rem;">Recruitment pay as your collab fills to 1,200, content pay on all six videos, a performance bonus at wrap.<span class="hide-mobile"> Same audience, same content you posted last week — now with a direct line to revenue.</span></p>
+        <p style="margin-top: 2rem; font-size: 0.95rem; border-top: 1px solid var(--line); padding-top: 1.5rem;">Recruitment pay as your collab fills to 1,200, content pay on all six videos, a performance bonus at wrap.</p>
       </div>
       <p class="reveal" style="font-size: 0.8rem; color: var(--ink-faint); margin-top: 1.25rem;">Example for illustration only. Not a guarantee of earnings.</p>
     </div>
@@ -1393,12 +1407,12 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         <div class="feature-copy reveal">
           <p class="label">No black boxes</p>
           <h2>You'll always see the math</h2>
-          <p>Before you launch, you'll see exactly how every stream is calculated — recruitment milestones, content pay, and the performance bonus.<span class="hide-mobile"> The amounts depend on how many people join and how the collab performs financially, so as those numbers come in, your dashboard shows your earnings accruing in real time. No hidden formulas, no end-of-quarter surprises.</span></p>
+          <p>Before you launch, you'll see exactly how each kind of pay is figured out.<span class="hide-mobile"> The amounts depend on how many people join and how well the collab does — so as those numbers come in, your dashboard updates your earnings live. No hidden formulas, no surprises.</span></p>
         </div>
         <div class="feature-copy reveal reveal-delay-1">
           <p class="label">Worth knowing</p>
           <h2>Built for the long game</h2>
-          <p>The biggest earnings driver isn't one collab — it's the second one. Communities that finish together come back, bring friends, and trust you more.<span class="hide-mobile"> Motiv is designed so the best way to earn more is to run collabs people love.</span></p>
+          <p>What earns you the most isn't one collab — it's the second one. Groups that finish together come back, bring friends, and trust you more.<span class="hide-mobile"> Motiv is built so the best way to earn more is to run collabs people love.</span></p>
         </div>
       </div>
       <div class="reveal" style="text-align: center; margin-top: clamp(2.75rem, 5vw, 3.75rem);">
@@ -1419,7 +1433,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
     <div class="container-narrow" style="text-align:center;">
       <p class="label center">Founding creators</p>
       <h1>Built <em class="accent">with</em> creators, not just for them</h1>
-      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 640px;">Our founding cohort doesn't just run the first collabs — they bring the expertise that shapes the product.<span class="hide-mobile"> We're hand-picking a small group across running, cycling, strength, and everyday movement to build Motiv alongside us.</span> Names land here soon.</p>
+      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 640px;">Our founding creators don't just run the first collabs — they help shape the product itself.<span class="hide-mobile"> We're hand-picking a small group across running, cycling, strength, and everyday movement to build Motiv alongside us.</span> Names land here soon.</p>
     </div>
   </section>
 
@@ -1438,24 +1452,24 @@ h2 .underline-accent::after, h3 .underline-accent::after {
     <div class="container">
       <div class="section-header reveal">
         <p class="label">What founding creators get</p>
-        <h2>A seat at the table — and a stake in the upside</h2>
-        <p class="sub">Founding creators are co-builders, not early adopters.<span class="hide-mobile"> You shape what we make, launch ahead of everyone, and earn on the best terms Motiv will ever offer.</span></p>
+        <h2>A seat at the table — and a real stake in it</h2>
+        <p class="sub">Founding creators help build Motiv, not just use it first.<span class="hide-mobile"> You shape what we make, launch ahead of everyone, and earn on the best rates Motiv will ever offer.</span></p>
       </div>
       <div class="card-grid">
         <div class="card reveal reveal-delay-1">
           <div class="card-icon sage-bg"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
           <h3>A seat at the table</h3>
-          <p>Your perspective and expertise go straight into the build — features, mechanics, goal types, what we make next.<span class="hide-mobile"> Founding creators shape what Motiv becomes.</span></p>
+          <p>You take on an advisory role, helping shape what we build — features, goal types, and what comes next.<span class="hide-mobile"> Founding creators help decide what Motiv becomes.</span></p>
         </div>
         <div class="card reveal reveal-delay-2">
           <div class="card-icon sand"><svg viewBox="0 0 24 24"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg></div>
-          <h3>First to launch</h3>
-          <p>Run the very first collabs with us in your corner.<span class="hide-mobile"> We design, model, and launch your first one with you — goal type, difficulty, hold amount, announcement plan, all of it.</span></p>
+          <h3>New features first</h3>
+          <p>You get new features and metrics before anyone else — an edge that makes your collabs more appealing and earns you more.<span class="hide-mobile"> The newest tools and data, in your hands first.</span></p>
         </div>
         <div class="card reveal reveal-delay-3">
           <div class="card-icon plum-bg"><svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="16 7 21 7 21 12"/></svg></div>
-          <h3>Founding economics</h3>
-          <p>Launch on the most favorable terms Motiv will ever offer — and keep them as the platform grows. The earlier you're in, the better it gets.</p>
+          <h3>The best rates we'll ever offer</h3>
+          <p>You lock these rates in for good, even as Motiv grows. The earlier you join, the more they earn you.</p>
         </div>
       </div>
     </div>
@@ -1466,7 +1480,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
       <div class="cta-panel reveal">
         <p class="label on-dark center" style="justify-content:center;">Want in?</p>
         <h2>Help build the first collabs</h2>
-        <p>The founding cohort is small, and the list is open. If your audience follows you to move — running, riding, walking, anything — we'd love to build this with you.</p>
+        <p>The founding group is small, and the list is open. If your audience follows you to move — running, riding, walking, anything — we'd love to build this with you.</p>
         <div style="margin-top: 2rem;">
           <a href="#" class="btn-primary on-dark" data-page="waitlist">Join creator waitlist</a>
         </div>
@@ -1500,17 +1514,17 @@ h2 .underline-accent::after, h3 .underline-accent::after {
 
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">What's the hold? Is it a fee?<span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg></span></button>
-          <div class="faq-a"><div class="faq-a-inner">No. It's a refundable deposit — typically $20–$50 — placed when a participant joins. Meet the weekly goals and it comes back in full, plus rewards. A small, real commitment dramatically improves follow-through: a promise to yourself with a receipt.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">No. It's a refundable deposit — typically $20–$50 — placed when a participant joins. Meet the weekly goals and it comes back in full, plus rewards. A small, real commitment makes people far more likely to follow through: a promise to yourself with a receipt.</div></div>
         </div>
 
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">Is this gambling or betting?<span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg></span></button>
-          <div class="faq-a"><div class="faq-a-inner">No. No wagering, no odds, no chance. The outcome is entirely in each participant's control: meet your goal, get your money back plus rewards. It's a commitment device — the mechanism behind deposit-based behavior-change programs studied for decades.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">No. No wagering, no odds, no chance. The outcome is entirely in each participant's control: meet your goal, get your money back plus rewards. It's a commitment to yourself, with your own money on the line — an approach researchers have studied for decades.</div></div>
         </div>
 
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">How are goals set? Can people game them?<span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg></span></button>
-          <div class="faq-a"><div class="faq-a-inner">Goals are calculated from each participant's own recent wearable history — typically the last three weeks — then raised by a difficulty level you choose for the collab. Because goals come from verified data rather than self-reports, sandbagging doesn't work, and a beginner and a veteran each get a target that's honest for them.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Goals are calculated from each participant's own recent wearable history — typically the last three weeks — then raised by a difficulty level you choose for the collab. Because goals come from real device data, not what people type in, you can't fake an easy target — and a beginner and a veteran each get a goal that's fair for them.</div></div>
         </div>
 
         <div class="faq-item">
@@ -1520,7 +1534,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
 
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">How do I get paid?<span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg></span></button>
-          <div class="faq-a"><div class="faq-a-inner">Three streams: recruitment pay as your collab clears participant milestones, content pay for each weekly video you post, and a performance bonus when you close out the collab well. Recruitment pay is guaranteed once you reach 200 participants, and content pay is guaranteed whenever you post — all the math is visible before you launch. Payouts run through Stripe.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">Three ways: recruitment pay as more people join your collab, content pay for each weekly video you post, and a performance bonus when the collab does well. Recruitment pay is guaranteed once you reach 200 participants, and content pay is guaranteed whenever you post — and you'll see all the math before you launch.</div></div>
         </div>
 
         <div class="faq-item">
@@ -1535,7 +1549,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
 
         <div class="faq-item">
           <button class="faq-q" onclick="toggleFaq(this)">When does Motiv launch?<span class="faq-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 5v14M5 12h14"/></svg></span></button>
-          <div class="faq-a"><div class="faq-a-inner">We're launching with a small founding cohort of creators first, announced soon. Join the waitlist and you'll hear from us as spots open.</div></div>
+          <div class="faq-a"><div class="faq-a-inner">We're launching with a small founding group of creators first, announced soon. Join the waitlist and you'll hear from us as spots open.</div></div>
         </div>
 
       </div>
@@ -1553,7 +1567,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
     <div class="container-narrow" style="text-align:center;">
       <p class="label center">Trust</p>
       <h1>Our commitments</h1>
-      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 600px;">Motiv only works if participants trust the mechanics and creators trust the platform.<span class="hide-mobile"> These aren't marketing lines — they're how the product is built.</span></p>
+      <p class="hero-sub" style="margin: 1.25rem auto 0; max-width: 600px;">Motiv only works if participants trust how it works and creators trust the platform.<span class="hide-mobile"> These aren't marketing lines — they're how we build the product.</span></p>
     </div>
   </section>
 
@@ -1577,7 +1591,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
         </div>
       </div>
       <div class="container-narrow" style="margin-top: 3.5rem; text-align: center;" >
-        <p class="reveal" style="font-family: var(--font-display); font-style: italic; font-size: 1.25rem; color: var(--ink); max-width: 560px; margin: 0 auto;">If a mechanic ever feels unclear, we consider that our bug — and we'd genuinely like to hear about it.</p>
+        <p class="reveal" style="font-family: var(--font-display); font-style: italic; font-size: 1.25rem; color: var(--ink); max-width: 560px; margin: 0 auto;">If anything ever feels unclear, we consider that our bug — and we'd love to hear about it.</p>
       </div>
     </div>
   </section>
@@ -1604,7 +1618,7 @@ h2 .underline-accent::after, h3 .underline-accent::after {
       <div class="statement reveal">
         <p class="label on-dark center" style="justify-content:center;">What we learned</p>
         <h2>Every approach taught us something. <span class="dim">None of them worked alone.</span></h2>
-        <p class="statement-footnote">Data, personalization, habit design, gamification, coaching, the latest research — across products used by hundreds of millions.<span class="hide-mobile"> Each one mattered.</span> The most reliable lever we ever found was a financial incentive tied to verified behavior — and even that couldn't carry the rest on its own.</p>
+        <p class="statement-footnote">Data, personalization, habit design, gamification, coaching, the latest research — across products used by hundreds of millions.<span class="hide-mobile"> Each one mattered.</span> The most reliable lever we ever found was a financial incentive tied to verified behavior — but even that wasn't enough by itself.</p>
       </div>
     </div>
   </section>
@@ -1615,11 +1629,11 @@ h2 .underline-accent::after, h3 .underline-accent::after {
       <p class="label reveal" style="max-width: 980px; margin: 0 auto 1.5rem;">What incentives can't do</p>
       <div class="story-split reveal">
         <div>
-          <h2>An incentive gets you moving — it can't make the change yours</h2>
+          <h2>An incentive gets you moving. It can't make the change stick.</h2>
         </div>
         <div>
-          <p>Two things hold an incentive back on its own. They're expensive and hard to source at scale — someone has to fund them. And they only reach so deep: people learn to game the system, hitting the number without changing the habit underneath.<span class="hide-mobile"> Gaming the goal is the opposite of the point.</span></p>
-          <p>What lasts is something money can't buy — the feeling. The excitement of a good week, the hope that this time is different, the quiet happiness of proving it to yourself.<span class="hide-mobile"> That's what gets internalized.</span> For years, the piece we couldn't build was the spark.</p>
+          <p>On its own, an incentive doesn't build a habit. People move while the reward is there, then stop the moment it's gone.<span class="hide-mobile"> We saw it again and again — take the reward away, and the healthy behavior goes with it.</span> You can't buy change.</p>
+          <p>What lasts is something money can't buy: the feeling. The thrill of a good week. The hope that this time is different. The quiet pride of proving it to yourself.<span class="hide-mobile"> That feeling is what makes a change stick.</span> For years, it was the one piece we couldn't build — the spark.</p>
         </div>
       </div>
     </div>
@@ -1630,9 +1644,9 @@ h2 .underline-accent::after, h3 .underline-accent::after {
     <div class="container">
       <div class="cta-panel reveal">
         <p class="label on-dark center" style="justify-content:center;">The spark</p>
-        <h2>The missing piece turned out to be a person</h2>
-        <p>The spark comes from people. Not from an app notification or a number on a screen — from someone you admire showing up and saying <em>let's go</em>. That pull to begin, and to keep going, is the piece every program we built was missing. Creators already have it.</p>
-        <p>Put that together with a real financial reward and goals built from your own data, and change starts to take hold — felt, not gamed. The creator brings the spark. Motiv brings the structure. For the first time, they're in one place.</p>
+        <h2>The missing piece turned out to be you.</h2>
+        <p>The spark comes from people — and for your audience, it comes from you. Not an app notification or a number on a screen, but someone they already trust saying <em>let's go</em>. That pull to begin, and to keep going, is the piece every program we built was missing. You already have it.</p>
+        <p>Put that together with a real financial reward and goals built from each person's own data, and change starts to take hold — and it's felt. You bring the spark. Motiv brings the structure. For the first time, they're in one place.</p>
         <div style="text-align:center; margin-top: 1.75rem;">
           <a href="#" class="btn-primary on-dark" data-page="waitlist">Join creator waitlist</a>
         </div>
