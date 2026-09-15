@@ -1883,8 +1883,8 @@ h2 .underline-accent::after, h3 .underline-accent::after {
     <div class="footer-bottom">
       <span>© Motiv</span>
       <div class="footer-legal">
-        <a href="#" data-page="terms">Terms</a>
-        <a href="#" data-page="privacy">Privacy</a>
+        <a href="#terms" data-page="terms">Terms</a>
+        <a href="#privacy" data-page="privacy">Privacy</a>
       </div>
     </div>
   </div>
@@ -1910,10 +1910,36 @@ function navigateTo(page) {
   document.getElementById('mobileToggle').classList.remove('active');
 }
 
+// Pages with their own shareable URL (mirrors collabswith.com/#terms, /#privacy)
+const HASH_PAGES = ['terms', 'privacy'];
+
+function currentHashPage() {
+  const h = location.hash.replace('#', '');
+  return HASH_PAGES.includes(h) ? h : null;
+}
+
 document.querySelectorAll('[data-page]').forEach(link => {
   link.addEventListener('click', (e) => {
     e.preventDefault();
-    navigateTo(link.dataset.page);
+    const page = link.dataset.page;
+
+    if (HASH_PAGES.includes(page)) {
+      if (currentHashPage() === page) {
+        navigateTo(page);            // already here: just scroll to top
+      } else {
+        location.hash = page;        // router below handles the switch
+      }
+      return;
+    }
+
+    // Leaving a legal page: drop the hash so the URL doesn't keep saying #terms
+    const url = location.pathname + location.search;
+    if (currentHashPage()) {
+      history.pushState({ page }, '', url);
+    } else {
+      history.replaceState({ page }, '', url);
+    }
+    navigateTo(page);
   });
 });
 
@@ -1944,6 +1970,23 @@ function observeElement(el) {
 }
 
 document.querySelectorAll('.reveal').forEach(observeElement);
+
+// ─── Hash Routing (#terms, #privacy) ───
+function routeFromUrl() {
+  const page = currentHashPage() || (history.state && history.state.page) || 'home';
+  const target = document.getElementById('page-' + page);
+  if (target && target.classList.contains('active')) return;
+  navigateTo(page);
+}
+
+window.addEventListener('hashchange', routeFromUrl);
+window.addEventListener('popstate', routeFromUrl);
+
+if (currentHashPage()) {
+  navigateTo(currentHashPage());
+} else {
+  history.replaceState({ page: 'home' }, '');
+}
 
 // ─── FAQ Toggle ───
 function toggleFaq(btn) {
