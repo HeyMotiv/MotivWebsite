@@ -1,0 +1,16 @@
+{
+  "documents": [
+    {
+      "path": "index.html",
+      "title": "Terms of Service",
+      "folder_id": "19JXiJLtna6UCVn03EfCiA4Gun66SNLqN",
+      "selector": "#page-terms .legal-body"
+    },
+    {
+      "path": "index.html",
+      "title": "Privacy Policy",
+      "folder_id": "1cs0zwdTSKjuzCwAwFSt8WOiJwi6jCADQ",
+      "selector": "#page-privacy .legal-body"
+    }
+  ]
+}

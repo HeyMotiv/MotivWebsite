@@ -1,0 +1,44 @@
+name: Archive legal documents to Google Drive
+
+on:
+  push:
+    branches: [main]          # change if your default branch has another name
+    paths:
+      - '**/*.html'
+      - '.github/legal-archive.json'
+  workflow_dispatch:
+    inputs:
+      force_all:
+        description: "Archive every configured document now, even if unchanged"
+        type: boolean
+        default: false
+
+# Never run two archives at once, so same-day pushes can't race each other.
+concurrency:
+  group: legal-archive
+  cancel-in-progress: false
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0      # needed to diff against the previous commit
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install google-api-python-client google-auth beautifulsoup4
+
+      - name: Archive changed legal documents
+        run: python .github/scripts/archive_legal_docs.py
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+          FORCE_ALL: ${{ inputs.force_all }}
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
