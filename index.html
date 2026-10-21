@@ -8,6 +8,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=DM+Sans:opsz,wght@9..40,300..700&display=swap" rel="stylesheet">
+<!-- Without JavaScript the router never runs, so show the legal pages in full -->
+<noscript><style>#page-terms, #page-privacy { display: block; }</style></noscript>
 <style>
 /* ════════════════════════════════════════════
    MOTIV — Design System
@@ -679,11 +681,20 @@ h2 .underline-accent::after, h3 .underline-accent::after {
 .footer-social svg { width: 18px; height: 18px; }
 .footer-social:hover { color: var(--white); }
 .legal-body { max-width: 760px; margin: 0 auto; }
-.legal-body .legal-updated { font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 0.5rem; }
-.legal-body .legal-note { font-size: 0.85rem; color: var(--ink-faint); font-style: italic; padding: 0.9rem 1.1rem; border: 1px solid var(--line); border-radius: 10px; margin-bottom: 2.5rem; }
+.legal-body .legal-updated { font-size: 0.85rem; color: var(--ink-faint); margin-bottom: 2rem; }
+.legal-body h2 { font-family: var(--font-display); font-size: 1.5rem; line-height: 1.3; margin: 2.75rem 0 0.75rem; }
 .legal-body h3 { font-family: var(--font-display); font-size: 1.3rem; margin: 2.25rem 0 0.6rem; }
-.legal-body p { color: var(--ink-light); font-size: 1rem; line-height: 1.75; margin-bottom: 0.9rem; }
+.legal-body p, .legal-body li { color: var(--ink-light); font-size: 1rem; line-height: 1.75; margin-bottom: 0.9rem; }
+.legal-body ul { padding-left: 1.4rem; margin-bottom: 0.9rem; }
+.legal-body li { margin-bottom: 0.4rem; }
+.legal-body ul.legal-toc { list-style: none; padding-left: 0; }
 .legal-body a { color: var(--sage); text-decoration: underline; text-underline-offset: 2px; }
+.legal-body [id] { scroll-margin-top: 6rem; }
+.legal-table-wrap { overflow-x: auto; margin: 0.25rem 0 1.25rem; }
+.legal-table { width: 100%; border-collapse: collapse; font-size: 0.95rem; line-height: 1.55; color: var(--ink-light); }
+.legal-table th, .legal-table td { border: 1px solid var(--line-strong); padding: 0.6rem 0.75rem; text-align: left; vertical-align: top; }
+.legal-table th { color: var(--ink); font-weight: 600; background: var(--sage-pale); }
+@media (max-width: 480px) { .legal-table { font-size: 0.88rem; } .legal-table th, .legal-table td { padding: 0.5rem 0.45rem; } }
 
 /* ─── Responsive ─── */
 @media (max-width: 980px) {
@@ -1693,39 +1704,258 @@ h2 .underline-accent::after, h3 .underline-accent::after {
 
   <section class="section-tight" style="padding-bottom: clamp(4.5rem, 9vw, 7.5rem);">
     <div class="container">
-      <div class="legal-body reveal">
-        <p class="legal-updated">Last updated: January 2026</p>
-        <p class="legal-note">This is placeholder text provided while we finalize Motiv's terms. It is not the final agreement and does not yet create binding obligations. Final terms will be posted here before the platform launches.</p>
-
-        <h3>1. Acceptance of terms</h3>
-        <p>By accessing or using Motiv (the "Service"), you agree to be bound by these Terms of Service. If you do not agree to these terms, do not use the Service. These terms apply to everyone who uses Motiv, including creators who host collabs and participants who join them.</p>
-
-        <h3>2. Eligibility and accounts</h3>
-        <p>You must be at least 18 years old to use the Service. When you create an account, you agree to provide accurate information and to keep it up to date. You are responsible for activity that happens under your account and for keeping your login credentials secure.</p>
-
-        <h3>3. Use of the Service</h3>
-        <p>You agree to use Motiv only for lawful purposes and in accordance with these terms. You will not misuse the Service, attempt to interfere with its normal operation, or use it to harm, harass, or mislead others. We may suspend or terminate access for conduct that violates these terms.</p>
-
-        <h3>4. Creators and participants</h3>
-        <p>Creators are responsible for the collabs they host and the content they post. Participants are responsible for connecting their own devices and meeting their personalized goals. Motiv provides the platform, goal calculation, tracking, payments, and support, but does not guarantee any particular health, fitness, or financial outcome.</p>
-
-        <h3>5. Deposits, rewards, and payments</h3>
-        <p>Participation may involve a refundable deposit that is returned when goals are met, subject to the rules described at the time of joining. Creator earnings, participant refunds, and any rewards are processed through our third-party payment provider. By using these features you also agree to that provider's terms.</p>
-
-        <h3>6. Intellectual property</h3>
-        <p>The Service, including its design, software, and branding, is owned by Motiv and protected by applicable laws. You retain ownership of content you create, and you grant Motiv a limited license to host and display that content as needed to operate the Service.</p>
-
-        <h3>7. Disclaimers</h3>
-        <p>The Service is provided "as is" without warranties of any kind. Motiv is not a medical provider, and nothing in the Service is medical advice. Consult a qualified professional before beginning any new activity program.</p>
-
-        <h3>8. Limitation of liability</h3>
-        <p>To the fullest extent permitted by law, Motiv will not be liable for any indirect, incidental, or consequential damages arising from your use of the Service. Our total liability for any claim is limited to the amount you paid us, if any, in the twelve months before the claim.</p>
-
-        <h3>9. Changes to these terms</h3>
-        <p>We may update these terms from time to time. When we do, we will revise the date above and, where appropriate, notify you. Continued use of the Service after changes take effect means you accept the updated terms.</p>
-
-        <h3>10. Contact</h3>
-        <p>Questions about these terms can be sent to <a href="mailto:hello@heymotiv.com">hello@heymotiv.com</a>.</p>
+      <div class="legal-body">
+        <p class="legal-updated">Last updated October 21, 2026</p>
+        <h2>AGREEMENT TO OUR LEGAL TERMS</h2>
+        <p>We are Motiv LLC, doing business as Motiv ("<strong>Company</strong>," "<strong>we</strong>," "<strong>us</strong>," "<strong>our</strong>"), a company registered in Massachusetts, United States at 121 Tower Rd, Lincoln, MA 01773.</p>
+        <p>We operate the mobile application Motiv Creator (the "<strong>App</strong>") and the website heymotiv.com, as well as any other related products and services that refer or link to these legal terms (the "<strong>Legal Terms</strong>") (collectively, the "<strong>Services</strong>").</p>
+        <p>Motiv is a fitness accountability app where people join collabs hosted by fitness creators. These Legal Terms apply to creators. As a creator, you use the Services to host collabs, recruit participants to join them, post the videos each collab requires, select MVPs at the end of each collab, and earn creator pay.</p>
+        <p>You can contact us by phone at 1(617) 981-4580, email at <a href="mailto:privacy@heymotiv.com">privacy@heymotiv.com</a>, or by mail to 121 Tower Rd, Lincoln, MA 01773, United States.</p>
+        <p>These Legal Terms constitute a legally binding agreement made between you, whether personally or on behalf of an entity ("<strong>you</strong>"), and Motiv LLC, concerning your access to and use of the Services. You agree that by accessing the Services, you have read, understood, and agreed to be bound by all of these Legal Terms. IF YOU DO NOT AGREE WITH ALL OF THESE LEGAL TERMS, THEN YOU ARE EXPRESSLY PROHIBITED FROM USING THE SERVICES AND YOU MUST DISCONTINUE USE IMMEDIATELY.</p>
+        <p>We will provide you with prior notice of any scheduled changes to the Services you are using. The modified Legal Terms will become effective upon posting or notifying you by email from <a href="mailto:privacy@heymotiv.com">privacy@heymotiv.com</a>, as stated in the email message. By continuing to use the Services after the effective date of any changes, you agree to be bound by the modified terms.</p>
+        <p>The Services are intended for users who are at least 18 years old. Persons under the age of 18 are not permitted to use or register for the Services.</p>
+        <p>We recommend that you print a copy of these Legal Terms for your records.</p>
+        <h2>TABLE OF CONTENTS</h2>
+        <ul class="legal-toc">
+          <li><a href="#terms-services">1. OUR SERVICES</a></li>
+          <li><a href="#terms-ip">2. INTELLECTUAL PROPERTY RIGHTS</a></li>
+          <li><a href="#terms-userreps">3. USER REPRESENTATIONS</a></li>
+          <li><a href="#terms-userreg">4. USER REGISTRATION</a></li>
+          <li><a href="#terms-purchases">5. CREATOR PAY</a></li>
+          <li><a href="#terms-software">6. SOFTWARE</a></li>
+          <li><a href="#terms-prohibited">7. PROHIBITED ACTIVITIES</a></li>
+          <li><a href="#terms-ugc">8. USER GENERATED CONTRIBUTIONS</a></li>
+          <li><a href="#terms-license">9. CONTRIBUTION LICENSE</a></li>
+          <li><a href="#terms-mobile">10. MOBILE APPLICATION LICENSE</a></li>
+          <li><a href="#terms-socialmedia">11. SOCIAL MEDIA</a></li>
+          <li><a href="#terms-thirdparty">12. THIRD-PARTY WEBSITES AND CONTENT</a></li>
+          <li><a href="#terms-sitemanage">13. SERVICES MANAGEMENT</a></li>
+          <li><a href="#terms-ppyes">14. PRIVACY POLICY</a></li>
+          <li><a href="#terms-dmca">15. DIGITAL MILLENNIUM COPYRIGHT ACT (DMCA) NOTICE AND POLICY</a></li>
+          <li><a href="#terms-termination">16. TERM AND TERMINATION</a></li>
+          <li><a href="#terms-modifications">17. MODIFICATIONS AND INTERRUPTIONS</a></li>
+          <li><a href="#terms-law">18. GOVERNING LAW</a></li>
+          <li><a href="#terms-disputes">19. DISPUTE RESOLUTION</a></li>
+          <li><a href="#terms-corrections">20. CORRECTIONS</a></li>
+          <li><a href="#terms-disclaimer">21. DISCLAIMER</a></li>
+          <li><a href="#terms-liability">22. LIMITATIONS OF LIABILITY</a></li>
+          <li><a href="#terms-indemnification">23. INDEMNIFICATION</a></li>
+          <li><a href="#terms-userdata">24. USER DATA</a></li>
+          <li><a href="#terms-electronic">25. ELECTRONIC COMMUNICATIONS, TRANSACTIONS, AND SIGNATURES</a></li>
+          <li><a href="#terms-california">26. CALIFORNIA USERS AND RESIDENTS</a></li>
+          <li><a href="#terms-misc">27. MISCELLANEOUS</a></li>
+          <li><a href="#terms-addclause">28. HEALTH AND FITNESS DISCLAIMER</a></li>
+          <li><a href="#terms-addclauseb">29. COLLABS, PAYMENT HOLDS, AND RESULTS</a></li>
+          <li><a href="#terms-addclausec">30. FAIR PLAY</a></li>
+          <li><a href="#terms-addclaused">31. INDEPENDENT CONTRACTOR</a></li>
+          <li><a href="#terms-identity">32. CREATOR IDENTITY AND INSTAGRAM VERIFICATION</a></li>
+          <li><a href="#terms-creatorcontent">33. CREATOR CONTENT AND PARTICIPANT INFORMATION</a></li>
+          <li><a href="#terms-contact">34. CONTACT US</a></li>
+        </ul>
+        <h2 id="terms-services">1. OUR SERVICES</h2>
+        <p>The information provided when using the Services is not intended for distribution to or use by any person or entity in any jurisdiction or country where such distribution or use would be contrary to law or regulation or which would subject us to any registration requirement within such jurisdiction or country. Accordingly, those persons who choose to access the Services from other locations do so on their own initiative and are solely responsible for compliance with local laws, if and to the extent local laws are applicable.</p>
+        <p>The Services are not tailored to comply with industry-specific regulations (Health Insurance Portability and Accountability Act (HIPAA), Federal Information Security Management Act (FISMA), etc.), so if your interactions would be subjected to such laws, you may not use the Services. You may not use the Services in a way that would violate the Gramm-Leach-Bliley Act (GLBA).</p>
+        <h2 id="terms-ip">2. INTELLECTUAL PROPERTY RIGHTS</h2>
+        <h3>Our intellectual property</h3>
+        <p>We are the owner or the licensee of all intellectual property rights in our Services, including all source code, databases, functionality, software, website designs, audio, video, text, photographs, and graphics in the Services (collectively, the "Content"), as well as the trademarks, service marks, and logos contained therein (the "Marks").</p>
+        <p>Our Content and Marks are protected by copyright and trademark laws (and various other intellectual property rights and unfair competition laws) and treaties in the United States and around the world.</p>
+        <p>The Content and Marks are provided in or through the Services "AS IS" for your personal, non-commercial use only.</p>
+        <h3>Your use of our Services</h3>
+        <p>Subject to your compliance with these Legal Terms, including the "<a href="#terms-prohibited">PROHIBITED ACTIVITIES</a>" section below, we grant you a non-exclusive, non-transferable, revocable license to:</p>
+        <ul>
+          <li>access the Services; and</li>
+          <li>download or print a copy of any portion of the Content to which you have properly gained access,</li>
+        </ul>
+        <p>solely for your personal, non-commercial use.</p>
+        <p>Except as set out in this section or elsewhere in our Legal Terms, no part of the Services and no Content or Marks may be copied, reproduced, aggregated, republished, uploaded, posted, publicly displayed, encoded, translated, transmitted, distributed, sold, licensed, or otherwise exploited for any commercial purpose whatsoever, without our express prior written permission.</p>
+        <p>If you wish to make any use of the Services, Content, or Marks other than as set out in this section or elsewhere in our Legal Terms, please address your request to: <a href="mailto:privacy@heymotiv.com">privacy@heymotiv.com</a>. If we ever grant you the permission to post, reproduce, or publicly display any part of our Services or Content, you must identify us as the owners or licensors of the Services, Content, or Marks and ensure that any copyright or proprietary notice appears or is visible on posting, reproducing, or displaying our Content.</p>
+        <p>We reserve all rights not expressly granted to you in and to the Services, Content, and Marks.</p>
+        <p>Any breach of these Intellectual Property Rights will constitute a material breach of our Legal Terms and your right to use our Services will terminate immediately.</p>
+        <h3>Your submissions and contributions</h3>
+        <p>Please review this section and the "<a href="#terms-prohibited">PROHIBITED ACTIVITIES</a>" section carefully prior to using our Services to understand the (a) rights you give us and (b) obligations you have when you post or upload any content through the Services.</p>
+        <p><strong>Submissions:</strong> By directly sending us any question, comment, suggestion, idea, feedback, or other information about the Services ("Submissions"), you agree to assign to us all intellectual property rights in such Submission. You agree that we shall own this Submission and be entitled to its unrestricted use and dissemination for any lawful purpose, commercial or otherwise, without acknowledgment or compensation to you.</p>
+        <p><strong>Contributions:</strong> The Services may invite you to chat, contribute to, or participate in blogs, message boards, online forums, and other functionality during which you may create, submit, post, display, transmit, publish, distribute, or broadcast content and materials to us or through the Services, including but not limited to text, writings, video, audio, photographs, music, graphics, comments, reviews, rating suggestions, personal information, or other material ("Contributions"). Any Submission that is publicly posted shall also be treated as a Contribution.</p>
+        <p>You understand that Contributions may be viewable by other users of the Services and possibly through third-party websites.</p>
+        <p><strong>When you post Contributions, you grant us a license (including use of your name, trademarks, and logos): </strong>By posting any Contributions, you grant us an unrestricted, unlimited, irrevocable, perpetual, non-exclusive, transferable, royalty-free, fully-paid, worldwide right, and license to: use, copy, reproduce, distribute, sell, resell, publish, broadcast, retitle, store, publicly perform, publicly display, reformat, translate, excerpt (in whole or in part), and exploit your Contributions (including, without limitation, your image, name, and voice) for any purpose, commercial, advertising, or otherwise, to prepare derivative works of, or incorporate into other works, your Contributions, and to sublicense the licenses granted in this section. Our use and distribution may occur in any media formats and through any media channels.</p>
+        <p>This license includes our use of your name, company name, and franchise name, as applicable, and any of the trademarks, service marks, trade names, logos, and personal and commercial images you provide.</p>
+        <p><strong>You are responsible for what you post or upload:</strong> By sending us Submissions and/or posting Contributions through any part of the Services or making Contributions accessible through the Services by linking your account through the Services to any of your social networking accounts, you:</p>
+        <ul>
+          <li>confirm that you have read and agree with our "<a href="#terms-prohibited">PROHIBITED ACTIVITIES</a>" and will not post, send, publish, upload, or transmit through the Services any Submission nor post any Contribution that is illegal, harassing, hateful, harmful, defamatory, obscene, bullying, abusive, discriminatory, threatening to any person or group, sexually explicit, false, inaccurate, deceitful, or misleading;</li>
+          <li>to the extent permissible by applicable law, waive any and all moral rights to any such Submission and/or Contribution;</li>
+          <li>warrant that any such Submission and/or Contributions are original to you or that you have the necessary rights and licenses to submit such Submissions and/or Contributions and that you have full authority to grant us the above-mentioned rights in relation to your Submissions and/or Contributions; and</li>
+          <li>warrant and represent that your Submissions and/or Contributions do not constitute confidential information.</li>
+        </ul>
+        <p>You are solely responsible for your Submissions and/or Contributions and you expressly agree to reimburse us for any and all losses that we may suffer because of your breach of (a) this section, (b) any third party’s intellectual property rights, or (c) applicable law.</p>
+        <p><strong>We may remove or edit your Content:</strong> Although we have no obligation to monitor any Contributions, we shall have the right to remove or edit any Contributions at any time without notice if in our reasonable opinion we consider such Contributions harmful or in breach of these Legal Terms. If we remove or edit any such Contributions, we may also suspend or disable your account and report you to the authorities.</p>
+        <h3>Copyright infringement</h3>
+        <p>We respect the intellectual property rights of others. If you believe that any material available on or through the Services infringes upon any copyright you own or control, please immediately refer to the "<a href="#terms-dmca">DIGITAL MILLENNIUM COPYRIGHT ACT (DMCA) NOTICE AND POLICY</a>" section below.</p>
+        <h2 id="terms-userreps">3. USER REPRESENTATIONS</h2>
+        <p>By using the Services, you represent and warrant that: (1) all registration information you submit will be true, accurate, current, and complete; (2) you will maintain the accuracy of such information and promptly update such registration information as necessary; (3) you have the legal capacity and you agree to comply with these Legal Terms; (4) you are not a minor in the jurisdiction in which you reside; (5) you will not access the Services through automated or non-human means, whether through a bot, script or otherwise; (6) you will not use the Services for any illegal or unauthorized purpose; and (7) your use of the Services will not violate any applicable law or regulation.</p>
+        <p>If you provide any information that is untrue, inaccurate, not current, or incomplete, we have the right to suspend or terminate your account and refuse any and all current or future use of the Services (or any portion thereof).</p>
+        <h2 id="terms-userreg">4. USER REGISTRATION</h2>
+        <p>You may be required to register to use the Services. You agree to keep your password confidential and will be responsible for all use of your account and password. We reserve the right to remove, reclaim, or change a username you select if we determine, in our sole discretion, that such username is inappropriate, obscene, or otherwise objectionable.</p>
+        <h2 id="terms-purchases">5. CREATOR PAY</h2>
+        <p>For each collab you host, you can earn creator pay. Creator pay has three parts:</p>
+        <ul>
+          <li><strong>Recruitment pay</strong>, based on how many participants join the collab;</li>
+          <li><strong>Content pay</strong> for each required video you post; and</li>
+          <li><strong>A performance bonus</strong>, based on your collab's results.</li>
+        </ul>
+        <p><strong>Required videos.</strong> Each collab requires one video per week of the collab, plus a recap video. [CONFIRM: the deadline for each required video.] If you miss a required video, you forfeit that week's content pay and the performance bonus. Posting the video later does not restore them. You always keep your recruitment pay, even if you miss a required video.</p>
+        <p><strong>MVPs.</strong> At the end of each collab, you select the collab's MVPs during the wrap-up window shown in the App. If you do not select MVPs during the wrap-up window, Motiv selects them and you forfeit the performance bonus.</p>
+        <p><strong>Payment.</strong> We pay creator pay [CONFIRM: payment timing] by [CONFIRM: payout method and processor]. All payments are in US dollars. You agree to provide current, complete, and accurate payout and account information, and to promptly update it if it changes, so that we can pay you.</p>
+        <p><strong>Taxes.</strong> You are responsible for any taxes on your creator pay. We may require tax information, such as a Form W-9, before paying you, and we may issue tax forms and report payments to tax authorities as required by law.</p>
+        <p>Motiv may cancel or withhold creator pay earned through a violation of these Legal Terms, as described in the "<a href="#terms-addclausec">FAIR PLAY</a>" section. [CONFIRM: whether this applies to recruitment pay.]</p>
+        <h2 id="terms-software">6. SOFTWARE</h2>
+        <p>We may include software for use in connection with our Services. If such software is accompanied by an end user license agreement ("EULA"), the terms of the EULA will govern your use of the software. If such software is not accompanied by a EULA, then we grant to you a non-exclusive, revocable, personal, and non-transferable license to use such software solely in connection with our services and in accordance with these Legal Terms. Any software and any related documentation is provided "AS IS" without warranty of any kind, either express or implied, including, without limitation, the implied warranties of merchantability, fitness for a particular purpose, or non-infringement. You accept any and all risk arising out of use or performance of any software. You may not reproduce or redistribute any software except in accordance with the EULA or these Legal Terms.</p>
+        <h2 id="terms-prohibited">7. PROHIBITED ACTIVITIES</h2>
+        <p>You may not access or use the Services for any purpose other than that for which we make the Services available. The Services may not be used in connection with any commercial endeavors except those that are specifically endorsed or approved by us.</p>
+        <p>As a user of the Services, you agree not to:</p>
+        <ul>
+          <li>Systematically retrieve data or other content from the Services to create or compile, directly or indirectly, a collection, compilation, database, or directory without written permission from us.</li>
+          <li>Trick, defraud, or mislead us and other users, especially in any attempt to learn sensitive account information such as user passwords.</li>
+          <li>Circumvent, disable, or otherwise interfere with security-related features of the Services, including features that prevent or restrict the use or copying of any Content or enforce limitations on the use of the Services and/or the Content contained therein.</li>
+          <li>Disparage, tarnish, or otherwise harm, in our opinion, us and/or the Services.</li>
+          <li>Use any information obtained from the Services in order to harass, abuse, or harm another person.</li>
+          <li>Make improper use of our support services or submit false reports of abuse or misconduct.</li>
+          <li>Use the Services in a manner inconsistent with any applicable laws or regulations.</li>
+          <li>Engage in unauthorized framing of or linking to the Services.</li>
+          <li>Upload or transmit (or attempt to upload or to transmit) viruses, Trojan horses, or other material, including excessive use of capital letters and spamming (continuous posting of repetitive text), that interferes with any party’s uninterrupted use and enjoyment of the Services or modifies, impairs, disrupts, alters, or interferes with the use, features, functions, operation, or maintenance of the Services.</li>
+          <li>Engage in any automated use of the system, such as using scripts to send comments or messages, or using any data mining, robots, or similar data gathering and extraction tools.</li>
+          <li>Delete the copyright or other proprietary rights notice from any Content.</li>
+          <li>Attempt to impersonate another user or person or use the username of another user.</li>
+          <li>Upload or transmit (or attempt to upload or to transmit) any material that acts as a passive or active information collection or transmission mechanism, including without limitation, clear graphics interchange formats ("gifs"), 1×1 pixels, web bugs, cookies, or other similar devices (sometimes referred to as "spyware" or "passive collection mechanisms" or "pcms").</li>
+          <li>Interfere with, disrupt, or create an undue burden on the Services or the networks or services connected to the Services.</li>
+          <li>Harass, annoy, intimidate, or threaten any of our employees or agents engaged in providing any portion of the Services to you.</li>
+          <li>Attempt to bypass any measures of the Services designed to prevent or restrict access to the Services, or any portion of the Services.</li>
+          <li>Copy or adapt the Services' software, including but not limited to Flash, PHP, HTML, JavaScript, or other code.</li>
+          <li>Except as permitted by applicable law, decipher, decompile, disassemble, or reverse engineer any of the software comprising or in any way making up a part of the Services.</li>
+          <li>Except as may be the result of standard search engine or Internet browser usage, use, launch, develop, or distribute any automated system, including without limitation, any spider, robot, cheat utility, scraper, or offline reader that accesses the Services, or use or launch any unauthorized script or other software.</li>
+          <li>Use a buying agent or purchasing agent to make purchases on the Services.</li>
+          <li>Make any unauthorized use of the Services, including collecting usernames and/or email addresses of users by electronic or other means for the purpose of sending unsolicited email, or creating user accounts by automated means or under false pretenses.</li>
+          <li>Use the Services as part of any effort to compete with us or otherwise use the Services and/or the Content for any revenue-generating endeavor or commercial enterprise.</li>
+          <li>Sell or otherwise transfer your profile.</li>
+        </ul>
+        <h2 id="terms-ugc">8. USER GENERATED CONTRIBUTIONS</h2>
+        <p>The Services may invite you to chat, contribute to, or participate in blogs, message boards, online forums, and other functionality, and may provide you with the opportunity to create, submit, post, display, transmit, perform, publish, distribute, or broadcast content and materials to us or on the Services, including but not limited to text, writings, video, audio, photographs, graphics, comments, suggestions, or personal information or other material (collectively, "Contributions"). Contributions may be viewable by other users of the Services and through third-party websites. As such, any Contributions you transmit may be treated as non-confidential and non-proprietary. When you create or make available any Contributions, you thereby represent and warrant that:</p>
+        <ul>
+          <li>The creation, distribution, transmission, public display, or performance, and the accessing, downloading, or copying of your Contributions do not and will not infringe the proprietary rights, including but not limited to the copyright, patent, trademark, trade secret, or moral rights of any third party.</li>
+          <li>You are the creator and owner of or have the necessary licenses, rights, consents, releases, and permissions to use and to authorize us, the Services, and other users of the Services to use your Contributions in any manner contemplated by the Services and these Legal Terms.</li>
+          <li>You have the written consent, release, and/or permission of each and every identifiable individual person in your Contributions to use the name or likeness of each and every such identifiable individual person to enable inclusion and use of your Contributions in any manner contemplated by the Services and these Legal Terms.</li>
+          <li>Your Contributions are not false, inaccurate, or misleading.</li>
+          <li>Your Contributions are not unsolicited or unauthorized advertising, promotional materials, pyramid schemes, chain letters, spam, mass mailings, or other forms of solicitation.</li>
+          <li>Your Contributions are not obscene, lewd, lascivious, filthy, violent, harassing, libelous, slanderous, or otherwise objectionable (as determined by us).</li>
+          <li>Your Contributions do not ridicule, mock, disparage, intimidate, or abuse anyone.</li>
+          <li>Your Contributions are not used to harass or threaten (in the legal sense of those terms) any other person and to promote violence against a specific person or class of people.</li>
+          <li>Your Contributions do not violate any applicable law, regulation, or rule.</li>
+          <li>Your Contributions do not violate the privacy or publicity rights of any third party.</li>
+          <li>Your Contributions do not violate any applicable law concerning child pornography, or otherwise intended to protect the health or well-being of minors.</li>
+          <li>Your Contributions do not include any offensive comments that are connected to race, national origin, gender, sexual preference, or physical handicap.</li>
+          <li>Your Contributions do not otherwise violate, or link to material that violates, any provision of these Legal Terms, or any applicable law or regulation.</li>
+        </ul>
+        <p>Any use of the Services in violation of the foregoing violates these Legal Terms and may result in, among other things, termination or suspension of your rights to use the Services.</p>
+        <h2 id="terms-license">9. CONTRIBUTION LICENSE</h2>
+        <p>By posting your Contributions to any part of the Services or making Contributions accessible to the Services by linking your account from the Services to any of your social networking accounts, you automatically grant, and you represent and warrant that you have the right to grant, to us an unrestricted, unlimited, irrevocable, perpetual, non-exclusive, transferable, royalty-free, fully-paid, worldwide right, and license to host, use, copy, reproduce, disclose, sell, resell, publish, broadcast, retitle, archive, store, cache, publicly perform, publicly display, reformat, translate, transmit, excerpt (in whole or in part), and distribute such Contributions (including, without limitation, your image and voice) for any purpose, commercial, advertising, or otherwise, and to prepare derivative works of, or incorporate into other works, such Contributions, and grant and authorize sublicenses of the foregoing. The use and distribution may occur in any media formats and through any media channels.</p>
+        <p>This license will apply to any form, media, or technology now known or hereafter developed, and includes our use of your name, company name, and franchise name, as applicable, and any of the trademarks, service marks, trade names, logos, and personal and commercial images you provide. You waive all moral rights in your Contributions, and you warrant that moral rights have not otherwise been asserted in your Contributions.</p>
+        <p>We do not assert any ownership over your Contributions. You retain full ownership of all of your Contributions and any intellectual property rights or other proprietary rights associated with your Contributions. We are not liable for any statements or representations in your Contributions provided by you in any area on the Services. You are solely responsible for your Contributions to the Services and you expressly agree to exonerate us from any and all responsibility and to refrain from any legal action against us regarding your Contributions.</p>
+        <p>We have the right, in our sole and absolute discretion, (1) to edit, redact, or otherwise change any Contributions; (2) to re-categorize any Contributions to place them in more appropriate locations on the Services; and (3) to pre-screen or delete any Contributions at any time and for any reason, without notice. We have no obligation to monitor your Contributions.</p>
+        <h2 id="terms-mobile">10. MOBILE APPLICATION LICENSE</h2>
+        <h3>Use License</h3>
+        <p>If you access the Services via the App, then we grant you a revocable, non-exclusive, non-transferable, limited right to install and use the App on wireless electronic devices owned or controlled by you, and to access and use the App on such devices strictly in accordance with the terms and conditions of this mobile application license contained in these Legal Terms. You shall not: (1) except as permitted by applicable law, decompile, reverse engineer, disassemble, attempt to derive the source code of, or decrypt the App; (2) make any modification, adaptation, improvement, enhancement, translation, or derivative work from the App; (3) violate any applicable laws, rules, or regulations in connection with your access or use of the App; (4) remove, alter, or obscure any proprietary notice (including any notice of copyright or trademark) posted by us or the licensors of the App; (5) use the App for any revenue-generating endeavor, commercial enterprise, or other purpose for which it is not designed or intended; (6) make the App available over a network or other environment permitting access or use by multiple devices or users at the same time; (7) use the App for creating a product, service, or software that is, directly or indirectly, competitive with or in any way a substitute for the App; (8) use the App to send automated queries to any website or to send any unsolicited commercial email; or (9) use any proprietary information or any of our interfaces or our other intellectual property in the design, development, manufacture, licensing, or distribution of any applications, accessories, or devices for use with the App.</p>
+        <h3>Apple and Android Devices</h3>
+        <p>The following terms apply when you use the App obtained from either the Apple Store or Google Play (each an "App Distributor") to access the Services: (1) the license granted to you for our App is limited to a non-transferable license to use the application on a device that utilizes the Apple iOS or Android operating systems, as applicable, and in accordance with the usage rules set forth in the applicable App Distributor’s terms of service; (2) we are responsible for providing any maintenance and support services with respect to the App as specified in the terms and conditions of this mobile application license contained in these Legal Terms or as otherwise required under applicable law, and you acknowledge that each App Distributor has no obligation whatsoever to furnish any maintenance and support services with respect to the App; (3) in the event of any failure of the App to conform to any applicable warranty, you may notify the applicable App Distributor, and the App Distributor, in accordance with its terms and policies, may refund the purchase price, if any, paid for the App, and to the maximum extent permitted by applicable law, the App Distributor will have no other warranty obligation whatsoever with respect to the App; (4) you represent and warrant that (i) you are not located in a country that is subject to a US government embargo, or that has been designated by the US government as a "terrorist supporting" country and (ii) you are not listed on any US government list of prohibited or restricted parties; (5) you must comply with applicable third-party terms of agreement when using the App, e.g., if you have a VoIP application, then you must not be in violation of their wireless data service agreement when using the App; and (6) you acknowledge and agree that the App Distributors are third-party beneficiaries of the terms and conditions in this mobile application license contained in these Legal Terms, and that each App Distributor will have the right (and will be deemed to have accepted the right) to enforce the terms and conditions in this mobile application license contained in these Legal Terms against you as a third-party beneficiary thereof.</p>
+        <h2 id="terms-socialmedia">11. SOCIAL MEDIA</h2>
+        <p>As part of the functionality of the Services, you may link your account with online accounts you have with third-party service providers (each such account, a "Third-Party Account") by either: (1) providing your Third-Party Account login information through the Services; or (2) allowing us to access your Third-Party Account, as is permitted under the applicable terms and conditions that govern your use of each Third-Party Account. You represent and warrant that you are entitled to disclose your Third-Party Account login information to us and/or grant us access to your Third-Party Account, without breach by you of any of the terms and conditions that govern your use of the applicable Third-Party Account, and without obligating us to pay any fees or making us subject to any usage limitations imposed by the third-party service provider of the Third-Party Account. By granting us access to any Third-Party Accounts, you understand that (1) we may access, make available, and store (if applicable) any content that you have provided to and stored in your Third-Party Account (the "Social Network Content") so that it is available on and through the Services via your account, including without limitation any friend lists and (2) we may submit to and receive from your Third-Party Account additional information to the extent you are notified when you link your account with the Third-Party Account. Depending on the Third-Party Accounts you choose and subject to the privacy settings that you have set in such Third-Party Accounts, personally identifiable information that you post to your Third-Party Accounts may be available on and through your account on the Services. Please note that if a Third-Party Account or associated service becomes unavailable or our access to such Third-Party Account is terminated by the third-party service provider, then Social Network Content may no longer be available on and through the Services. You will have the ability to disable the connection between your account on the Services and your Third-Party Accounts at any time. PLEASE NOTE THAT YOUR RELATIONSHIP WITH THE THIRD-PARTY SERVICE PROVIDERS ASSOCIATED WITH YOUR THIRD-PARTY ACCOUNTS IS GOVERNED SOLELY BY YOUR AGREEMENT(S) WITH SUCH THIRD-PARTY SERVICE PROVIDERS. We make no effort to review any Social Network Content for any purpose, including but not limited to, for accuracy, legality, or non-infringement, and we are not responsible for any Social Network Content. You acknowledge and agree that we may access your email address book associated with a Third-Party Account and your contacts list stored on your mobile device or tablet computer solely for purposes of identifying and informing you of those contacts who have also registered to use the Services. You can deactivate the connection between the Services and your Third-Party Account by contacting us using the contact information below or through your account settings (if applicable). We will attempt to delete any information stored on our servers that was obtained through such Third-Party Account, except the username and profile picture that become associated with your account.</p>
+        <h2 id="terms-thirdparty">12. THIRD-PARTY WEBSITES AND CONTENT</h2>
+        <p>The Services may contain (or you may be sent via the App) links to other websites ("Third-Party Websites") as well as articles, photographs, text, graphics, pictures, designs, music, sound, video, information, applications, software, and other content or items belonging to or originating from third parties ("Third-Party Content"). Such Third-Party Websites and Third-Party Content are not investigated, monitored, or checked for accuracy, appropriateness, or completeness by us, and we are not responsible for any Third-Party Websites accessed through the Services or any Third-Party Content posted on, available through, or installed from the Services, including the content, accuracy, offensiveness, opinions, reliability, privacy practices, or other policies of or contained in the Third-Party Websites or the Third-Party Content. Inclusion of, linking to, or permitting the use or installation of any Third-Party Websites or any Third-Party Content does not imply approval or endorsement thereof by us. If you decide to leave the Services and access the Third-Party Websites or to use or install any Third-Party Content, you do so at your own risk, and you should be aware these Legal Terms no longer govern. You should review the applicable terms and policies, including privacy and data gathering practices, of any website to which you navigate from the Services or relating to any applications you use or install from the Services. Any purchases you make through Third-Party Websites will be through other websites and from other companies, and we take no responsibility whatsoever in relation to such purchases which are exclusively between you and the applicable third party. You agree and acknowledge that we do not endorse the products or services offered on Third-Party Websites and you shall hold us blameless from any harm caused by your purchase of such products or services. Additionally, you shall hold us blameless from any losses sustained by you or harm caused to you relating to or resulting in any way from any Third-Party Content or any contact with Third-Party Websites.</p>
+        <h2 id="terms-sitemanage">13. SERVICES MANAGEMENT</h2>
+        <p>We reserve the right, but not the obligation, to: (1) monitor the Services for violations of these Legal Terms; (2) take appropriate legal action against anyone who, in our sole discretion, violates the law or these Legal Terms, including without limitation, reporting such user to law enforcement authorities; (3) in our sole discretion and without limitation, refuse, restrict access to, limit the availability of, or disable (to the extent technologically feasible) any of your Contributions or any portion thereof; (4) in our sole discretion and without limitation, notice, or liability, to remove from the Services or otherwise disable all files and content that are excessive in size or are in any way burdensome to our systems; and (5) otherwise manage the Services in a manner designed to protect our rights and property and to facilitate the proper functioning of the Services.</p>
+        <h2 id="terms-ppyes">14. PRIVACY POLICY</h2>
+        <p>We care about data privacy and security. Please review our Privacy Policy:<strong> <a href="https://heymotiv.com/#privacy">https://heymotiv.com/#privacy</a></strong>. By using the Services, you agree to be bound by our Privacy Policy, which is incorporated into these Legal Terms. Please be advised the Services are hosted in the United States. If you access the Services from any other region of the world with laws or other requirements governing personal data collection, use, or disclosure that differ from applicable laws in the United States, then through your continued use of the Services, you are transferring your data to the United States, and you expressly consent to have your data transferred to and processed in the United States.</p>
+        <h2 id="terms-dmca">15. DIGITAL MILLENNIUM COPYRIGHT ACT (DMCA) NOTICE AND POLICY</h2>
+        <h3>Notifications</h3>
+        <p>We respect the intellectual property rights of others. If you believe that any material available on or through the Services infringes upon any copyright you own or control, please immediately notify our Designated Copyright Agent using the contact information provided below (a "Notification"). A copy of your Notification will be sent to the person who posted or stored the material addressed in the Notification. Please be advised that pursuant to federal law you may be held liable for damages if you make material misrepresentations in a Notification. Thus, if you are not sure that material located on or linked to by the Services infringes your copyright, you should consider first contacting an attorney.</p>
+        <p>All Notifications should meet the requirements of DMCA 17 U.S.C. § 512(c)(3) and include the following information: (1) A physical or electronic signature of a person authorized to act on behalf of the owner of an exclusive right that is allegedly infringed; (2) identification of the copyrighted work claimed to have been infringed, or, if multiple copyrighted works on the Services are covered by the Notification, a representative list of such works on the Services; (3) identification of the material that is claimed to be infringing or to be the subject of infringing activity and that is to be removed or access to which is to be disabled, and information reasonably sufficient to permit us to locate the material; (4) information reasonably sufficient to permit us to contact the complaining party, such as an address, telephone number, and, if available, an email address at which the complaining party may be contacted; (5) a statement that the complaining party has a good faith belief that use of the material in the manner complained of is not authorized by the copyright owner, its agent, or the law; and (6) a statement that the information in the notification is accurate, and under penalty of perjury, that the complaining party is authorized to act on behalf of the owner of an exclusive right that is allegedly infringed upon.</p>
+        <h3>Counter Notification</h3>
+        <p>If you believe your own copyrighted material has been removed from the Services as a result of a mistake or misidentification, you may submit a written counter notification to our Designated Copyright Agent using the contact information provided below (a "Counter Notification"). To be an effective Counter Notification under the DMCA, your Counter Notification must include substantially the following: (1) identification of the material that has been removed or disabled and the location at which the material appeared before it was removed or disabled; (2) a statement that you consent to the jurisdiction of the Federal District Court in which your address is located, or if your address is outside the United States, for any judicial district in which we are located; (3) a statement that you will accept service of process from the party that filed the Notification or the party's agent; (4) your name, address, and telephone number; (5) a statement under penalty of perjury that you have a good faith belief that the material in question was removed or disabled as a result of a mistake or misidentification of the material to be removed or disabled; and (6) your physical or electronic signature.</p>
+        <p>If you send us a valid, written Counter Notification meeting the requirements described above, we will restore your removed or disabled material, unless we first receive notice from the party filing the Notification informing us that such party has filed a court action to restrain you from engaging in infringing activity related to the material in question. Please note that if you materially misrepresent that the disabled or removed content was removed by mistake or misidentification, you may be liable for damages, including costs and attorney's fees. Filing a false Counter Notification constitutes perjury.</p>
+        <p>Designated Copyright Agent</p>
+        <p>Thomas McMennamin</p>
+        <p>Attn: Copyright Agent</p>
+        <p>121 Tower Rd</p>
+        <p>Lincoln, MA 01773</p>
+        <p>United States</p>
+        <p><a href="mailto:privacy@heymotiv.com">privacy@heymotiv.com</a></p>
+        <h2 id="terms-termination">16. TERM AND TERMINATION</h2>
+        <p>These Legal Terms shall remain in full force and effect while you use the Services. WITHOUT LIMITING ANY OTHER PROVISION OF THESE LEGAL TERMS, WE RESERVE THE RIGHT TO, IN OUR SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENY ACCESS TO AND USE OF THE SERVICES (INCLUDING BLOCKING CERTAIN IP ADDRESSES), TO ANY PERSON FOR ANY REASON OR FOR NO REASON, INCLUDING WITHOUT LIMITATION FOR BREACH OF ANY REPRESENTATION, WARRANTY, OR COVENANT CONTAINED IN THESE LEGAL TERMS OR OF ANY APPLICABLE LAW OR REGULATION. WE MAY TERMINATE YOUR USE OR PARTICIPATION IN THE SERVICES OR DELETE YOUR ACCOUNT AND ANY CONTENT OR INFORMATION THAT YOU POSTED AT ANY TIME, WITHOUT WARNING, IN OUR SOLE DISCRETION.</p>
+        <p>If we terminate or suspend your account for any reason, you are prohibited from registering and creating a new account under your name, a fake or borrowed name, or the name of any third party, even if you may be acting on behalf of the third party. In addition to terminating or suspending your account, we reserve the right to take appropriate legal action, including without limitation pursuing civil, criminal, and injunctive redress.</p>
+        <h2 id="terms-modifications">17. MODIFICATIONS AND INTERRUPTIONS</h2>
+        <p>We reserve the right to change, modify, or remove the contents of the Services at any time or for any reason at our sole discretion without notice. However, we have no obligation to update any information on our Services. We will not be liable to you or any third party for any modification, price change, suspension, or discontinuance of the Services.</p>
+        <p>We cannot guarantee the Services will be available at all times. We may experience hardware, software, or other problems or need to perform maintenance related to the Services, resulting in interruptions, delays, or errors. We reserve the right to change, revise, update, suspend, discontinue, or otherwise modify the Services at any time or for any reason without notice to you. You agree that we have no liability whatsoever for any loss, damage, or inconvenience caused by your inability to access or use the Services during any downtime or discontinuance of the Services. Nothing in these Legal Terms will be construed to obligate us to maintain and support the Services or to supply any corrections, updates, or releases in connection therewith.</p>
+        <h2 id="terms-law">18. GOVERNING LAW</h2>
+        <p>These Legal Terms and your use of the Services are governed by and construed in accordance with the laws of the Commonwealth of Massachusetts applicable to agreements made and to be entirely performed within the Commonwealth of Massachusetts, without regard to its conflict of law principles.</p>
+        <h2 id="terms-disputes">19. DISPUTE RESOLUTION</h2>
+        <h3>Informal Negotiations</h3>
+        <p>To expedite resolution and control the cost of any dispute, controversy, or claim related to these Legal Terms (each a "Dispute" and collectively, the "Disputes") brought by either you or us (individually, a "Party" and collectively, the "Parties"), the Parties agree to first attempt to negotiate any Dispute (except those Disputes expressly provided below) informally for at least thirty (30) days before initiating arbitration. Such informal negotiations commence upon written notice from one Party to the other Party.</p>
+        <h3>Binding Arbitration</h3>
+        <p>If the Parties are unable to resolve a Dispute through informal negotiations, the Dispute (except those Disputes expressly excluded below) will be finally and exclusively resolved by binding arbitration. YOU UNDERSTAND THAT WITHOUT THIS PROVISION, YOU WOULD HAVE THE RIGHT TO SUE IN COURT AND HAVE A JURY TRIAL. The arbitration shall be commenced and conducted under the Commercial Arbitration Rules of the American Arbitration Association ("AAA") and, where appropriate, the AAA’s Supplementary Procedures for Consumer Related Disputes ("AAA Consumer Rules"), both of which are available at the <a href="http://www.adr.org" target="_blank" rel="noopener">American Arbitration Association (AAA) website</a>. Your arbitration fees and your share of arbitrator compensation shall be governed by the AAA Consumer Rules and, where appropriate, limited by the AAA Consumer Rules. If such costs are determined by the arbitrator to be excessive, we will pay all arbitration fees and expenses. The arbitration may be conducted in person, through the submission of documents, by phone, or online. The arbitrator will make a decision in writing, but need not provide a statement of reasons unless requested by either Party. The arbitrator must follow applicable law, and any award may be challenged if the arbitrator fails to do so. Except where otherwise required by the applicable AAA rules or applicable law, the arbitration will take place in Middlesex County, Massachusetts. Except as otherwise provided herein, the Parties may litigate in court to compel arbitration, stay proceedings pending arbitration, or to confirm, modify, vacate, or enter judgment on the award entered by the arbitrator.</p>
+        <p>If for any reason, a Dispute proceeds in court rather than arbitration, the Dispute shall be commenced or prosecuted in the  state and federal courts located in Middlesex County, Massachusetts, and the Parties hereby consent to, and waive all defenses of lack of personal jurisdiction, and forum non conveniens with respect to venue and jurisdiction in such state and federal courts. Application of the United Nations Convention on Contracts for the International Sale of Goods and the Uniform Computer Information Transaction Act (UCITA) are excluded from these Legal Terms.</p>
+        <p>In no event shall any Dispute brought by either Party related in any way to the Services be commenced more than one (1) years after the cause of action arose. If this provision is found to be illegal or unenforceable, then neither Party will elect to arbitrate any Dispute falling within that portion of this provision found to be illegal or unenforceable and such Dispute shall be decided by a court of competent jurisdiction within the courts listed for jurisdiction above, and the Parties agree to submit to the personal jurisdiction of that court.</p>
+        <h3>Restrictions</h3>
+        <p>The Parties agree that any arbitration shall be limited to the Dispute between the Parties individually. To the full extent permitted by law, (a) no arbitration shall be joined with any other proceeding; (b) there is no right or authority for any Dispute to be arbitrated on a class-action basis or to utilize class action procedures; and (c) there is no right or authority for any Dispute to be brought in a purported representative capacity on behalf of the general public or any other persons.</p>
+        <h3>Exceptions to Informal Negotiations and Arbitration</h3>
+        <p>The Parties agree that the following Disputes are not subject to the above provisions concerning informal negotiations binding arbitration: (a) any Disputes seeking to enforce or protect, or concerning the validity of, any of the intellectual property rights of a Party; (b) any Dispute related to, or arising from, allegations of theft, piracy, invasion of privacy, or unauthorized use; and (c) any claim for injunctive relief. If this provision is found to be illegal or unenforceable, then neither Party will elect to arbitrate any Dispute falling within that portion of this provision found to be illegal or unenforceable and such Dispute shall be decided by a court of competent jurisdiction within the courts listed for jurisdiction above, and the Parties agree to submit to the personal jurisdiction of that court.</p>
+        <h2 id="terms-corrections">20. CORRECTIONS</h2>
+        <p>There may be information on the Services that contains typographical errors, inaccuracies, or omissions, including descriptions, pricing, availability, and various other information. We reserve the right to correct any errors, inaccuracies, or omissions and to change or update the information on the Services at any time, without prior notice.</p>
+        <h2 id="terms-disclaimer">21. DISCLAIMER</h2>
+        <p>THE SERVICES ARE PROVIDED ON AN AS-IS AND AS-AVAILABLE BASIS. YOU AGREE THAT YOUR USE OF THE SERVICES WILL BE AT YOUR SOLE RISK. TO THE FULLEST EXTENT PERMITTED BY LAW, WE DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, IN CONNECTION WITH THE SERVICES AND YOUR USE THEREOF, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. WE MAKE NO WARRANTIES OR REPRESENTATIONS ABOUT THE ACCURACY OR COMPLETENESS OF THE SERVICES' CONTENT OR THE CONTENT OF ANY WEBSITES OR MOBILE APPLICATIONS LINKED TO THE SERVICES AND WE WILL ASSUME NO LIABILITY OR RESPONSIBILITY FOR ANY (1) ERRORS, MISTAKES, OR INACCURACIES OF CONTENT AND MATERIALS, (2) PERSONAL INJURY OR PROPERTY DAMAGE, OF ANY NATURE WHATSOEVER, RESULTING FROM YOUR ACCESS TO AND USE OF THE SERVICES, (3) ANY UNAUTHORIZED ACCESS TO OR USE OF OUR SECURE SERVERS AND/OR ANY AND ALL PERSONAL INFORMATION AND/OR FINANCIAL INFORMATION STORED THEREIN, (4) ANY INTERRUPTION OR CESSATION OF TRANSMISSION TO OR FROM THE SERVICES, (5) ANY BUGS, VIRUSES, TROJAN HORSES, OR THE LIKE WHICH MAY BE TRANSMITTED TO OR THROUGH THE SERVICES BY ANY THIRD PARTY, AND/OR (6) ANY ERRORS OR OMISSIONS IN ANY CONTENT AND MATERIALS OR FOR ANY LOSS OR DAMAGE OF ANY KIND INCURRED AS A RESULT OF THE USE OF ANY CONTENT POSTED, TRANSMITTED, OR OTHERWISE MADE AVAILABLE VIA THE SERVICES. WE DO NOT WARRANT, ENDORSE, GUARANTEE, OR ASSUME RESPONSIBILITY FOR ANY PRODUCT OR SERVICE ADVERTISED OR OFFERED BY A THIRD PARTY THROUGH THE SERVICES, ANY HYPERLINKED WEBSITE, OR ANY WEBSITE OR MOBILE APPLICATION FEATURED IN ANY BANNER OR OTHER ADVERTISING, AND WE WILL NOT BE A PARTY TO OR IN ANY WAY BE RESPONSIBLE FOR MONITORING ANY TRANSACTION BETWEEN YOU AND ANY THIRD-PARTY PROVIDERS OF PRODUCTS OR SERVICES. AS WITH THE PURCHASE OF A PRODUCT OR SERVICE THROUGH ANY MEDIUM OR IN ANY ENVIRONMENT, YOU SHOULD USE YOUR BEST JUDGMENT AND EXERCISE CAUTION WHERE APPROPRIATE.</p>
+        <h2 id="terms-liability">22. LIMITATIONS OF LIABILITY</h2>
+        <p>IN NO EVENT WILL WE OR OUR DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE TO YOU OR ANY THIRD PARTY FOR ANY DIRECT, INDIRECT, CONSEQUENTIAL, EXEMPLARY, INCIDENTAL, SPECIAL, OR PUNITIVE DAMAGES, INCLUDING LOST PROFIT, LOST REVENUE, LOSS OF DATA, OR OTHER DAMAGES ARISING FROM YOUR USE OF THE SERVICES, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES. NOTWITHSTANDING ANYTHING TO THE CONTRARY CONTAINED HEREIN, OUR LIABILITY TO YOU FOR ANY CAUSE WHATSOEVER AND REGARDLESS OF THE FORM OF THE ACTION, WILL AT ALL TIMES BE LIMITED TO THE AMOUNT PAID, IF ANY, BY YOU TO US DURING THE TWELVE (12) MONTH PERIOD PRIOR TO ANY CAUSE OF ACTION ARISING. CERTAIN US STATE LAWS AND INTERNATIONAL LAWS DO NOT ALLOW LIMITATIONS ON IMPLIED WARRANTIES OR THE EXCLUSION OR LIMITATION OF CERTAIN DAMAGES. IF THESE LAWS APPLY TO YOU, SOME OR ALL OF THE ABOVE DISCLAIMERS OR LIMITATIONS MAY NOT APPLY TO YOU, AND YOU MAY HAVE ADDITIONAL RIGHTS.</p>
+        <h2 id="terms-indemnification">23. INDEMNIFICATION</h2>
+        <p>You agree to defend, indemnify, and hold us harmless, including our subsidiaries, affiliates, and all of our respective officers, agents, partners, and employees, from and against any loss, damage, liability, claim, or demand, including reasonable attorneys’ fees and expenses, made by any third party due to or arising out of: (1) your Contributions; (2) use of the Services; (3) breach of these Legal Terms; (4) any breach of your representations and warranties set forth in these Legal Terms; (5) your violation of the rights of a third party, including but not limited to intellectual property rights; or (6) any overt harmful act toward any other user of the Services with whom you connected via the Services. Notwithstanding the foregoing, we reserve the right, at your expense, to assume the exclusive defense and control of any matter for which you are required to indemnify us, and you agree to cooperate, at your expense, with our defense of such claims. We will use reasonable efforts to notify you of any such claim, action, or proceeding which is subject to this indemnification upon becoming aware of it.</p>
+        <h2 id="terms-userdata">24. USER DATA</h2>
+        <p>We will maintain certain data that you transmit to the Services for the purpose of managing the performance of the Services, as well as data relating to your use of the Services. Although we perform regular routine backups of data, you are solely responsible for all data that you transmit or that relates to any activity you have undertaken using the Services. You agree that we shall have no liability to you for any loss or corruption of any such data, and you hereby waive any right of action against us arising from any such loss or corruption of such data.</p>
+        <h2 id="terms-electronic">25. ELECTRONIC COMMUNICATIONS, TRANSACTIONS, AND SIGNATURES</h2>
+        <p>Visiting the Services, sending us emails, and completing online forms constitute electronic communications. You consent to receive electronic communications, and you agree that all agreements, notices, disclosures, and other communications we provide to you electronically, via email and on the Services, satisfy any legal requirement that such communication be in writing. YOU HEREBY AGREE TO THE USE OF ELECTRONIC SIGNATURES, CONTRACTS, ORDERS, AND OTHER RECORDS, AND TO ELECTRONIC DELIVERY OF NOTICES, POLICIES, AND RECORDS OF TRANSACTIONS INITIATED OR COMPLETED BY US OR VIA THE SERVICES. You hereby waive any rights or requirements under any statutes, regulations, rules, ordinances, or other laws in any jurisdiction which require an original signature or delivery or retention of non-electronic records, or to payments or the granting of credits by any means other than electronic means.</p>
+        <h2 id="terms-california">26. CALIFORNIA USERS AND RESIDENTS</h2>
+        <p>If any complaint with us is not satisfactorily resolved, you can contact the Complaint Assistance Unit of the Division of Consumer Services of the California Department of Consumer Affairs in writing at 1625 North Market Blvd., Suite N 112, Sacramento, California 95834 or by telephone at (800) 952-5210 or (916) 445-1254.</p>
+        <h2 id="terms-misc">27. MISCELLANEOUS</h2>
+        <p>These Legal Terms and any policies or operating rules posted by us on the Services or in respect to the Services constitute the entire agreement and understanding between you and us. Our failure to exercise or enforce any right or provision of these Legal Terms shall not operate as a waiver of such right or provision. These Legal Terms operate to the fullest extent permissible by law. We may assign any or all of our rights and obligations to others at any time. We shall not be responsible or liable for any loss, damage, delay, or failure to act caused by any cause beyond our reasonable control. If any provision or part of a provision of these Legal Terms is determined to be unlawful, void, or unenforceable, that provision or part of the provision is deemed severable from these Legal Terms and does not affect the validity and enforceability of any remaining provisions. There is no joint venture, partnership, employment or agency relationship created between you and us as a result of these Legal Terms or use of the Services. You agree that these Legal Terms will not be construed against us by virtue of having drafted them. You hereby waive any and all defenses you may have based on the electronic form of these Legal Terms and the lack of signing by the parties hereto to execute these Legal Terms.</p>
+        <h2 id="terms-addclause">28. HEALTH AND FITNESS DISCLAIMER</h2>
+        <p>Motiv is not a medical service and does not provide medical advice. Goals, content, and messages on Motiv are for general fitness purposes only. Consult a physician before starting any exercise program or increasing your activity, especially if you have a medical condition, are pregnant, or have been inactive. Stop exercising and seek medical attention if you feel pain, dizziness, or shortness of breath.</p>
+        <p>You participate in physical activity at your own risk. You understand that exercise carries a risk of injury, and you voluntarily assume that risk. To the fullest extent permitted by law, Motiv is not responsible for any injury, illness, or other harm resulting from your participation.</p>
+        <p>As a creator, you must not give medical advice or encourage participants to do anything unsafe. You are responsible for the safety of the workouts, guidance, and other content you give participants.</p>
+        <h2 id="terms-addclauseb">29. COLLABS, PAYMENT HOLDS, AND RESULTS</h2>
+        <p>Collabs are contests of skill, not games of chance. Each participant's results depend on their own activity measured against their personal goals.</p>
+        <p>Motiv's Collab Rules apply to every collab, including the collabs you host, and are part of these Terms. If the Collab Rules conflict with these Terms, the Collab Rules control.</p>
+        <p>To join a collab, participants place a payment hold with Motiv. Motiv determines participants' results, and Motiv's determination of results is final.</p>
+        <p>You may not promise participants any results, refunds, or rewards beyond what the Collab Rules state.</p>
+        <h2 id="terms-addclausec">30. FAIR PLAY</h2>
+        <p>You may not:</p>
+        <ul>
+          <li>create fake participant accounts, or ask or allow anyone else to create them;</li>
+          <li>pay or pressure anyone to join a collab or to perform in it, other than an MVP bonus offered as the Collab Rules allow; or</li>
+          <li>manipulate MVP selection, for example by selecting accounts you control or selecting MVPs in exchange for money or favors.</li>
+        </ul>
+        <p>If we believe you have done so, we may cancel or withhold creator pay earned through that conduct, pause or cancel your collabs, and suspend or close your account.</p>
+        <h2 id="terms-addclaused">31. INDEPENDENT CONTRACTOR</h2>
+        <p>You host collabs as an independent contractor. You are not an employee, agent, or partner of Motiv, and nothing in these Legal Terms creates an employment, agency, partnership, or joint venture relationship between you and Motiv. You may not make commitments or statements on behalf of Motiv.</p>
+        <p>Your workouts, videos, advice, and other content are your own, and you are responsible for them.</p>
+        <h2 id="terms-identity">32. CREATOR IDENTITY AND INSTAGRAM VERIFICATION</h2>
+        <p>To host collabs, you must verify an Instagram professional account that you own and control by signing in to it through Instagram Login, provided by Meta. You may host collabs only as yourself, under the Instagram account you verified. You may not impersonate another person or brand, or suggest that you are affiliated with a person or brand when you are not.</p>
+        <p>If we cannot verify your Instagram account, or if your Instagram account or our access to it is removed or revoked, we may pause your collabs or your account.</p>
+        <p>To learn what information we receive through Instagram Login and how we use it, see "<a href="https://heymotiv.com/#instagram">HOW DO WE USE INSTAGRAM LOGIN?</a>" in our Privacy Policy.</p>
+        <h2 id="terms-creatorcontent">33. CREATOR CONTENT AND PARTICIPANT INFORMATION</h2>
+        <p>Through the Services, you may see information about participants, such as their names. You may use participant names and other information you see in Motiv only to run your collabs, including through the sharing features Motiv provides in the App. You may not use it for any other purpose, including marketing to participants or contacting them outside of Motiv.</p>
+        <p>Motiv may delete the videos you post for a collab at any time after the collab ends. We do not keep creator videos permanently, so keep your own copies of any videos you want to keep.</p>
+        <h2 id="terms-contact">34. CONTACT US</h2>
+        <p>In order to resolve a complaint regarding the Services or to receive further information regarding use of the Services, please contact us at:</p>
+        <p><strong>Motiv LLC</strong></p>
+        <p><strong>121 Tower Rd</strong></p>
+        <p><strong>Lincoln, MA 01773</strong></p>
+        <p><strong>United States</strong></p>
+        <p><strong>Phone: 1(617) 981-4580</strong></p>
+        <p><strong><a href="mailto:privacy@heymotiv.com">privacy@heymotiv.com</a></strong></p>
       </div>
     </div>
   </section>
@@ -1746,39 +1976,415 @@ h2 .underline-accent::after, h3 .underline-accent::after {
 
   <section class="section-tight" style="padding-bottom: clamp(4.5rem, 9vw, 7.5rem);">
     <div class="container">
-      <div class="legal-body reveal">
-        <p class="legal-updated">Last updated: January 2026</p>
-        <p class="legal-note">This is placeholder text provided while we finalize Motiv's privacy policy. It is not the final policy. A complete policy describing exactly how we handle your data will be posted here before the platform launches.</p>
-
-        <h3>1. Information we collect</h3>
-        <p>We collect information you provide directly, such as your name, email address, and the social handle you share when joining the waitlist or creating an account. We also collect basic technical information, like device and usage data, to keep the Service running.</p>
-
-        <h3>2. Wearable and activity data</h3>
-        <p>If you connect a wearable or health app, we receive the activity data needed to calculate and track your goals — for example, steps, active minutes, or energy. We use this data to operate the Service and do not sell it.</p>
-
-        <h3>3. How we use information</h3>
-        <p>We use the information we collect to provide and improve the Service, calculate personalized goals, process payments and refunds, communicate with you, and keep the platform safe. We do not use your data to make decisions that have legal effects on you without appropriate safeguards.</p>
-
-        <h3>4. How we share information</h3>
-        <p>We share information with service providers who help us run Motiv — such as our payment processor, hosting provider, and wearable data partners — only as needed to deliver the Service. We may also share information when required by law. We do not sell your personal information.</p>
-
-        <h3>5. Data retention</h3>
-        <p>We keep your information for as long as your account is active or as needed to provide the Service, comply with legal obligations, resolve disputes, and enforce our agreements. You can ask us to delete your account and associated data.</p>
-
-        <h3>6. Your choices and rights</h3>
-        <p>Depending on where you live, you may have rights to access, correct, export, or delete your personal information, and to disconnect any linked wearable at any time. To exercise these rights, contact us using the details below.</p>
-
-        <h3>7. Security</h3>
-        <p>We use reasonable technical and organizational measures to protect your information. No system is perfectly secure, but we work to safeguard your data and to limit access to it.</p>
-
-        <h3>8. Children's privacy</h3>
-        <p>Motiv is not directed to children under 18, and we do not knowingly collect information from them. If you believe a minor has provided us information, please contact us so we can remove it.</p>
-
-        <h3>9. Changes to this policy</h3>
-        <p>We may update this policy from time to time. When we do, we will revise the date above and, where appropriate, notify you of material changes.</p>
-
-        <h3>10. Contact</h3>
-        <p>Questions about privacy can be sent to <a href="mailto:hello@heymotiv.com">hello@heymotiv.com</a>.</p>
+      <div class="legal-body">
+        <p class="legal-updated">Last updated October 21, 2026</p>
+        <p>This Privacy Notice for Motiv LLC ("<strong>we</strong>," "<strong>us</strong>," or "<strong>our</strong>"), describes how and why we might access, collect, store, use, and/or share ("<strong>process</strong>") your personal information when you use our services ("<strong>Services</strong>"), including when you:</p>
+        <ul>
+          <li>Download and use our mobile application (Motiv Creator), or any other application of ours that links to this Privacy Notice</li>
+        </ul>
+        <ul>
+          <li>Visit our website at heymotiv.com, or any website of ours that links to this Privacy Notice</li>
+        </ul>
+        <ul>
+          <li>Use Motiv as a creator. Motiv is a fitness accountability app where people join collabs hosted by fitness creators. Fitness creators use the Motiv Creator app and heymotiv.com to host collabs, post videos for the participants in their collabs, and earn creator pay.</li>
+        </ul>
+        <ul>
+          <li>Engage with us in other related ways, including any marketing or events</li>
+        </ul>
+        <p><strong>Questions or concerns? </strong>Reading this Privacy Notice will help you understand your privacy rights and choices. We are responsible for making decisions about how your personal information is processed. If you do not agree with our policies and practices, please do not use our Services. If you still have any questions or concerns, please contact us at <a href="mailto:privacy@heymotiv.com">privacy@heymotiv.com</a>.</p>
+        <h2>SUMMARY OF KEY POINTS</h2>
+        <p><strong><em>This summary provides key points from our Privacy Notice, but you can find out more details about any of these topics by clicking the link following each key point or by using our </em></strong><a href="#toc"><strong><em>table of contents</em></strong></a><strong><em> below to find the section you are looking for.</em></strong></p>
+        <p><strong>What personal information do we process?</strong> When you visit, use, or navigate our Services, we may process personal information depending on how you interact with us and the Services, the choices you make, and the products and features you use. Learn more about <a href="#personalinfo">personal information you disclose to us</a>.</p>
+        <p><strong>Do we process any sensitive personal information? </strong>We do not process health data about creators. To pay you, we may need tax information, such as the taxpayer identification number on a Form W-9, which may be considered "sensitive" in certain jurisdictions. We process it only to pay you and to meet our legal obligations. Learn more about <a href="#payoutinfo">payout and tax information</a>.</p>
+        <p><strong>Do we collect any information from third parties?</strong> When you verify your Instagram account through Instagram Login, we receive limited information from Instagram. Learn more about <a href="#instagram">how we use Instagram Login</a>. We may also collect information from public databases, marketing partners, social media platforms, and other outside sources. Learn more about <a href="#othersources">information collected from other sources</a>.</p>
+        <p><strong>How do we process your information?</strong> We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent. We process your information only when we have a valid legal reason to do so. Learn more about <a href="#infouse">how we process your information</a>.</p>
+        <p><strong>In what situations and with which types of parties do we share personal information?</strong> We may share information in specific situations and with specific categories of third parties. Learn more about <a href="#whoshare">when and with whom we share your personal information</a>.</p>
+        <p><strong>How do we keep your information safe?</strong> We have adequate organizational and technical processes and procedures in place to protect your personal information. However, no electronic transmission over the internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Learn more about <a href="#infosafe">how we keep your information safe</a>.</p>
+        <p><strong>What are your rights?</strong> Depending on where you are located geographically, the applicable privacy law may mean you have certain rights regarding your personal information. Learn more about <a href="#privacyrights">your privacy rights</a>.</p>
+        <p><strong>How do you exercise your rights?</strong> The easiest way to exercise your rights is by emailing <a href="mailto:privacy@heymotiv.com">privacy@heymotiv.com</a>, or by contacting us. We will consider and act upon any request in accordance with applicable data protection laws.</p>
+        <p>Want to learn more about what we do with any information we collect? <a href="#toc">Review the Privacy Notice in full</a>.</p>
+        <h2 id="toc">TABLE OF CONTENTS</h2>
+        <ul class="legal-toc">
+          <li><a href="#infocollect">1. WHAT INFORMATION DO WE COLLECT?</a></li>
+          <li><a href="#infouse">2. HOW DO WE PROCESS YOUR INFORMATION?</a></li>
+          <li><a href="#whoshare">3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a></li>
+          <li><a href="#3pwebsites">4. WHAT IS OUR STANCE ON THIRD-PARTY WEBSITES?</a></li>
+          <li><a href="#cookies">5. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</a></li>
+          <li><a href="#ai">6. DO WE OFFER ARTIFICIAL INTELLIGENCE-BASED PRODUCTS?</a></li>
+          <li><a href="#instagram">7. HOW DO WE USE INSTAGRAM LOGIN?</a></li>
+          <li><a href="#inforetain">8. HOW LONG DO WE KEEP YOUR INFORMATION?</a></li>
+          <li><a href="#infosafe">9. HOW DO WE KEEP YOUR INFORMATION SAFE?</a></li>
+          <li><a href="#infominors">10. DO WE COLLECT INFORMATION FROM MINORS?</a></li>
+          <li><a href="#privacyrights">11. WHAT ARE YOUR PRIVACY RIGHTS?</a></li>
+          <li><a href="#DNT">12. CONTROLS FOR DO-NOT-TRACK FEATURES</a></li>
+          <li><a href="#uslaws">13. DO UNITED STATES RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</a></li>
+          <li><a href="#creatorview">14. WHAT CAN CREATORS SEE ABOUT PARTICIPANTS?</a></li>
+          <li><a href="#policyupdates">15. DO WE MAKE UPDATES TO THIS NOTICE?</a></li>
+          <li><a href="#contact">16. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a></li>
+          <li><a href="#request">17. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</a></li>
+        </ul>
+        <h2 id="infocollect">1. WHAT INFORMATION DO WE COLLECT?</h2>
+        <h3 id="personalinfo">Personal information you disclose to us</h3>
+        <p><strong><em>In Short:</em></strong> <em>We collect personal information that you provide to us.</em></p>
+        <p>We collect personal information that you voluntarily provide to us when you register on the Services, express an interest in obtaining information about us or our products and Services, when you participate in activities on the Services, or otherwise when you contact us.</p>
+        <p><strong>Personal Information Provided by You.</strong> The personal information that we collect depends on the context of your interactions with us and the Services, the choices you make, and the products and features you use. The personal information we collect may include the following:</p>
+        <ul>
+          <li>names</li>
+        </ul>
+        <ul>
+          <li>email addresses</li>
+        </ul>
+        <ul>
+          <li>social media handle(s)</li>
+        </ul>
+        <ul>
+          <li>videos and other content you upload</li>
+        </ul>
+        <ul>
+          <li>collab settings</li>
+        </ul>
+        <ul>
+          <li>MVP selections</li>
+        </ul>
+        <ul>
+          <li>payout and tax information, such as a Form W-9 [CONFIRM: payout method and processor]</li>
+        </ul>
+        <p id="payoutinfo"><strong>Payout and Tax Data.</strong> We collect the information we need to pay you creator pay and to meet our tax obligations, such as your payout details and the tax information on your Form W-9, including your taxpayer identification number. [CONFIRM: payout method and processor, and whether Motiv receives a copy of the W-9 or only confirmation that it was signed.]</p>
+        <p><strong>Sign-In Data. </strong>You can sign in with your email address, or with your existing Google or Apple account. If you sign in with Google or Apple, we receive basic account information from that provider, such as your email address.</p>
+        <p><strong>Instagram Login Data. </strong>You verify your Instagram professional account through Instagram Login, provided by Meta. When you do, we receive certain information from Instagram, as described in the section called "<a href="#instagram">HOW DO WE USE INSTAGRAM LOGIN?</a>" below.</p>
+        <p><strong>Application Data.</strong> If you use our application(s), we also may collect the following information if you choose to provide us with access or permission:</p>
+        <ul>
+          <li><em>Mobile Device Access.</em> We may request access or permission to certain features from your mobile device, including your mobile device's camera, microphone, photo library, contacts, social media accounts, and other features. If you wish to change our access or permissions, you may do so in your device's settings.</li>
+        </ul>
+        <ul>
+          <li><em>Mobile Device Data.</em> We automatically collect device information (such as your mobile device ID, model, and manufacturer), operating system, version information and system configuration information, device and application identification numbers, browser type and version, hardware model Internet service provider and/or mobile carrier, and Internet Protocol (IP) address (or proxy server). If you are using our application(s), we may also collect information about the phone network associated with your mobile device, your mobile device’s operating system or platform, the type of mobile device you use, your mobile device’s unique device ID, and information about the features of our application(s) you accessed.</li>
+        </ul>
+        <ul>
+          <li><em>Push Notifications.</em> We may request to send you push notifications regarding your account or certain features of the application(s). If you wish to opt out from receiving these types of communications, you may turn them off in your device's settings.</li>
+        </ul>
+        <p>This information is primarily needed to maintain the security and operation of our application(s), for troubleshooting, and for our internal analytics and reporting purposes.</p>
+        <p>All personal information that you provide to us must be true, complete, and accurate, and you must notify us of any changes to such personal information.</p>
+        <h3>Information automatically collected</h3>
+        <p><strong><em>In Short:</em></strong> <em>Some information, such as your Internet Protocol (IP) address and/or browser and device characteristics, is collected automatically when you visit our Services.</em></p>
+        <p>We automatically collect certain information when you visit, use, or navigate the Services. This information does not reveal your specific identity (like your name or contact information) but may include device and usage information, such as your IP address, browser and device characteristics, operating system, language preferences, referring URLs, device name, country, location, information about how and when you use our Services, and other technical information. This information is primarily needed to maintain the security and operation of our Services, and for our internal analytics and reporting purposes.</p>
+        <p>Like many businesses, we also collect information through cookies and similar technologies.</p>
+        <p>The information we collect includes:</p>
+        <ul>
+          <li><em>Log and Usage Data.</em> Log and usage data is service-related, diagnostic, usage, and performance information our servers automatically collect when you access or use our Services and which we record in log files. Depending on how you interact with us, this log data may include your IP address, device information, browser type, and settings and information about your activity in the Services (such as the date/time stamps associated with your usage, pages and files viewed, searches, and other actions you take such as which features you use), device event information (such as system activity, error reports (sometimes called "crash dumps"), and hardware settings).</li>
+        </ul>
+        <ul>
+          <li><em>Device Data.</em> We collect device data such as information about your computer, phone, tablet, or other device you use to access the Services. Depending on the device used, this device data may include information such as your IP address (or proxy server), device and application identification numbers, location, browser type, hardware model, Internet service provider and/or mobile carrier, operating system, and system configuration information.</li>
+        </ul>
+        <h3>Google API</h3>
+        <p>Our use of information received from Google APIs will adhere to <a href="https://developers.google.com/terms/api-services-user-data-policy" target="_blank" rel="noopener">Google API Services User Data Policy</a>, including the <a href="https://developers.google.com/terms/api-services-user-data-policy#limited-use" target="_blank" rel="noopener">Limited Use requirements</a>.</p>
+        <h3 id="othersources">Information collected from other sources</h3>
+        <p><strong><em>In Short: </em></strong><em>We may collect limited data from public databases, marketing partners, <em>social media platforms, </em>and other outside sources.</em></p>
+        <p>In order to enhance our ability to provide relevant marketing, offers, and services to you and update our records, we may obtain information about you from other sources, such as public databases, joint marketing partners, affiliate programs, data providers, social media platforms, and from other third parties. This information includes mailing addresses, job titles, email addresses, phone numbers, intent data (or user behavior data), Internet Protocol (IP) addresses, social media profiles, social media URLs, and custom profiles, for purposes of targeted advertising and event promotion.</p>
+        <p>If you interact with us on a social media platform using your social media account (e.g., Facebook or X), we receive personal information about you from such platforms such as your name, email address, and gender. You may have the right to withdraw your consent to processing your personal information. Learn more about <a href="#withdrawconsent">withdrawing your consent</a>. Any personal information that we collect from your social media account depends on your social media account's privacy settings. Please note that their own use of your information is not governed by this Privacy Notice.</p>
+        <h2 id="infouse">2. HOW DO WE PROCESS YOUR INFORMATION?</h2>
+        <p><strong><em>In Short: </em></strong><em>We process your information to provide, improve, and administer our Services, communicate with you, for security and fraud prevention, and to comply with law. We may also process your information for other purposes with your consent.</em></p>
+        <p><strong>We process your personal information for a variety of reasons, depending on how you interact with our Services, including:</strong></p>
+        <ul>
+          <li><strong>To facilitate account creation and authentication and otherwise manage user accounts. </strong>We may process your information so you can create and log in to your account, as well as keep your account in working order.</li>
+        </ul>
+        <ul>
+          <li><strong>To deliver and facilitate delivery of services to the user. </strong>We may process your information to provide you with the requested service.</li>
+        </ul>
+        <ul>
+          <li><strong>To verify creator identity. </strong>We may process the information we receive through Instagram Login to verify that you own the Instagram account you host collabs as.</li>
+        </ul>
+        <ul>
+          <li><strong>To pay you. </strong>We may process your payout and tax information to pay you creator pay and to meet our tax and other legal obligations.</li>
+        </ul>
+        <ul>
+          <li><strong>To respond to user inquiries/offer support to users. </strong>We may process your information to respond to your inquiries and solve any potential issues you might have with the requested service.</li>
+        </ul>
+        <ul>
+          <li><strong>To send administrative information to you. </strong>We may process your information to send you details about our products and services, changes to our terms and policies, and other similar information.</li>
+        </ul>
+        <ul>
+          <li><strong>To request feedback. </strong>We may process your information when necessary to request feedback and to contact you about your use of our Services.</li>
+        </ul>
+        <ul>
+          <li><strong>To send you marketing and promotional communications. </strong>We may process the personal information you send to us for our marketing purposes, if this is in accordance with your marketing preferences. You can opt out of our marketing emails at any time. For more information, see "<a href="#privacyrights">WHAT ARE YOUR PRIVACY RIGHTS?</a>" below.</li>
+        </ul>
+        <ul>
+          <li><strong>To administer prize draws and competitions.</strong> We may process your information to administer prize draws and competitions.</li>
+        </ul>
+        <ul>
+          <li><strong>To evaluate and improve our Services, products, marketing, and your experience.</strong> We may process your information when we believe it is necessary to identify usage trends, determine the effectiveness of our promotional campaigns, and to evaluate and improve our Services, products, marketing, and your experience.</li>
+        </ul>
+        <ul>
+          <li><strong>To identify usage trends.</strong> We may process information about how you use our Services to better understand how they are being used so we can improve them.</li>
+        </ul>
+        <ul>
+          <li><strong>To comply with our legal obligations.</strong> We may process your information to comply with our legal obligations, respond to legal requests, and exercise, establish, or defend our legal rights.</li>
+        </ul>
+        <h2 id="whoshare">3. WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</h2>
+        <p><strong><em>In Short:</em></strong><em> We may share information in specific situations described in this section and/or with the following categories of third parties.</em></p>
+        <p><strong>Vendors, Consultants, and Other Third-Party Service Providers.</strong> We may share your data with third-party vendors, service providers, contractors, or agents ("<strong>third parties</strong>") who perform services for us or on our behalf and require access to such information to do that work. We have contracts in place with our third parties, which are designed to help safeguard your personal information. This means that they cannot do anything with your personal information unless we have instructed them to do it. They will also not share your personal information with any organization apart from us. They also commit to protect the data they hold on our behalf and to retain it for the period we instruct.</p>
+        <p>The categories of third parties we may share personal information with are as follows:</p>
+        <ul>
+          <li>Data Analytics Services</li>
+        </ul>
+        <ul>
+          <li>Data Storage Service Providers</li>
+        </ul>
+        <ul>
+          <li>Communication &amp; Collaboration Tools</li>
+        </ul>
+        <ul>
+          <li>AI Platforms</li>
+        </ul>
+        <ul>
+          <li>Finance &amp; Accounting Tools</li>
+        </ul>
+        <ul>
+          <li>Payment Processors</li>
+        </ul>
+        <ul>
+          <li>Product Engineering &amp; Design Tools</li>
+        </ul>
+        <ul>
+          <li>Sales &amp; Marketing Tools</li>
+        </ul>
+        <ul>
+          <li>User Account Registration &amp; Authentication Services</li>
+        </ul>
+        <ul>
+          <li>Video Hosting Providers</li>
+        </ul>
+        <ul>
+          <li>Push Notification Providers</li>
+        </ul>
+        <p>We also may need to share your personal information in the following situations:</p>
+        <ul>
+          <li><strong>Business Transfers.</strong> We may share or transfer your information in connection with, or during negotiations of, any merger, sale of company assets, financing, or acquisition of all or a portion of our business to another company.</li>
+        </ul>
+        <ul>
+          <li><strong>Affiliates. </strong>We may share your information with our affiliates, in which case we will require those affiliates to honor this Privacy Notice. Affiliates include our parent company and any subsidiaries, joint venture partners, or other companies that we control or that are under common control with us.</li>
+        </ul>
+        <ul>
+          <li><strong>Business Partners.</strong> We may share your information with our business partners to offer you certain products, services, or promotions.</li>
+        </ul>
+        <ul>
+          <li><strong>Participants in Your Collabs.</strong> Participants can see your creator profile, including your first name, profile photo, and verified Instagram handle, as well as the videos you post for your collabs and the MVPs you select.</li>
+        </ul>
+        <h2 id="3pwebsites">4. WHAT IS OUR STANCE ON THIRD-PARTY WEBSITES?</h2>
+        <p><strong><em>In Short:</em></strong><em> We are not responsible for the safety of any information that you share with third parties that we may link to or who advertise on our Services, but are not affiliated with, our Services.</em></p>
+        <p>The Services may link to third-party websites, online services, or mobile applications and/or contain advertisements from third parties that are not affiliated with us and which may link to other websites, services, or applications. Accordingly, we do not make any guarantee regarding any such third parties, and we will not be liable for any loss or damage caused by the use of such third-party websites, services, or applications. The inclusion of a link towards a third-party website, service, or application does not imply an endorsement by us. We cannot guarantee the safety and privacy of data you provide to any third-party websites. Any data collected by third parties is not covered by this Privacy Notice. We are not responsible for the content or privacy and security practices and policies of any third parties, including other websites, services, or applications that may be linked to or from the Services. You should review the policies of such third parties and contact them directly to respond to your questions.</p>
+        <h2 id="cookies">5. DO WE USE COOKIES AND OTHER TRACKING TECHNOLOGIES?</h2>
+        <p><strong><em>In Short:</em></strong><em> We may use cookies and other tracking technologies to collect and store your information.</em></p>
+        <p>We may use cookies and similar tracking technologies (like web beacons and pixels) to gather information when you interact with our Services. Some online tracking technologies help us maintain the security of our Services and your account, prevent crashes, fix bugs, save your preferences, and assist with basic site functions.</p>
+        <p>We also permit third parties and service providers to use online tracking technologies on our Services for analytics and advertising, including to help manage and display advertisements or to tailor advertisements to your interests. The third parties and service providers use their technology to provide advertising about products and services tailored to your interests which may appear either on our Services or on other websites.</p>
+        <p>To the extent these online tracking technologies are deemed to be a "sale"/"sharing" (which includes targeted advertising, as defined under the applicable laws) under applicable US state laws, you can opt out of these online tracking technologies by submitting a request as described below under section "<a href="#uslaws">DO UNITED STATES RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</a>"</p>
+        <h3>Analytics</h3>
+        <p>We may use analytics services to understand how the Services are used and to improve them.</p>
+        <h2 id="ai">6. DO WE OFFER ARTIFICIAL INTELLIGENCE-BASED PRODUCTS?</h2>
+        <p><strong><em>In Short:</em></strong><em> We offer products, features, or tools powered by artificial intelligence, machine learning, or similar technologies.</em></p>
+        <p>As part of our Services, we offer products, features, or tools powered by artificial intelligence, machine learning, or similar technologies (collectively, "AI Products"). These tools are designed to enhance your experience and provide you with innovative solutions. The terms in this Privacy Notice govern your use of the AI Products within our Services.</p>
+        <p><strong>Use of AI Technologies</strong></p>
+        <p>We provide the AI Products through third-party service providers ("AI Service Providers"), including Google Cloud AI. As outlined in this Privacy Notice, your input, output, and personal information will be shared with and processed by these AI Service Providers to enable your use of our AI Products for purposes outlined in "<a href="#whoshare">WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a>" You must not use the AI Products in any way that violates the terms or policies of any AI Service Provider.</p>
+        <p><strong>Our AI Products</strong></p>
+        <p>Our AI Products are designed for the following functions:</p>
+        <ul>
+          <li>AI automation</li>
+        </ul>
+        <p><strong>How We Process Your Data Using AI</strong></p>
+        <p>All personal information processed using our AI Products is handled in line with our Privacy Notice and our agreement with third parties. This ensures high security and safeguards your personal information throughout the process, giving you peace of mind about your data's safety.</p>
+        <h2 id="instagram">7. HOW DO WE USE INSTAGRAM LOGIN?</h2>
+        <p><strong><em>In Short: </em></strong><em>Creators verify their Instagram account through Instagram Login. We use the information we receive only to verify that you own that account and to show your verified handle.</em></p>
+        <p>Creators verify their Instagram professional account by signing in to Instagram through Instagram Login, provided by Meta.</p>
+        <p><strong>What we receive.</strong> Through Instagram Login, we receive your Instagram user ID and username. We do not store your Instagram access token.</p>
+        <p><strong>Why we use it.</strong> We use this information only to verify that you own the Instagram account you host collabs as, and to show that verified handle on your creator profile and your collabs, where participants can see it.</p>
+        <p><strong>What we do not do.</strong> We do not sell this information, use it for advertising, or share it with data brokers. We do not post to, send messages from, or otherwise act on your Instagram account.</p>
+        <p><strong>How long we keep it.</strong> We keep this information while your creator account is active, and delete it when your account is deleted. To ask us to delete it, see "<a href="#delete">How to request deletion of your data</a>" below.</p>
+        <p><strong>Disconnecting Motiv.</strong> You can remove Motiv's access to your Instagram account at any time in Instagram's settings, under apps and websites. Because we do not store your Instagram access token, removing access does not delete the information we already have. To delete it, email us as described in "<a href="#delete">How to request deletion of your data</a>."</p>
+        <p>Please note that we do not control, and are not responsible for, other uses of your personal information by Meta. We recommend that you review Meta's privacy policy to understand how it collects, uses, and shares your personal information, and how you can set your privacy preferences on Instagram.</p>
+        <h2 id="inforetain">8. HOW LONG DO WE KEEP YOUR INFORMATION?</h2>
+        <p><strong><em>In Short: </em></strong><em>We keep your information for as long as necessary to fulfill the purposes outlined in this Privacy Notice unless otherwise required by law.</em></p>
+        <p>We will only keep your personal information for as long as it is necessary for the purposes set out in this Privacy Notice, unless a longer retention period is required or permitted by law (such as tax, accounting, or other legal requirements). No purpose in this notice will require us keeping your personal information for longer than the period of time in which users have an account with us.</p>
+        <p>When we have no ongoing legitimate business need to process your personal information, we will either delete or anonymize such information, or, if this is not possible (for example, because your personal information has been stored in backup archives), then we will securely store your personal information and isolate it from any further processing until deletion is possible.</p>
+        <p>We do not keep the videos you post for a collab permanently. We may delete them at any time after the collab ends.</p>
+        <h2 id="infosafe">9. HOW DO WE KEEP YOUR INFORMATION SAFE?</h2>
+        <p><strong><em>In Short: </em></strong><em>We aim to protect your personal information through a system of organizational and technical security measures.</em></p>
+        <p>We have implemented appropriate and reasonable technical and organizational security measures designed to protect the security of any personal information we process. However, despite our safeguards and efforts to secure your information, no electronic transmission over the Internet or information storage technology can be guaranteed to be 100% secure, so we cannot promise or guarantee that hackers, cybercriminals, or other unauthorized third parties will not be able to defeat our security and improperly collect, access, steal, or modify your information. Although we will do our best to protect your personal information, transmission of personal information to and from our Services is at your own risk. You should only access the Services within a secure environment.</p>
+        <h2 id="infominors">10. DO WE COLLECT INFORMATION FROM MINORS?</h2>
+        <p><strong><em>In Short:</em></strong><em> We do not knowingly collect data from or market to children under 18 years of age.</em></p>
+        <p>We do not knowingly collect, solicit data from, or market to children under 18 years of age, nor do we knowingly sell such personal information. By using the Services, you represent that you are at least 18 or that you are the parent or guardian of such a minor and consent to such minor dependent’s use of the Services. If we learn that personal information from users less than 18 years of age has been collected, we will deactivate the account and take reasonable measures to promptly delete such data from our records. If you become aware of any data we may have collected from children under age 18, please contact us at <a href="mailto:privacy@heymotiv.com">privacy@heymotiv.com</a>.</p>
+        <h2 id="privacyrights">11. WHAT ARE YOUR PRIVACY RIGHTS?</h2>
+        <p><strong><em>In Short:</em></strong><em>  You may review, change, or terminate your account at any time, depending on your country, province, or state of residence.</em></p>
+        <p id="withdrawconsent"><strong><u>Withdrawing your consent:</u></strong> If we are relying on your consent to process your personal information, which may be express and/or implied consent depending on the applicable law, you have the right to withdraw your consent at any time. You can withdraw your consent at any time by contacting us by using the contact details provided in the section "<a href="#contact">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>" below.</p>
+        <p>However, please note that this will not affect the lawfulness of the processing before its withdrawal nor, when applicable law allows, will it affect the processing of your personal information conducted in reliance on lawful processing grounds other than consent.</p>
+        <p><strong><u>Opting out of marketing and promotional communications:</u></strong> You can unsubscribe from our marketing and promotional communications at any time by clicking on the unsubscribe link in the emails that we send, or by contacting us using the details provided in the section "<a href="#contact">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>" below. You will then be removed from the marketing lists. However, we may still communicate with you, for example, to send you service-related messages that are necessary for the administration and use of your account, to respond to service requests, or for other non-marketing purposes.</p>
+        <h3>Account Information</h3>
+        <p>If you would at any time like to review or change the information in your account or terminate your account, you can:</p>
+        <ul>
+          <li>Contact us using the contact information provided.</li>
+        </ul>
+        <p>Upon your request to terminate your account, we will deactivate or delete your account and information from our active databases. However, we may retain some information in our files to prevent fraud, troubleshoot problems, assist with any investigations, enforce our legal terms and/or comply with applicable legal requirements. Learn more about <a href="#delete">how to request deletion of your data</a>.</p>
+        <p><strong><u>Cookies and similar technologies:</u></strong> Most Web browsers are set to accept cookies by default. If you prefer, you can usually choose to set your browser to remove cookies and to reject cookies. If you choose to remove cookies or reject cookies, this could affect certain features or services of our Services. You may also <a href="http://www.aboutads.info/choices/" target="_blank" rel="noopener">opt out of interest-based advertising by advertisers</a> on our Services.</p>
+        <p>If you have questions or comments about your privacy rights, you may email us at <a href="mailto:privacy@heymotiv.com">privacy@heymotiv.com</a>.</p>
+        <h2 id="DNT">12. CONTROLS FOR DO-NOT-TRACK FEATURES</h2>
+        <p>Most web browsers and some mobile operating systems and mobile applications include a Do-Not-Track ("DNT") feature or setting you can activate to signal your privacy preference not to have data about your online browsing activities monitored and collected. At this stage, no uniform technology standard for recognizing and implementing DNT signals has been finalized. As such, we do not currently respond to DNT browser signals or any other mechanism that automatically communicates your choice not to be tracked online. If a standard for online tracking is adopted that we must follow in the future, we will inform you about that practice in a revised version of this Privacy Notice.</p>
+        <p>California law requires us to let you know how we respond to web browser DNT signals. Because there currently is not an industry or legal standard for recognizing or honoring DNT signals, we do not respond to them at this time.</p>
+        <h2 id="uslaws">13. DO UNITED STATES RESIDENTS HAVE SPECIFIC PRIVACY RIGHTS?</h2>
+        <p><strong><em>In Short: </em></strong><em>If you are a resident of California, Colorado, Connecticut, Delaware, Florida, Indiana, Iowa, Kentucky, Maryland, Minnesota, Montana, Nebraska, New Hampshire, New Jersey, Oregon, Rhode Island, Tennessee, Texas, Utah, or Virginia, you may have the right to request access to and receive details about the personal information we maintain about you and how we have processed it, correct inaccuracies, get a copy of, or delete your personal information. You may also have the right to withdraw your consent to our processing of your personal information. These rights may be limited in some circumstances by applicable law. More information is provided below.</em></p>
+        <h3>Categories of Personal Information We Collect</h3>
+        <p>The table below shows the categories of personal information we have collected in the past twelve (12) months. The table includes illustrative examples of each category and does not reflect the personal information we collect from you. For a comprehensive inventory of all personal information we process, please refer to the section "<a href="#infocollect">WHAT INFORMATION DO WE COLLECT?</a>"</p>
+        <div class="legal-table-wrap">
+          <table class="legal-table">
+            <thead><tr><th><strong>Category</strong></th><th><strong>Examples</strong></th><th><strong>Collected</strong></th></tr></thead>
+            <tbody>
+              <tr><td>A. Identifiers</td><td>Contact details, such as real name, alias, postal address, telephone or mobile contact number, unique personal identifier, online identifier, Internet Protocol address, email address, and account name</td><td>YES</td></tr>
+              <tr><td>B. Personal information as defined in the California Customer Records statute</td><td>Name, contact information, education, employment, employment history, and financial information</td><td>YES</td></tr>
+              <tr><td>C. Protected classification characteristics under state or federal law</td><td>Gender, age, date of birth, race and ethnicity, national origin, marital status, and other demographic data</td><td>NO</td></tr>
+              <tr><td>D. Commercial information</td><td>Transaction information, purchase history, financial details, and payment information</td><td>NO</td></tr>
+              <tr><td>E. Biometric information</td><td>Fingerprints and voiceprints</td><td>NO</td></tr>
+              <tr><td>F. Internet or other similar network activity</td><td>Browsing history, search history, online behavior, interest data, and interactions with our and other websites, applications, systems, and advertisements</td><td>NO</td></tr>
+              <tr><td>G. Geolocation data</td><td>Device location</td><td>NO</td></tr>
+              <tr><td>H. Audio, electronic, sensory, or similar information</td><td>Images and audio, video or call recordings created in connection with our business activities</td><td>YES</td></tr>
+              <tr><td>I. Professional or employment-related information</td><td>Business contact details in order to provide you our Services at a business level or job title, work history, and professional qualifications if you apply for a job with us</td><td>NO</td></tr>
+              <tr><td>J. Education Information</td><td>Student records and directory information</td><td>NO</td></tr>
+              <tr><td>K. Inferences drawn from collected personal information</td><td>Inferences drawn from any of the collected personal information listed above to create a profile or summary about, for example, an individual’s preferences and characteristics</td><td>NO</td></tr>
+              <tr><td>L. Sensitive personal Information</td><td>Government identifiers such as a taxpayer identification number, account login information, financial account numbers and contents of email or text messages</td><td>YES [CONFIRM: whether Motiv receives taxpayer identification numbers from Form W-9s or payout account numbers]</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>We only collect sensitive personal information, as defined by applicable privacy laws or the purposes allowed by law or with your consent. Sensitive personal information may be used, or disclosed to a service provider or contractor, for additional, specified purposes. You may have the right to limit the use or disclosure of your sensitive personal information. We do not collect or process sensitive personal information for the purpose of inferring characteristics about you.</p>
+        <p>We may also collect other personal information outside of these categories through instances where you interact with us in person, online, or by phone or mail in the context of:</p>
+        <ul>
+          <li>Receiving help through our customer support channels;</li>
+        </ul>
+        <ul>
+          <li>Participation in customer surveys or contests; and</li>
+        </ul>
+        <ul>
+          <li>Facilitation in the delivery of our Services and to respond to your inquiries.</li>
+        </ul>
+        <p>We will use and retain the collected personal information as needed to provide the Services or for:</p>
+        <ul>
+          <li>Category A - As long as the user has an account with us</li>
+        </ul>
+        <ul>
+          <li>Category B - As long as the user has an account with us</li>
+        </ul>
+        <ul>
+          <li>Category H - Until we delete the videos you post for a collab, which may happen at any time after the collab ends</li>
+        </ul>
+        <ul>
+          <li>Category L - As long as the user has an account with us</li>
+        </ul>
+        <h3>Sources of Personal Information</h3>
+        <p>Learn more about the sources of personal information we collect in "<a href="#infocollect">WHAT INFORMATION DO WE COLLECT?</a>"</p>
+        <h3>How We Use and Share Personal Information</h3>
+        <p>Learn more about how we use your personal information in the section, "<a href="#infouse">HOW DO WE PROCESS YOUR INFORMATION?</a>"</p>
+        <p><strong>Will your information be shared with anyone else?</strong></p>
+        <p>We may disclose your personal information with our service providers pursuant to a written contract between us and each service provider. Learn more about how we disclose personal information to in the section, "<a href="#whoshare">WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a>"</p>
+        <p>We may use your personal information for our own business purposes, such as for undertaking internal research for technological development and demonstration. This is not considered to be "selling" of your personal information.</p>
+        <p>We have disclosed the following categories of personal information to third parties for a business or commercial purpose in the preceding twelve (12) months:</p>
+        <ul>
+          <li>Category A. Identifiers</li>
+        </ul>
+        <ul>
+          <li>Category B. Personal information as defined in the California Customer Records law</li>
+        </ul>
+        <ul>
+          <li>Category H. Audio, electronic, sensory, or similar information</li>
+        </ul>
+        <ul>
+          <li>Category L. Sensitive personal information</li>
+        </ul>
+        <p>The categories of third parties to whom we disclosed personal information for a business or commercial purpose can be found under "<a href="#whoshare">WHEN AND WITH WHOM DO WE SHARE YOUR PERSONAL INFORMATION?</a>"</p>
+        <p>We have sold or shared the following categories of personal information to third parties in the preceding twelve (12) months:</p>
+        <p>The categories of third parties to whom we sold personal information are:</p>
+        <h3>Your Rights</h3>
+        <p>You have rights under certain US state data protection laws. However, these rights are not absolute, and in certain cases, we may decline your request as permitted by law. These rights include:</p>
+        <ul>
+          <li><strong>Right to know</strong> whether or not we are processing your personal data</li>
+        </ul>
+        <ul>
+          <li><strong>Right to access </strong>your personal data</li>
+        </ul>
+        <ul>
+          <li><strong>Right to correct </strong>inaccuracies in your personal data</li>
+        </ul>
+        <ul>
+          <li><strong>Right to request</strong> the deletion of your personal data</li>
+        </ul>
+        <ul>
+          <li><strong>Right to obtain a copy </strong>of the personal data you previously shared with us</li>
+        </ul>
+        <ul>
+          <li><strong>Right to non-discrimination</strong> for exercising your rights</li>
+        </ul>
+        <ul>
+          <li><strong>Right to opt out</strong> of the processing of your personal data if it is used for targeted advertising (or sharing as defined under California’s privacy law), the sale of personal data, or profiling in furtherance of decisions that produce legal or similarly significant effects ("profiling")</li>
+        </ul>
+        <p>Depending upon the state where you live, you may also have the following rights:</p>
+        <ul>
+          <li>Right to access the categories of personal data being processed (as permitted by applicable law, including the privacy law in Minnesota)</li>
+        </ul>
+        <ul>
+          <li>Right to obtain a list of the categories of third parties to which we have disclosed personal data (as permitted by applicable law, including the privacy law in California, Delaware, and Maryland)</li>
+        </ul>
+        <ul>
+          <li>Right to obtain a list of specific third parties to which we have disclosed personal data (as permitted by applicable law, including the privacy law in Minnesota and Oregon)</li>
+        </ul>
+        <ul>
+          <li>Right to obtain a list of third parties to which we have sold personal data (as permitted by applicable law, including the privacy law in Connecticut)</li>
+        </ul>
+        <ul>
+          <li>Right to review, understand, question, and depending on where you live, correct how personal data has been profiled (as permitted by applicable law, including the privacy law in Connecticut and Minnesota)</li>
+        </ul>
+        <ul>
+          <li>Right to limit use and disclosure of sensitive personal data (as permitted by applicable law, including the privacy law in California)</li>
+        </ul>
+        <ul>
+          <li>Right to opt out of the collection of sensitive data and personal data collected through the operation of a voice or facial recognition feature (as permitted by applicable law, including the privacy law in Florida)</li>
+        </ul>
+        <h3>How to Exercise Your Rights</h3>
+        <p>To exercise these rights, you can contact us by emailing us at <a href="mailto:privacy@heymotiv.com">privacy@heymotiv.com</a>, or by referring to the contact details at the bottom of this document.</p>
+        <p>Under certain US state data protection laws, you can designate an authorized agent to make a request on your behalf. We may deny a request from an authorized agent that does not submit proof that they have been validly authorized to act on your behalf in accordance with applicable laws.</p>
+        <h3>Request Verification</h3>
+        <p>Upon receiving your request, we will need to verify your identity to determine you are the same person about whom we have the information in our system. We will only use personal information provided in your request to verify your identity or authority to make the request. However, if we cannot verify your identity from the information already maintained by us, we may request that you provide additional information for the purposes of verifying your identity and for security or fraud-prevention purposes.</p>
+        <p>If you submit the request through an authorized agent, we may need to collect additional information to verify your identity before processing your request and the agent will need to provide a written and signed permission from you to submit such request on your behalf.</p>
+        <h3>Appeals</h3>
+        <p>Under certain US state data protection laws, if we decline to take action regarding your request, you may appeal our decision by emailing us at <a href="mailto:privacy@heymotiv.com">privacy@heymotiv.com</a>. We will inform you in writing of any action taken or not taken in response to the appeal, including a written explanation of the reasons for the decisions. If your appeal is denied, you may submit a complaint to your state attorney general.</p>
+        <h3>Financial Incentives</h3>
+        <p>"Financial incentive" means a program, benefit, or other offering, including payments to consumers as compensation, for the disclosure, deletion, sale, or sharing of personal information.</p>
+        <p>The law permits financial incentives or a price or service difference if it is reasonably related to the value of the consumer’s data. A business must be able to explain how the financial incentive or price or service difference is reasonably related to the value of the consumer’s data. The explanation must include:</p>
+        <ul>
+          <li>a good-faith estimate of the value of the consumer’s data that forms the basis for offering the financial incentive or price or service difference; and</li>
+        </ul>
+        <ul>
+          <li>a description of the method the business used to calculate the value of the consumer’s data.</li>
+        </ul>
+        <p>We may decide to offer a "bona fide loyalty program" under Colorado law, or a "financial incentive" under California law (e.g., price or service difference) in exchange for the retention, sale, or sharing of a consumer’s personal information.</p>
+        <p>If we decide to offer a financial incentive, we will notify you of such financial incentive and explain the price difference, as well as material terms of the financial incentive or price of service difference, including the categories of personal information that are implicated by the financial incentive or price or service difference.</p>
+        <p>Under California law, the value of your personal information to us is related to the value of the free or discounted products or services, or other benefits that you obtain or that are provided as part of the applicable program, less the expense related to offering those products, services, and benefits to program participants.</p>
+        <p>If you choose to participate in the financial incentive you can withdraw from the financial incentive at any time by emailing us at <a href="mailto:privacy@heymotiv.com">privacy@heymotiv.com</a>, or by referring to the contact details at the bottom of this document.</p>
+        <h3>California "Shine The Light" Law</h3>
+        <p>California Civil Code Section 1798.83, also known as the "Shine The Light" law, permits our users who are California residents to request and obtain from us, once a year and free of charge, information about categories of personal information (if any) we disclosed to third parties for direct marketing purposes and the names and addresses of all third parties with which we shared personal information in the immediately preceding calendar year. If you are a California resident and would like to make such a request, please submit your request in writing to us by using the contact details provided in the section "<a href="#contact">HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</a>"</p>
+        <h2 id="creatorview">14. WHAT CAN CREATORS SEE ABOUT PARTICIPANTS?</h2>
+        <p>When a collab ends, you can see up to ten participants who met their goals, ranked by how much their weekly activity improved over their own baseline from before the collab. For each of them, you see their first name, profile photo, baseline and actual weekly activity averages, and percentage improvement. You use this to select your MVPs. You do not see any other participant activity data. [CONFIRM: whether creators can see any other participant activity data anywhere in the Motiv Creator app.]</p>
+        <p>Motiv's sharing tools also let you share participants' Instagram handles and profile photos to your Instagram Story. You may use participant information only as our <a href="https://heymotiv.com/#terms-creatorcontent">Terms of Service</a> allow.</p>
+        <h2 id="policyupdates">15. DO WE MAKE UPDATES TO THIS NOTICE?</h2>
+        <p><em><strong>In Short: </strong>Yes, we will update this notice as necessary to stay compliant with relevant laws.</em></p>
+        <p>We may update this Privacy Notice from time to time. The updated version will be indicated by an updated "Revised" date at the top of this Privacy Notice. If we make material changes to this Privacy Notice, we may notify you either by prominently posting a notice of such changes or by directly sending you a notification. We encourage you to review this Privacy Notice frequently to be informed of how we are protecting your information.</p>
+        <h2 id="contact">16. HOW CAN YOU CONTACT US ABOUT THIS NOTICE?</h2>
+        <p>If you have questions or comments about this notice, you may contact our Data Protection Officer (DPO) by email at <a href="mailto:privacy@heymotiv.com">privacy@heymotiv.com</a>, or contact us by post at:</p>
+        <p>Motiv LLC</p>
+        <p>Data Protection Officer</p>
+        <p>121 Tower Rd</p>
+        <p>Lincoln, MA 01773</p>
+        <p>United States</p>
+        <h2 id="request">17. HOW CAN YOU REVIEW, UPDATE, OR DELETE THE DATA WE COLLECT FROM YOU?</h2>
+        <p>You have the right to request access to the personal information we collect from you, details about how we have processed it, correct inaccuracies, or delete your personal information. You may also have the right to withdraw your consent to our processing of your personal information. These rights may be limited in some circumstances by applicable law. To request to review, update, or delete your personal information, please email <a href="mailto:privacy@heymotiv.com">privacy@heymotiv.com</a>.</p>
+        <h3 id="delete">How to request deletion of your data</h3>
+        <p>To delete your Motiv Creator account and your data, including the data we received through Instagram Login, email <a href="mailto:privacy@heymotiv.com">privacy@heymotiv.com</a> from the email address on your creator account and ask us to delete your account and data.</p>
+        <p>We will confirm your request by email and complete it within 30 days, except for information we must keep for legal, tax, or fraud-prevention reasons.</p>
+        <p>This Privacy Policy was created using Termly's <a href="https://termly.io/products/privacy-policy-generator/" target="_blank" rel="noopener">Privacy Policy Generator</a></p>
       </div>
     </div>
   </section>
@@ -1913,9 +2519,25 @@ function navigateTo(page) {
 // Pages with their own shareable URL (mirrors collabswith.com/#terms, /#privacy)
 const HASH_PAGES = ['terms', 'privacy'];
 
+// The page the hash points at, plus the anchor inside it when the hash is a
+// section of a legal page (e.g. #delete or #instagram opens Privacy there)
+function hashTarget() {
+  const h = decodeURIComponent(location.hash.slice(1));
+  if (!h) return null;
+  if (HASH_PAGES.includes(h)) return { page: h, anchor: null };
+  const el = document.getElementById(h);
+  const section = el && el.closest('.page-section');
+  const page = section && section.id.replace('page-', '');
+  return HASH_PAGES.includes(page) ? { page, anchor: el } : null;
+}
+
 function currentHashPage() {
-  const h = location.hash.replace('#', '');
-  return HASH_PAGES.includes(h) ? h : null;
+  const t = hashTarget();
+  return t ? t.page : null;
+}
+
+function scrollToAnchor(el) {
+  if (el) el.scrollIntoView({ behavior: 'instant', block: 'start' });
 }
 
 document.querySelectorAll('[data-page]').forEach(link => {
@@ -1924,7 +2546,7 @@ document.querySelectorAll('[data-page]').forEach(link => {
     const page = link.dataset.page;
 
     if (HASH_PAGES.includes(page)) {
-      if (currentHashPage() === page) {
+      if (location.hash === '#' + page) {
         navigateTo(page);            // already here: just scroll to top
       } else {
         location.hash = page;        // router below handles the switch
@@ -1971,19 +2593,30 @@ function observeElement(el) {
 
 document.querySelectorAll('.reveal').forEach(observeElement);
 
-// ─── Hash Routing (#terms, #privacy) ───
+// ─── Hash Routing (#terms, #privacy, and anchors inside them like #delete) ───
 function routeFromUrl() {
-  const page = currentHashPage() || (history.state && history.state.page) || 'home';
+  const t = hashTarget();
+  const page = t ? t.page : (history.state && history.state.page) || 'home';
   const target = document.getElementById('page-' + page);
-  if (target && target.classList.contains('active')) return;
-  navigateTo(page);
+  if (!(target && target.classList.contains('active'))) navigateTo(page);
+  else if (t && !t.anchor) window.scrollTo({ top: 0, behavior: 'instant' });
+  if (t) scrollToAnchor(t.anchor);
 }
 
 window.addEventListener('hashchange', routeFromUrl);
 window.addEventListener('popstate', routeFromUrl);
 
-if (currentHashPage()) {
-  navigateTo(currentHashPage());
+const initialTarget = hashTarget();
+if (initialTarget) {
+  navigateTo(initialTarget.page);
+  scrollToAnchor(initialTarget.anchor);
+  // Fonts and images can shift the layout; land on the anchor again once loaded
+  if (initialTarget.anchor) {
+    window.addEventListener('load', () => {
+      const t = hashTarget();
+      if (t && t.anchor === initialTarget.anchor) scrollToAnchor(t.anchor);
+    }, { once: true });
+  }
 } else {
   history.replaceState({ page: 'home' }, '');
 }
